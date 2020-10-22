@@ -18,6 +18,7 @@ public class CameraController : MonoBehaviour
 
     public bool MovingPlayer { get; set; } = true;
 
+    //hello
 
     private void Awake()
     {
