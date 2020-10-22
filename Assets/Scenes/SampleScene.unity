@@ -151,7 +151,7 @@ Light:
   m_Shape: 0
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_Intensity: 2
-  m_Range: 10
+  m_Range: 100
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
   m_CookieSize: 10
@@ -191,7 +191,7 @@ Light:
   m_RenderingLayerMask: 1
   m_Lightmapping: 2
   m_LightShadowCasterMode: 0
-  m_AreaSize: {x: 10, y: 10}
+  m_AreaSize: {x: 100, y: 100}
   m_BounceIntensity: 1
   m_ColorTemperature: 6570
   m_UseColorTemperature: 0
@@ -835,7 +835,6 @@ MonoBehaviour:
   highlightedWallMaterial: {fileID: 2100000, guid: 9dbf6f55589812b4b83edd76c999d55a,
     type: 2}
   defaultWallMaterial: {fileID: 2100000, guid: c4dd384702a135c4b8498fbd2111787d, type: 2}
-  targeted: {fileID: 0}
 --- !u!1 &1159586397
 GameObject:
   m_ObjectHideFlags: 0
