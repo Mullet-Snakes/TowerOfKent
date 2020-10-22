@@ -12,7 +12,7 @@ public class PlayerController : MonoBehaviour
     [Tooltip("Default: Ground")]
     public LayerMask groundMask;
 
-    private bool isGounded = false;
+    private bool isGrounded = false;
 
     [Tooltip("Default: 10")]
     [Range(1, 30)]
@@ -111,12 +111,12 @@ public class PlayerController : MonoBehaviour
 
         m_input = (transform.right * x + transform.forward * z).normalized;
 
-        if (Input.GetButtonDown("Jump") && isGounded)
+        if (Input.GetButtonDown("Jump") && isGrounded)
         {
             m_rb.AddForce(-m_jumpSpeed * m_gravity.normalized, ForceMode.Impulse);
         }
 
-        if (Input.GetButton("Shift") && isGounded && m_input != Vector3.zero)
+        if (Input.GetButton("Shift") && isGrounded && m_input != Vector3.zero)
         {
             dashing = true;
         }
@@ -125,11 +125,11 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
-        isGounded = Physics.Raycast(transform.position, -transform.up, out RaycastHit hit, 1.03f);
+        isGrounded = Physics.Raycast(transform.position, -transform.up, out RaycastHit hit, 1.03f);
 
         targetVelocity = m_rb.velocity;
 
-        if (isGounded && !rotating)
+        if (isGrounded && !rotating)
         {
             targetVelocity = Vector3.zero;
 
@@ -144,17 +144,17 @@ public class PlayerController : MonoBehaviour
             }
         }
 
-        if (!isGounded && !rotating)
+        if (!isGrounded && !rotating)
         {
             targetVelocity += ((m_input * m_groundSpeed) * m_inAirMovementSpeed) * Time.deltaTime;
         }
 
-        if (!isGounded)
+        if (!isGrounded)
         {
             gravityVelocity += m_gravity * Time.deltaTime;
         }
 
-        if (isGounded && !rotating)
+        if (isGrounded && !rotating)
         {
             gravityVelocity.Set(0, 0, 0);
         }
