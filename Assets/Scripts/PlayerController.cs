@@ -5,8 +5,6 @@ using System.Xml.Schema;
 using UnityEngine;
 using UnityEngine.UI;
 
-//Engineer Gaming https://www.youtube.com/watch?v=DGdfzM780KY
-
 public class PlayerController : MonoBehaviour
 {
     private Rigidbody m_rb = null;
