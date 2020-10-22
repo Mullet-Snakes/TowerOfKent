@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class KeyChainScript
+public static class KeyChainScript
 {
     static private Dictionary<string, bool> keyChain = new Dictionary<string, bool>();
 
