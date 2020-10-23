@@ -30,7 +30,7 @@ public class GravityCastScript : MonoBehaviour
         Debug.DrawLine(transform.position, transform.forward * 50, Color.red);
 
 
-        if (Input.GetKeyDown(KeyCode.E))
+        if (Input.GetMouseButtonDown(0))
         {
 
             if (Physics.Raycast(transform.position, transform.forward, out RaycastHit hit, Mathf.Infinity))
@@ -51,7 +51,7 @@ public class GravityCastScript : MonoBehaviour
             }
         }
 
-        if (Input.GetKeyDown(KeyCode.Q))
+        if (Input.GetMouseButtonDown(1))
         {
             if (Physics.Raycast(transform.position, transform.forward, out RaycastHit hit, Mathf.Infinity))
             {
