@@ -4,7 +4,15 @@ using UnityEngine;
 
 public class PressurePlateScript : MonoBehaviour
 {
-    public bool isColliding = false;
+    private bool isColliding = false;
+
+    public bool IsColliding
+    {
+        get
+        {
+            return isColliding;
+        }
+    }
 
     private void OnCollisionEnter(Collision collision)
     {

@@ -388,12 +388,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 543021cc7a49cad4fb6cc61fa920ebd6, type: 3}
---- !u!1 &580544563 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1730365750530575441, guid: 543021cc7a49cad4fb6cc61fa920ebd6,
-    type: 3}
-  m_PrefabInstance: {fileID: 580544562}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &739471805
 GameObject:
   m_ObjectHideFlags: 0
@@ -460,12 +454,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &863888649 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1730365750530575441, guid: 543021cc7a49cad4fb6cc61fa920ebd6,
-    type: 3}
-  m_PrefabInstance: {fileID: 1730365749670537560}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &961437990
 GameObject:
   m_ObjectHideFlags: 0
@@ -632,27 +620,6 @@ Transform:
   m_Father: {fileID: 550773672}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &1334578575 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 8197095605655057020, guid: 6649991dde669cf489f139e098fa261e,
-    type: 3}
-  m_PrefabInstance: {fileID: 8197095604689584115}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &1334578576
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1334578575}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 931da544dd40cfd40bd590d995b5f213, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  pressurePlateList:
-  - {fileID: 863888649}
-  - {fileID: 580544563}
 --- !u!1 &1598650128
 GameObject:
   m_ObjectHideFlags: 0
@@ -1593,12 +1560,11 @@ PrefabInstance:
         type: 3}
       propertyPath: condition
       value: 
-      objectReference: {fileID: 1334578576}
+      objectReference: {fileID: 0}
     - target: {fileID: 8197095605655057020, guid: 6649991dde669cf489f139e098fa261e,
         type: 3}
       propertyPath: m_Name
       value: DoorObject
       objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: 8197095605655056993, guid: 6649991dde669cf489f139e098fa261e, type: 3}
+    m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6649991dde669cf489f139e098fa261e, type: 3}

@@ -12,7 +12,7 @@ public class PressurePlateDoorCondition : DoorConditionScript
         {
             if(plate.GetComponent<PressurePlateScript>() != null)
             {
-                if(!plate.GetComponent<PressurePlateScript>().isColliding)
+                if(!plate.GetComponent<PressurePlateScript>().IsColliding)
                 {
                     return false;
                 }

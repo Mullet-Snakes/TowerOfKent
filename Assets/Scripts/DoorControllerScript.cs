@@ -11,17 +11,11 @@ public class DoorControllerScript : MonoBehaviour
     public Transform right;
 
     public float timeToMove = 2f;
-
     public float distanceToMove = 5f;
 
     private bool running = false;
     private bool open = false;
     private bool closed = true;
-
-    private void Awake()
-    {
-        
-    }
 
     // Start is called before the first frame update
     void Start()
