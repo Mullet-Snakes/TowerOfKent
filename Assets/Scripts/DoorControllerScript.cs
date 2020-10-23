@@ -33,7 +33,9 @@ public class DoorControllerScript : MonoBehaviour
     {
         Rigidbody door_rb = door.GetComponent<Rigidbody>();
         Vector3 startingPos = door.position;
-        Vector3 endPos =  new Vector3(door.position.x + dist, door.position.y, door.position.z);
+        Vector3 movement = door.right * dist;
+        Vector3 endPos =  new Vector3(door.position.x + movement.x, door.position.y + movement.y, door.position.z + movement.z);
+
         float elapsedTime = 0f;
 
         while (elapsedTime < timeToMove)
