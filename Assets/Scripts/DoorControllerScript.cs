@@ -78,6 +78,9 @@ public class DoorControllerScript : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.H))
         {
             canOpen = condition.CheckCondition();
+
+            if (canOpen)
+                OpenDoor();
         }
     }
 }
