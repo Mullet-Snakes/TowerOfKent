@@ -18,6 +18,11 @@ public class DoorControllerScript : MonoBehaviour
     private bool open = false;
     private bool closed = true;
 
+    private void Awake()
+    {
+        
+    }
+
     // Start is called before the first frame update
     void Start()
     {
@@ -26,6 +31,7 @@ public class DoorControllerScript : MonoBehaviour
 
     IEnumerator MoveDoor(Transform door, float dist)
     {
+        Rigidbody door_rb = door.GetComponent<Rigidbody>();
         Vector3 startingPos = door.position;
         Vector3 endPos =  new Vector3(door.position.x + dist, door.position.y, door.position.z);
         float elapsedTime = 0f;
@@ -33,7 +39,7 @@ public class DoorControllerScript : MonoBehaviour
         while (elapsedTime < timeToMove)
         {
             running = true;
-            door.position = Vector3.Lerp(startingPos, endPos, (elapsedTime / timeToMove));
+            door_rb.MovePosition(Vector3.Lerp(startingPos, endPos, (elapsedTime / timeToMove)));
             elapsedTime += Time.deltaTime;
             yield return null;
         }
