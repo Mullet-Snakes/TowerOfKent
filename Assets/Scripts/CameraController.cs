@@ -5,6 +5,8 @@ using UnityEngine.Networking;
 
 public class CameraController : MonoBehaviour
 {
+    //hey
+
     [Range(0, 1000)]
     [Tooltip("Default: 300")]
     public float mouseSensitivity = 300f;
