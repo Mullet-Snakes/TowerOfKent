@@ -230,7 +230,6 @@ GameObject:
   m_Component:
   - component: {fileID: 8197095605655056994}
   - component: {fileID: 8197095605655056995}
-  - component: {fileID: 8197095605655056993}
   m_Layer: 0
   m_Name: DoorObject
   m_TagString: Untagged
@@ -266,22 +265,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 55437c8ae8afdff499e808770e088096, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  condition: {fileID: 8197095605655056993}
+  condition: {fileID: 0}
   canOpen: 0
   left: {fileID: 8197095604029690737}
   right: {fileID: 8197095603853313204}
   timeToMove: 2
   distanceToMove: 2
---- !u!114 &8197095605655056993
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8197095605655057020}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d5fb0e745b0ff354a9db4241af218097, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  keyName: bluekey
