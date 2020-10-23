@@ -14,7 +14,7 @@ public class DoorControllerScript : MonoBehaviour
 
     public float distanceToMove = 5f;
 
-    public bool running = false;
+    private bool running = false;
     private bool open = false;
     private bool closed = true;
 

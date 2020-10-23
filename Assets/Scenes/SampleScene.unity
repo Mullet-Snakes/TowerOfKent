@@ -879,7 +879,7 @@ MonoBehaviour:
   left: {fileID: 795552898}
   right: {fileID: 854063943}
   timeToMove: 2
-  distanceToMove: 5
+  distanceToMove: 2
   running: 0
 --- !u!4 &1334578577
 Transform:
