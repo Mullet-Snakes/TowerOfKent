@@ -10,7 +10,7 @@ public class KeycardDoorConditionScript : DoorConditionScript
     override public bool CheckCondition()
     {
         bool condition = KeyChainScript.HasKey(keyName) ? true : false;
-        print("cond: " + condition);
+
         return condition;
     }
 

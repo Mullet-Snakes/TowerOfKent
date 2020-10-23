@@ -24,15 +24,9 @@ public static class KeyChainScript
 
     static public bool HasKey(string keyName)
     {
-        if(keyChain[keyName])
-        {
-            return 
-        }
-
-        bool hasKey = keyChain.ContainsKey(keyName) ? true : false;
+        bool hasKey = keyChain[keyName] ? true : false;
 
         return hasKey;
-
     }
 
     static public void PrintKeyChain()

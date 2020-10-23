@@ -7,7 +7,7 @@ public class DoorConditionScript : MonoBehaviour
 
     public virtual bool CheckCondition()
     {
-        return false;
+        return true;
     }
 
     // Start is called before the first frame update
