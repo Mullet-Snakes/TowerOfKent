@@ -1250,6 +1250,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 6986354697981864038, guid: df33eebb884e8cd48afa52d8ed3c386d,
+        type: 3}
+      propertyPath: m_TagString
+      value: Player
+      objectReference: {fileID: 0}
     - target: {fileID: 6986354698282277809, guid: df33eebb884e8cd48afa52d8ed3c386d,
         type: 3}
       propertyPath: levelWalls.Array.data[0]
@@ -1381,7 +1386,7 @@ PrefabInstance:
     - target: {fileID: 8197095605655056994, guid: 6649991dde669cf489f139e098fa261e,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0
+      value: 0.28142047
       objectReference: {fileID: 0}
     - target: {fileID: 8197095605655056994, guid: 6649991dde669cf489f139e098fa261e,
         type: 3}
@@ -1391,7 +1396,7 @@ PrefabInstance:
     - target: {fileID: 8197095605655056994, guid: 6649991dde669cf489f139e098fa261e,
         type: 3}
       propertyPath: m_LocalRotation.w
-      value: 1
+      value: 0.9595846
       objectReference: {fileID: 0}
     - target: {fileID: 8197095605655056994, guid: 6649991dde669cf489f139e098fa261e,
         type: 3}
@@ -1406,7 +1411,7 @@ PrefabInstance:
     - target: {fileID: 8197095605655056994, guid: 6649991dde669cf489f139e098fa261e,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
+      value: 32.69
       objectReference: {fileID: 0}
     - target: {fileID: 8197095605655056994, guid: 6649991dde669cf489f139e098fa261e,
         type: 3}
