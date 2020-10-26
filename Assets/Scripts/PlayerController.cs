@@ -32,7 +32,7 @@ public class PlayerController : MonoBehaviour
 
     private Vector3 gravityVelocity = new Vector3();
 
-    private GameObject m_camera = null;
+    private Camera m_camera = null;
 
     private bool allowLookScript = true;
 
@@ -65,6 +65,14 @@ public class PlayerController : MonoBehaviour
     private Vector3 right = new Vector3();
     private Quaternion targetRot = new Quaternion();
 
+    [SerializeField]
+    [Tooltip("Default: 60")]
+    private float normalFOV = 60f;
+    [SerializeField]
+    [Tooltip("Default: 70")]
+    private float dashingFOV = 70f;
+    private bool cameraMoving = false;
+
     public Vector3 Gravity
     {
         get
@@ -86,7 +94,7 @@ public class PlayerController : MonoBehaviour
 
         m_rb = GetComponent<Rigidbody>();
 
-        m_camera = Camera.main.gameObject;
+        m_camera = Camera.main.GetComponent<Camera>();
 
         cameraControllerScript = m_camera.GetComponent<CameraController>();
     }
@@ -118,7 +126,16 @@ public class PlayerController : MonoBehaviour
 
         if (Input.GetButton("Shift") && isGrounded && m_input != Vector3.zero)
         {
-            dashing = true;
+            dashing = true;         
+        }
+
+        if(dashing && !cameraMoving)
+        {
+            StartCoroutine(ChangeCameraFOV(0.25f, m_camera.fieldOfView, dashingFOV));
+        }
+        else if(!dashing && !cameraMoving)
+        {
+            StartCoroutine(ChangeCameraFOV(0.25f, m_camera.fieldOfView, normalFOV));
         }
     }
 
@@ -187,5 +204,19 @@ public class PlayerController : MonoBehaviour
             allowLookScript = false;
             cameraControllerScript.MovingPlayer = true;
         }
+    }
+
+    private IEnumerator ChangeCameraFOV(float totalTime, float currentFOV, float desiredFOV)
+    {
+        float elapsedTime = 0f;
+
+        while (elapsedTime < totalTime)
+        {
+            cameraMoving = true;
+            m_camera.fieldOfView =  (Mathf.Lerp(currentFOV, desiredFOV, (elapsedTime / totalTime)));
+            elapsedTime += Time.deltaTime;
+            yield return null;
+        }
+        cameraMoving = false;
     }
 }

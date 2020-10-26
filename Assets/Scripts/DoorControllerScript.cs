@@ -15,7 +15,7 @@ public class DoorControllerScript : MonoBehaviour
 
     private DoorState doorState = DoorState.NONE;
 
-    enum DoorState
+    private enum DoorState
     {
         NONE,
         MOVING,

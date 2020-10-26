@@ -1388,11 +1388,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
-    - target: {fileID: 6986354697981864038, guid: df33eebb884e8cd48afa52d8ed3c386d,
-        type: 3}
-      propertyPath: m_TagString
-      value: Player
-      objectReference: {fileID: 0}
     - target: {fileID: 6986354698282277809, guid: df33eebb884e8cd48afa52d8ed3c386d,
         type: 3}
       propertyPath: levelWalls.Array.data[0]
