@@ -71,6 +71,10 @@ public class PlayerController : MonoBehaviour
     [SerializeField]
     [Tooltip("Default: 70")]
     private float dashingFOV = 70f;
+    [SerializeField]
+    [Tooltip("Default: 0.25")]
+    [Range(0, 2)]
+    private float timeToChangeFOV = 0.25f;
     private bool cameraMoving = false;
 
     public Vector3 Gravity
@@ -103,6 +107,8 @@ public class PlayerController : MonoBehaviour
     void Start()
     {
         m_gravity = GravityManager.worldGravity;
+
+        m_camera.fieldOfView = normalFOV;
     }
 
     private void Update()
