@@ -137,11 +137,11 @@ public class PlayerController : MonoBehaviour
 
         if(dashing && !cameraMoving)
         {
-            StartCoroutine(ChangeCameraFOV(0.25f, m_camera.fieldOfView, dashingFOV));
+            StartCoroutine(ChangeCameraFOV(timeToChangeFOV, m_camera.fieldOfView, dashingFOV));
         }
         else if(!dashing && !cameraMoving)
         {
-            StartCoroutine(ChangeCameraFOV(0.25f, m_camera.fieldOfView, normalFOV));
+            StartCoroutine(ChangeCameraFOV(timeToChangeFOV, m_camera.fieldOfView, normalFOV));
         }
     }
 
