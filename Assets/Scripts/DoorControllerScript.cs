@@ -11,25 +11,25 @@ public class DoorControllerScript : MonoBehaviour
     public Transform right;
 
     public float timeToMove = 2f;
-
     public float distanceToMove = 5f;
 
-    private bool running = false;
-    private bool open = false;
-    private bool closed = true;
+    private DoorState doorState = DoorState.NONE;
 
-    private void Awake()
+    private enum DoorState
     {
-        
+        NONE,
+        MOVING,
+        OPEN,
+        CLOSED
     }
 
     // Start is called before the first frame update
     void Start()
     {
-        
+        doorState = DoorState.CLOSED;
     }
 
-    IEnumerator MoveDoor(Transform door, float dist)
+    IEnumerator MoveDoor(Transform door, float dist, DoorState stateToMoveTo)
     {
         Rigidbody door_rb = door.GetComponent<Rigidbody>();
         Vector3 startingPos = door.position;
@@ -40,33 +40,30 @@ public class DoorControllerScript : MonoBehaviour
 
         while (elapsedTime < timeToMove)
         {
-            running = true;
+            doorState = DoorState.MOVING;
             door_rb.MovePosition(Vector3.Lerp(startingPos, endPos, (elapsedTime / timeToMove)));
             elapsedTime += Time.deltaTime;
             yield return null;
         }
-        running = false;
+
+        doorState = stateToMoveTo;
     }
 
     public void OpenDoor()
     {
-        if(closed && !running)
+        if (doorState == DoorState.CLOSED && doorState != DoorState.MOVING)
         {
-            StartCoroutine(MoveDoor(right, -distanceToMove));
-            StartCoroutine(MoveDoor(left, distanceToMove));
-            open = true;
-            closed = false;
+            StartCoroutine(MoveDoor(right, -distanceToMove, DoorState.OPEN));
+            StartCoroutine(MoveDoor(left, distanceToMove, DoorState.OPEN));
         }
     }
 
     public void CloseDoor()
     {
-        if(open && !running)
+        if(doorState == DoorState.OPEN && doorState != DoorState.MOVING)
         {
-            StartCoroutine(MoveDoor(right, distanceToMove));
-            StartCoroutine(MoveDoor(left, -distanceToMove));
-            open = false;
-            closed = true;
+            StartCoroutine(MoveDoor(right, distanceToMove, DoorState.CLOSED));
+            StartCoroutine(MoveDoor(left, -distanceToMove, DoorState.CLOSED));
         }
     }
 
@@ -85,10 +82,17 @@ public class DoorControllerScript : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.H))
         {
-            canOpen = condition.CheckCondition();
+            if(condition != null)
+            {
+                canOpen = condition.CheckCondition();
+
+            }
 
             if (canOpen)
+            {
                 OpenDoor();
+            }
+
         }
     }
 }
