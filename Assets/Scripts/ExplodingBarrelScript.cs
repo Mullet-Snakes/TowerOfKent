@@ -7,13 +7,25 @@ public class ExplodingBarrelScript : MonoBehaviour
     private Rigidbody m_rb = null;
     private Vector3 lastVel = new Vector3();
 
-    public Material mat = null;
-    public float radius = 10f;
+    [SerializeField]
+    [Tooltip("Default: 10")]
+    [Range(0,30)]
+    private float explosionRadius = 10f;
+
+    [SerializeField]
+    [Tooltip("Default: 50")]
+    [Range(0,200)]
+    private float explosiveForce = 50;
 
     [SerializeField]
     [Tooltip("Default: 20")]
     [Range(0,50)]
-    public float explodeSpeed = 20f; 
+    private float explodeSpeed = 20f;
+
+    [SerializeField]
+    [Tooltip("Default: 10")]
+    [Range(0, 30)]
+    private float upwardsExplosionModifier = 10f;
 
     private void Awake()
     {
@@ -42,17 +54,16 @@ public class ExplodingBarrelScript : MonoBehaviour
 
     private void ExplodeBarrel()
     {
-        LayerMask mask = LayerMask.GetMask("Wall");
 
-        Collider[] hitColliders = Physics.OverlapSphere(transform.position, radius);
+        Collider[] hitColliders = Physics.OverlapSphere(transform.position, explosionRadius);
+
         foreach (Collider hitCollider in hitColliders)
         {
-            if (hitCollider.gameObject.layer != 8)
+            if (hitCollider.gameObject.CompareTag("LevelProp"))
             {
-                print(hitCollider.gameObject.name);
-                hitCollider.GetComponent<Renderer>().material = mat;
-            }
-                
+                hitCollider.gameObject.GetComponent<Rigidbody>().AddExplosionForce(explosiveForce, transform.position, explosionRadius, upwardsExplosionModifier, 
+                    ForceMode.VelocityChange);
+            }               
         }
     }
 }
