@@ -7,6 +7,12 @@ public class DoorControllerScript : MonoBehaviour
     public DoorConditionScript condition = null;
     public bool canOpen = false;
 
+    [SerializeField]
+    [Tooltip("Default: 2")]
+    [Range(0, 5)]
+    private float distanceToInteract = 2f;
+
+
     public Transform left;
     public Transform right;
 
@@ -23,10 +29,36 @@ public class DoorControllerScript : MonoBehaviour
         CLOSED
     }
 
+    private void OnEnable()
+    {
+        InteractKeyManager.OnButtonPress += CheckForInteract;
+    }
+
+    private void OnDisable()
+    {
+        InteractKeyManager.OnButtonPress -= CheckForInteract;
+    }
+
     // Start is called before the first frame update
     void Start()
     {
         doorState = DoorState.CLOSED;
+    }
+
+    private void CheckForInteract(GameObject player)
+    {
+        if (condition != null)
+        {
+            if(Vector3.Distance(transform.position, player.transform.position) < distanceToInteract)
+            {
+                canOpen = condition.CheckCondition();
+            }          
+        }
+
+        if (canOpen)
+        {
+            OpenDoor();
+        }
     }
 
     IEnumerator MoveDoor(Transform door, float dist, DoorState stateToMoveTo)
@@ -70,29 +102,6 @@ public class DoorControllerScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.N))
-        {
-            OpenDoor();
-        }
-        if (Input.GetKeyDown(KeyCode.M))
-        {
-            CloseDoor();
-        }
-
-
-        if (Input.GetKeyDown(KeyCode.H))
-        {
-            if(condition != null)
-            {
-                canOpen = condition.CheckCondition();
-
-            }
-
-            if (canOpen)
-            {
-                OpenDoor();
-            }
-
-        }
+        
     }
 }
