@@ -82,6 +82,8 @@ public class PlayerController : MonoBehaviour
 
     private bool cameraMoving = false;
 
+    public string sceneName = "";
+
     public Vector3 Gravity
     {
         get
@@ -118,6 +120,8 @@ public class PlayerController : MonoBehaviour
 
     private void Update()
     {
+        if(Input.GetKeyDown(KeyCode.T))
+            Utilities.LoadScene(sceneName);
 
         if (allowLookScript)
         {
