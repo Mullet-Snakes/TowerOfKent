@@ -28,8 +28,6 @@ public class DoorControllerScript : InteractableObjectScript
 
     private DoorState doorState = DoorState.NONE;
 
-    private bool checkEveryFrame = false;
-
     private enum DoorState
     {
         NONE,
@@ -51,7 +49,7 @@ public class DoorControllerScript : InteractableObjectScript
 
     protected override void CheckForInteract(GameObject player)
     {
-        if (condition != null && !checkEveryFrame)
+        if (condition != null)
         {
             if(Vector3.Distance(transform.position, player.transform.position) < distanceToInteract)
             {
