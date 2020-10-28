@@ -4,20 +4,27 @@ using UnityEngine;
 
 public class DoorControllerScript : InteractableObjectScript
 {
-    public DoorConditionScript condition = null;
-    public bool canOpen = false;
+    [SerializeField]
+    [Tooltip("Drag the condition for the door here")]
+    private DoorConditionScript condition = null;
+    
+    private bool canOpen = false;
 
-    //[SerializeField]
-    //[Tooltip("Default: 2")]
-    //[Range(0, 5)]
-    //private float distanceToInteract = 2f;
+    [SerializeField]
+    [Tooltip("Left door gameobject here")]
+    private Transform left = null;
 
+    [SerializeField]
+    [Tooltip("Right door gameobject here")]
+    private Transform right = null;
 
-    public Transform left;
-    public Transform right;
+    [SerializeField]
+    [Tooltip("Time to open")]
+    private float timeToMove = 2f;
 
-    public float timeToMove = 2f;
-    public float distanceToMove = 5f;
+    [SerializeField]
+    [Tooltip("Distance to open")]
+    private float distanceToMove = 5f;
 
     private DoorState doorState = DoorState.NONE;
 

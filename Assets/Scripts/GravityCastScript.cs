@@ -46,8 +46,10 @@ public class GravityCastScript : MonoBehaviour
                     }
                 }
 
-                playerControllerScript.Gravity = hit.normal;
-
+                if (hit.transform.CompareTag("GravityWall"))
+                {
+                    playerControllerScript.Gravity = hit.normal;
+                }
             }
         }
 
