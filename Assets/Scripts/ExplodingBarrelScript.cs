@@ -20,12 +20,12 @@ public class ExplodingBarrelScript : MonoBehaviour
     [SerializeField]
     [Tooltip("Default: 20")]
     [Range(0,50)]
-    private float explodeSpeed = 20f;
+    private float triggerSpeed = 20f;
 
     [SerializeField]
     [Tooltip("Default: 5")]
     [Range(0, 30)]
-    private float upwardsExplosionModifier = 5f;
+    private float upExplosionModifier = 5f;
 
     private void Awake()
     {
@@ -45,7 +45,7 @@ public class ExplodingBarrelScript : MonoBehaviour
         {
             if (m_rb.velocity == Vector3.zero)
             {
-                if (Vector3.Magnitude(lastVel - m_rb.velocity) > explodeSpeed)
+                if (Vector3.Magnitude(lastVel - m_rb.velocity) > triggerSpeed)
                 {
                     ExplodeBarrel();
                 }
@@ -64,7 +64,7 @@ public class ExplodingBarrelScript : MonoBehaviour
         {
             if (hitCollider.gameObject.CompareTag("LevelProp"))
             {
-                hitCollider.gameObject.GetComponent<Rigidbody>().AddExplosionForce(explosiveForce, transform.position, explosionRadius, upwardsExplosionModifier, 
+                hitCollider.gameObject.GetComponent<Rigidbody>().AddExplosionForce(explosiveForce, transform.position, explosionRadius, upExplosionModifier, 
                     ForceMode.VelocityChange);
             }               
         }
