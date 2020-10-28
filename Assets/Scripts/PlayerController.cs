@@ -151,6 +151,12 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    private void OnDrawGizmos()
+    {
+        Vector3 temp = transform.up * 0.75f;
+        Gizmos.DrawSphere(transform.position - temp, 0.5f);
+    }
+
     // Update is called once per frame
     void FixedUpdate()
     {

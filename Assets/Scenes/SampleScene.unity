@@ -620,6 +620,12 @@ Transform:
   m_Father: {fileID: 550773672}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1230096466 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1730365750530575441, guid: 543021cc7a49cad4fb6cc61fa920ebd6,
+    type: 3}
+  m_PrefabInstance: {fileID: 1730365749670537560}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1598650128
 GameObject:
   m_ObjectHideFlags: 0
@@ -1597,10 +1603,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 8197095604689584116}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d5fb0e745b0ff354a9db4241af218097, type: 3}
+  m_Script: {fileID: 11500000, guid: 931da544dd40cfd40bd590d995b5f213, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  keyName: bluekey
+  pressurePlateList:
+  - {fileID: 1230096466}
 --- !u!1001 &9033047619668293614
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -28,6 +28,8 @@ public class DoorControllerScript : InteractableObjectScript
 
     private DoorState doorState = DoorState.NONE;
 
+    private bool checkEveryFrame = false;
+
     private enum DoorState
     {
         NONE,
@@ -40,11 +42,16 @@ public class DoorControllerScript : InteractableObjectScript
     void Start()
     {
         doorState = DoorState.CLOSED;
+
+        if(condition is PressurePlateDoorCondition)
+        {
+            checkEveryFrame = true;
+        }
     }
 
     protected override void CheckForInteract(GameObject player)
     {
-        if (condition != null)
+        if (condition != null && !checkEveryFrame)
         {
             if(Vector3.Distance(transform.position, player.transform.position) < distanceToInteract)
             {
@@ -99,6 +106,17 @@ public class DoorControllerScript : InteractableObjectScript
     // Update is called once per frame
     void Update()
     {
-        
+        if(checkEveryFrame)
+        {
+            if (condition != null)
+            {
+                canOpen = condition.CheckCondition();
+            }
+
+            if (canOpen)
+            {
+                OpenDoor();
+            }
+        }
     }
 }
