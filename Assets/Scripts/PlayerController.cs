@@ -118,6 +118,7 @@ public class PlayerController : MonoBehaviour
 
     private void Update()
     {
+
         if (allowLookScript)
         {
             cameraControllerScript.CameraMove();
@@ -148,6 +149,12 @@ public class PlayerController : MonoBehaviour
         {
             StartCoroutine(ChangeCameraFOV(timeToChangeFOV, m_camera.fieldOfView, normalFOV));
         }
+    }
+
+    private void OnDrawGizmos()
+    {
+        Vector3 temp = transform.up * 0.75f;
+        Gizmos.DrawSphere(transform.position - temp, 0.5f);
     }
 
     // Update is called once per frame
