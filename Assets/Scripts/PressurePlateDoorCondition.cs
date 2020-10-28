@@ -4,7 +4,9 @@ using UnityEngine;
 
 public class PressurePlateDoorCondition : DoorConditionScript
 {
-    public List<GameObject> pressurePlateList = null;
+    [SerializeField]
+    [Tooltip("Drag pressure plates here")]
+    private List<GameObject> pressurePlateList = null;
 
     override public bool CheckCondition()
     {
