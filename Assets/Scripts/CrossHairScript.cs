@@ -10,7 +10,7 @@ public class CrossHairScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        while (PauseMenu.GameIsPaused)
+        if (!PauseMenu.GameIsPaused)
         {
             CrossHairUI.SetActive(false);
         }
