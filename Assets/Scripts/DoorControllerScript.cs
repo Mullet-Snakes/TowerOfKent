@@ -106,7 +106,7 @@ public class DoorControllerScript : InteractableObjectScript
         float updateRate = 0.1f;
         YieldInstruction waitTime = new WaitForSeconds(updateRate);
 
-        while (doorState != DoorState.MOVING)
+        while (true)
         {
             if (condition != null)
             {
