@@ -41,13 +41,16 @@ public class ExplodingBarrelScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (m_rb.velocity == Vector3.zero)
+        if (lastVel != Vector3.zero)
         {
-            if (Vector3.Magnitude(lastVel - m_rb.velocity) > explodeSpeed)
+            if (m_rb.velocity == Vector3.zero)
             {
-                ExplodeBarrel();
+                if (Vector3.Magnitude(lastVel - m_rb.velocity) > explodeSpeed)
+                {
+                    ExplodeBarrel();
+                }
             }
-        }
+        }    
 
         lastVel = m_rb.velocity;
     }
