@@ -32,6 +32,8 @@ public class KeyScript : MonoBehaviour
         if (Vector3.Distance(transform.position, playerPos.transform.position) < distanceToInteract)
         {
             KeyChainScript.PickUpKey(keyName);
+
+            gameObject.SetActive(false);
         }
     }
 
