@@ -45,7 +45,9 @@ public class DoorControllerScript : InteractableObjectScript
 
         if(condition is PressurePlateDoorCondition)
         {
-            checkEveryFrame = true;
+            //checkEveryFrame = true;
+            StartCoroutine(CheckAtLowerFPS());
+
         }
     }
 
@@ -103,10 +105,12 @@ public class DoorControllerScript : InteractableObjectScript
         }
     }
 
-    // Update is called once per frame
-    void Update()
+    IEnumerator CheckAtLowerFPS()
     {
-        if(checkEveryFrame)
+        float updateRate = 0.1f;
+        YieldInstruction waitTime = new WaitForSeconds(updateRate);
+
+        while (doorState == DoorState.CLOSED)
         {
             if (condition != null)
             {
@@ -117,6 +121,14 @@ public class DoorControllerScript : InteractableObjectScript
             {
                 OpenDoor();
             }
+
+            yield return waitTime;
         }
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+     
     }
 }
