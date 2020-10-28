@@ -45,9 +45,7 @@ public class DoorControllerScript : InteractableObjectScript
 
         if(condition is PressurePlateDoorCondition)
         {
-            //checkEveryFrame = true;
-            StartCoroutine(CheckAtLowerFPS());
-
+            StartCoroutine("CheckAtLowerFPS");
         }
     }
 
