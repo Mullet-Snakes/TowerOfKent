@@ -5,7 +5,6 @@ using UnityEngine;
 public class KeyScript : MonoBehaviour
 {
     public string keyName = "bluekey";
-    //private GameObject player = null;
 
     [SerializeField]
     [Tooltip("Default: 2")]
@@ -25,7 +24,7 @@ public class KeyScript : MonoBehaviour
 
     private void Awake()
     {
-        //player = GameObject.FindWithTag("Player");
+
     }
 
     private void CheckForInteract(GameObject playerPos)
