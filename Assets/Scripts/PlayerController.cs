@@ -118,6 +118,7 @@ public class PlayerController : MonoBehaviour
 
     private void Update()
     {
+
         if (allowLookScript)
         {
             cameraControllerScript.CameraMove();
