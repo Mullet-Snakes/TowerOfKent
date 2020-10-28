@@ -67,14 +67,19 @@ public class PlayerController : MonoBehaviour
 
     [SerializeField]
     [Tooltip("Default: 60")]
+    [Range(0, 360)]
     private float normalFOV = 60f;
+
     [SerializeField]
     [Tooltip("Default: 70")]
+    [Range(0, 360)]
     private float dashingFOV = 70f;
+
     [SerializeField]
     [Tooltip("Default: 0.25")]
     [Range(0, 2)]
     private float timeToChangeFOV = 0.25f;
+
     private bool cameraMoving = false;
 
     public Vector3 Gravity
