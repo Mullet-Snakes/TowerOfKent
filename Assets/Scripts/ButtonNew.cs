@@ -7,6 +7,6 @@ public class ButtonNew : MonoBehaviour
 {
     public void New()
     {
-        SceneManager.LoadScene("SampleScene");
+        SceneManager.LoadScene("Greybox TUT Level");
     }
 }
