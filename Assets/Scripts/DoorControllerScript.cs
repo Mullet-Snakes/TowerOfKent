@@ -2,15 +2,15 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class DoorControllerScript : MonoBehaviour
+public class DoorControllerScript : InteractableObjectScript
 {
     public DoorConditionScript condition = null;
     public bool canOpen = false;
 
-    [SerializeField]
-    [Tooltip("Default: 2")]
-    [Range(0, 5)]
-    private float distanceToInteract = 2f;
+    //[SerializeField]
+    //[Tooltip("Default: 2")]
+    //[Range(0, 5)]
+    //private float distanceToInteract = 2f;
 
 
     public Transform left;
@@ -29,23 +29,13 @@ public class DoorControllerScript : MonoBehaviour
         CLOSED
     }
 
-    private void OnEnable()
-    {
-        InteractKeyManager.OnButtonPress += CheckForInteract;
-    }
-
-    private void OnDisable()
-    {
-        InteractKeyManager.OnButtonPress -= CheckForInteract;
-    }
-
     // Start is called before the first frame update
     void Start()
     {
         doorState = DoorState.CLOSED;
     }
 
-    private void CheckForInteract(GameObject player)
+    protected override void CheckForInteract(GameObject player)
     {
         if (condition != null)
         {

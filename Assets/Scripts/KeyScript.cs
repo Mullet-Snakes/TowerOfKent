@@ -2,32 +2,16 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class KeyScript : MonoBehaviour
+public class KeyScript : InteractableObjectScript
 {
     public string keyName = "bluekey";
-
-    [SerializeField]
-    [Tooltip("Default: 2")]
-    [Range(0,5)]
-    private float distanceToInteract = 2f;
-
-
-    private void OnEnable()
-    {
-        InteractKeyManager.OnButtonPress += CheckForInteract;
-    }
-
-    private void OnDisable()
-    {
-        InteractKeyManager.OnButtonPress -= CheckForInteract;
-    }
 
     private void Awake()
     {
 
     }
 
-    private void CheckForInteract(GameObject playerPos)
+    protected override void CheckForInteract(GameObject playerPos)
     {
         if (Vector3.Distance(transform.position, playerPos.transform.position) < distanceToInteract)
         {
