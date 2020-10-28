@@ -23,9 +23,9 @@ public class ExplodingBarrelScript : MonoBehaviour
     private float explodeSpeed = 20f;
 
     [SerializeField]
-    [Tooltip("Default: 10")]
+    [Tooltip("Default: 5")]
     [Range(0, 30)]
-    private float upwardsExplosionModifier = 10f;
+    private float upwardsExplosionModifier = 5f;
 
     private void Awake()
     {
