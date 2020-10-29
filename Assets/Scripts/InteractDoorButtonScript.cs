@@ -18,10 +18,12 @@ public class InteractDoorButtonScript : InteractableObjectScript
 
     protected override void CheckForInteract(GameObject playerPos)
     {
+
         if (Vector3.Distance(transform.position, playerPos.transform.position) < distanceToInteract)
         {
             isPressed = isPressed ? false : true;
         }     
+
     }
 
     private void Awake()
