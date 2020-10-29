@@ -4,17 +4,24 @@ using UnityEngine;
 
 public class ButtonConditionScript : DoorConditionScript
 {
-    public bool pressed = false;
+    [SerializeField]
+    [Tooltip("Drag button/s here")]
+    private List<GameObject> buttonList = null;
 
     override public bool CheckCondition()
     {
-        if(pressed)
+        foreach (GameObject button in buttonList)
         {
-            return true;
+            if (button.GetComponent<InteractDoorButtonScript>() != null)
+            {
+                if (!button.GetComponent<InteractDoorButtonScript>().IsPressed)
+                {
+                    return false;
+                }
+            }
         }
 
-        return false;
-        
+        return true;
     }
 
     // Start is called before the first frame update
