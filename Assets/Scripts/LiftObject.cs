@@ -55,22 +55,29 @@ public class LiftObject : MonoBehaviour
     //}
     #endregion
 
-    float throwForce = 600;
-    Vector3 objectPos;
-    float distance;
-
     public bool canHold = true;
     public bool isHolding = false;
     public GameObject levelProp;
     public GameObject tempParent;
-    public GameObject throwPoint;
+    public GameObject player;
+    private Vector3 objectPos;
+    private Vector3 noGrav = new Vector3(0, 0, 0);
+
+    [SerializeField]
+    [Tooltip("Default: 600")]
+    [Range(1, 1000)]
+    public float throwForce;
+
+    private float distance;
+    private float grabDistance;
 
     // Update is called once per frame
     void Update()
     {
         distance = Vector3.Distance(levelProp.transform.position, tempParent.transform.position);
+        grabDistance = player.GetComponent<PlayerController>().playerGrab;
 
-        if (distance >= 1f)
+        if (distance >= grabDistance)
         {
             isHolding = false;
         }
@@ -92,17 +99,17 @@ public class LiftObject : MonoBehaviour
         {
             objectPos = levelProp.transform.position;
             levelProp.transform.SetParent(null);
-            this.GetComponent<GravityController>().GravityFactor = -9.8f;
+            this.GetComponent<GravityController>().CurrentGravity = player.GetComponent<PlayerController>().Gravity;
             levelProp.transform.position = objectPos;
         }
     }
 
     void OnMouseDown()
     {
-        if (distance <= 1f)
+        if (distance <= grabDistance)
         {
             isHolding = true;
-            this.GetComponent<GravityController>().GravityFactor = 0;
+            this.GetComponent<GravityController>().CurrentGravity = noGrav;
             levelProp.GetComponent<Rigidbody>().detectCollisions = true;
         }
     }

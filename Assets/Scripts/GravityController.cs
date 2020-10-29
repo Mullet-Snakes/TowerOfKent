@@ -29,15 +29,15 @@ public class GravityController : MonoBehaviour
     [Range(-30, 0)]
     private float gravityFactor = -9.8f;
 
-    public float GravityFactor
+    public Vector3 CurrentGravity
     {
         get
         {
-            return gravityFactor;
+            return currentGravity;
         }
         set
         {
-            gravityFactor = value;
+            currentGravity = value;
         }
     }
 

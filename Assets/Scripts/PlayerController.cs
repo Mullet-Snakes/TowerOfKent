@@ -80,6 +80,11 @@ public class PlayerController : MonoBehaviour
     [Range(0, 2)]
     private float timeToChangeFOV = 0.25f;
 
+    [SerializeField]
+    [Tooltip("Default: 1")]
+    [Range(1, 10)]
+    public float playerGrab = 1;
+
     private bool cameraMoving = false;
 
     public Vector3 Gravity
