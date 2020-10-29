@@ -4,10 +4,17 @@ using UnityEngine;
 
 public class ButtonConditionScript : DoorConditionScript
 {
+    public bool pressed = false;
 
     override public bool CheckCondition()
     {
+        if(pressed)
+        {
+            return true;
+        }
+
         return false;
+        
     }
 
     // Start is called before the first frame update
