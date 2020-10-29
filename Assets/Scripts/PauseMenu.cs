@@ -7,8 +7,10 @@ public class PauseMenu : MonoBehaviour
 {
     public static bool GameIsPaused = false;
 
+    //Filler Game Object to allow toggling of the menu.
     public GameObject PauseMenuUI;
 
+    //Cursor Lockstate Setup, locking to allow the unlocking of the cursor on pause.
     void Start()
     {
         Cursor.lockState = CursorLockMode.None;
@@ -18,6 +20,7 @@ public class PauseMenu : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        //Checks to pause or unpause the game, Hotkey will be changed to ESC for the main builds but while still in unity editor will stay as TAB
         if (Input.GetKeyDown(KeyCode.Tab))
         {
             if (GameIsPaused)
@@ -31,6 +34,7 @@ public class PauseMenu : MonoBehaviour
         }
     }
 
+    //Pause Meny Function, Sets Time Scale, Visibility and Lockstate of Cursor.
     void Pause()
     {
         Debug.Log("Game Paused");
@@ -41,6 +45,7 @@ public class PauseMenu : MonoBehaviour
         GameIsPaused = true;
     }
 
+    //Resume Game Function, Sets Time Scale, Visibility and Lockstate of Cursor.
     public void Resume()
     {
         Debug.Log("Game Resumed");
@@ -51,11 +56,13 @@ public class PauseMenu : MonoBehaviour
         GameIsPaused = false;
     }
 
+    //Will Load the Settings Menu
     public void SettingsMenu()
     {
         Debug.Log("Loading Settings Menu");
     }
 
+    //Exits to Main Menu
     public void ExitToMainMenu()
     {
         Debug.Log("Returning to Main Menu");
