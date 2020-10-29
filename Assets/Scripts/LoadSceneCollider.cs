@@ -4,12 +4,12 @@ using UnityEngine;
 
 public class LoadSceneCollider : MonoBehaviour
 {
-    private bool loaded = false;
+    public bool loaded = false;
     public string levelName = "";
 
-    private void OnCollisionEnter(Collision collision)
+    private void OnTriggerEnter(Collider other)
     {
-        if(!loaded)
+        if (!loaded)
         {
             Utilities.LoadScene(levelName);
         }
