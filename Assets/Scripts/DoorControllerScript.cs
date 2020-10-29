@@ -41,7 +41,7 @@ public class DoorControllerScript : InteractableObjectScript
     {
         doorState = DoorState.CLOSED;
 
-        if(condition is PressurePlateDoorCondition)
+        if(condition is PressurePlateDoorCondition || condition is ButtonConditionScript)
         {
             StartCoroutine("CheckAtLowerFPS");
         }
@@ -106,7 +106,7 @@ public class DoorControllerScript : InteractableObjectScript
         float updateRate = 0.1f;
         YieldInstruction waitTime = new WaitForSeconds(updateRate);
 
-        while (doorState == DoorState.CLOSED)
+        while (true)
         {
             if (condition != null)
             {
@@ -116,6 +116,10 @@ public class DoorControllerScript : InteractableObjectScript
             if (canOpen)
             {
                 OpenDoor();
+            }
+            else
+            {
+                CloseDoor();
             }
 
             yield return waitTime;

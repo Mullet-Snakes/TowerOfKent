@@ -43,12 +43,9 @@ public class ExplodingBarrelScript : MonoBehaviour
     {
         if (lastVel != Vector3.zero)
         {
-            if (m_rb.velocity == Vector3.zero)
+            if (Vector3.Magnitude(lastVel - m_rb.velocity) > triggerSpeed)
             {
-                if (Vector3.Magnitude(lastVel - m_rb.velocity) > triggerSpeed)
-                {
-                    ExplodeBarrel();
-                }
+                ExplodeBarrel();
             }
         }    
 
