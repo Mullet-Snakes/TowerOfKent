@@ -10,6 +10,9 @@ public class CrossHairScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        
+        
+        //Disables / Enables the crosshair depending if the game is paused or not.
         if (PauseMenu.GameIsPaused)
         {
             CrossHairUI.SetActive(false);
