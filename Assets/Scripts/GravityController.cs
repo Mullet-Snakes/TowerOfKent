@@ -29,6 +29,18 @@ public class GravityController : MonoBehaviour
     [Range(-30, 0)]
     private float gravityFactor = -9.8f;
 
+    public float GravityFactor
+    {
+        get
+        {
+            return gravityFactor;
+        }
+        set
+        {
+            gravityFactor = value;
+        }
+    }
+
     private void OnEnable()
     {
         GravityManager.GravityChange += SetCurrentGravity;
