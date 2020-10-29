@@ -9,12 +9,16 @@ public class LoadSceneCollider : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (!loaded)
-        {
-            Utilities.LoadScene(levelName);
-        }
 
-        loaded = true;
+        if (other.gameObject.CompareTag("Player"))
+        {
+            if (!loaded)
+            {
+                Utilities.LoadScene(levelName);
+            }
+
+            loaded = true;
+        }      
     }
 
     // Start is called before the first frame update
