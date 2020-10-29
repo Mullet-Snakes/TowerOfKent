@@ -18,6 +18,12 @@ public class GravityCastScript : MonoBehaviour
 
     private GravityController targeted = null;
 
+    public void AddWall(GameObject wall)
+    {
+        levelWalls.Add(wall);
+    }
+
+
     // Start is called before the first frame update
     void Start()
     {
