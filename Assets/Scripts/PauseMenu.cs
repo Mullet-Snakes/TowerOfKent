@@ -9,6 +9,7 @@ public class PauseMenu : MonoBehaviour
 
     //Filler Game Object to allow toggling of the menu.
     public GameObject PauseMenuUI;
+    public GameObject SettingsMenuUI;
 
     //Cursor Lockstate Setup, locking to allow the unlocking of the cursor on pause.
     void Start()
@@ -50,6 +51,7 @@ public class PauseMenu : MonoBehaviour
     {
         Debug.Log("Game Resumed");
         PauseMenuUI.SetActive(false);
+        SettingsMenuUI.SetActive(false);
         Time.timeScale = 1f;
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
@@ -60,6 +62,13 @@ public class PauseMenu : MonoBehaviour
     public void SettingsMenu()
     {
         Debug.Log("Loading Settings Menu");
+        SettingsMenuUI.SetActive(true);
+    }
+
+    public void CloseSettingsMenu()
+    {
+        Debug.Log("Close Settings Menu");
+        SettingsMenuUI.SetActive(false);
     }
 
     //Exits to Main Menu
