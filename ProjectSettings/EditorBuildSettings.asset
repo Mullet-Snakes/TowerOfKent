@@ -17,4 +17,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Greybox TUT Level.unity
     guid: f6d6fcf10b3dca54c8f3f4eaf0a82ceb
+  - enabled: 1
+    path: Assets/Scenes/Greybox Tut Plates and buttons pt 1.unity
+    guid: 240c7ce8e0fae1244b1e3807cdda6612
   m_configObjects: {}
