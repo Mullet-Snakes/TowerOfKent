@@ -41,7 +41,7 @@ public class DoorControllerScript : InteractableObjectScript
     {
         doorState = DoorState.CLOSED;
 
-        if(condition is PressurePlateDoorCondition)
+        if(condition is PressurePlateDoorCondition || condition is ButtonConditionScript)
         {
             StartCoroutine("CheckAtLowerFPS");
         }
