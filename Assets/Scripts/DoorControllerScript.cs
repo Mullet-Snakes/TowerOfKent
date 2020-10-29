@@ -43,6 +43,7 @@ public class DoorControllerScript : InteractableObjectScript
 
         if(condition is PressurePlateDoorCondition || condition is ButtonConditionScript)
         {
+            print("new load");
             StartCoroutine("CheckAtLowerFPS");
         }
     }
