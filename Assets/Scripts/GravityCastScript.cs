@@ -18,6 +18,12 @@ public class GravityCastScript : MonoBehaviour
 
     private GravityController targeted = null;
 
+    public void AddWall(GameObject wall)
+    {
+        levelWalls.Add(wall);
+    }
+
+
     // Start is called before the first frame update
     void Start()
     {
@@ -29,64 +35,71 @@ public class GravityCastScript : MonoBehaviour
     {
         Debug.DrawLine(transform.position, transform.forward * 50, Color.red);
 
-
-        if (Input.GetMouseButtonDown(0))
+        if (!PauseMenu.GameIsPaused)
         {
 
-            if (Physics.Raycast(transform.position, transform.forward, out RaycastHit hit, Mathf.Infinity))
+            if (Input.GetMouseButtonDown(0))
             {
 
-                hit.transform.GetComponent<Renderer>().material = highlightedWallMaterial;
-
-                foreach (GameObject go in levelWalls)
+                if (Physics.Raycast(transform.position, transform.forward, out RaycastHit hit, Mathf.Infinity))
                 {
-                    if (go != hit.transform.gameObject)
+
+                    hit.transform.GetComponent<Renderer>().material = highlightedWallMaterial;
+
+                    foreach (GameObject go in levelWalls)
                     {
-                        go.GetComponent<Renderer>().material = defaultWallMaterial;
-                    }
-                }
-
-                playerControllerScript.Gravity = hit.normal;
-
-            }
-        }
-
-        if (Input.GetMouseButtonDown(1))
-        {
-            if (Physics.Raycast(transform.position, transform.forward, out RaycastHit hit, Mathf.Infinity))
-            {
-                if (hit.transform.CompareTag("GravityWall"))
-                {
-                    GravityManager.ChangeGrav(hit.normal, false);
-                }
-            }
-        }
-
-        if (Input.GetKeyDown(KeyCode.R))
-        {
-            if (Physics.Raycast(transform.position, transform.forward, out RaycastHit hit, Mathf.Infinity))
-            {
-                if (hit.transform.GetComponent<GravityController>() != null)
-                {
-                    if(targeted != null)
-                    {
-                        targeted.IsTargeted = false;
-
-                        if(targeted.gameObject == hit.transform.gameObject)
+                        if (go != hit.transform.gameObject)
                         {
-                            targeted = null;
-                            return;
-                        }                     
+                            //go.GetComponent<Renderer>().material = defaultWallMaterial;
+                            go.GetComponent<Renderer>().material = go.GetComponent<DebugWallScript>().m_material;
+                            go.GetComponent<Renderer>().material.shader = go.GetComponent<DebugWallScript>().m_shader;
+                        }
                     }
 
-                    targeted = hit.transform.GetComponent<GravityController>();
-                    targeted.IsTargeted = true;
-                }
-                if (hit.transform.CompareTag("GravityWall"))
-                {
-                    if (targeted != null)
+                    if (hit.transform.CompareTag("GravityWall"))
                     {
-                        GravityManager.ChangeGrav(hit.normal, true);
+                        playerControllerScript.Gravity = hit.normal;
+                    }
+                }
+            }
+
+            if (Input.GetMouseButtonDown(1))
+            {
+                if (Physics.Raycast(transform.position, transform.forward, out RaycastHit hit, Mathf.Infinity))
+                {
+                    if (hit.transform.CompareTag("GravityWall"))
+                    {
+                        GravityManager.ChangeGrav(hit.normal, false);
+                    }
+                }
+            }
+
+            if (Input.GetKeyDown(KeyCode.R))
+            {
+                if (Physics.Raycast(transform.position, transform.forward, out RaycastHit hit, Mathf.Infinity))
+                {
+                    if (hit.transform.GetComponent<GravityController>() != null)
+                    {
+                        if (targeted != null)
+                        {
+                            targeted.IsTargeted = false;
+
+                            if (targeted.gameObject == hit.transform.gameObject)
+                            {
+                                targeted = null;
+                                return;
+                            }
+                        }
+
+                        targeted = hit.transform.GetComponent<GravityController>();
+                        targeted.IsTargeted = true;
+                    }
+                    if (hit.transform.CompareTag("GravityWall"))
+                    {
+                        if (targeted != null)
+                        {
+                            GravityManager.ChangeGrav(hit.normal, true);
+                        }
                     }
                 }
             }

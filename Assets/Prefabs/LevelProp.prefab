@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 6091616170766099905}
   m_Layer: 8
   m_Name: LevelProp
-  m_TagString: Untagged
+  m_TagString: LevelProp
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -109,7 +109,7 @@ Rigidbody:
   m_UseGravity: 0
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 112
+  m_Constraints: 0
   m_CollisionDetection: 2
 --- !u!114 &6091616170766099905
 MonoBehaviour:
@@ -123,6 +123,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bd4150203bfc3a445a3dfed2a84478af, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isTargeted: 0
   highlighed: {fileID: 2100000, guid: d58bdd8803e3a7f41bd18237f5473a9b, type: 2}
   normal: {fileID: 2100000, guid: 640b96e506330ce43912b9250440a812, type: 2}
+  gravityFactor: -9.8

@@ -2,16 +2,29 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class DoorControllerScript : MonoBehaviour
+public class DoorControllerScript : InteractableObjectScript
 {
-    public DoorConditionScript condition = null;
-    public bool canOpen = false;
+    [SerializeField]
+    [Tooltip("Drag the condition for the door here")]
+    private DoorConditionScript condition = null;
+    
+    private bool canOpen = false;
 
-    public Transform left;
-    public Transform right;
+    [SerializeField]
+    [Tooltip("Left door gameobject here")]
+    private Transform left = null;
 
-    public float timeToMove = 2f;
-    public float distanceToMove = 5f;
+    [SerializeField]
+    [Tooltip("Right door gameobject here")]
+    private Transform right = null;
+
+    [SerializeField]
+    [Tooltip("Time to open")]
+    private float timeToMove = 2f;
+
+    [SerializeField]
+    [Tooltip("Distance to open")]
+    private float distanceToMove = 5f;
 
     private DoorState doorState = DoorState.NONE;
 
@@ -27,6 +40,27 @@ public class DoorControllerScript : MonoBehaviour
     void Start()
     {
         doorState = DoorState.CLOSED;
+
+        if(condition is PressurePlateDoorCondition || condition is ButtonConditionScript)
+        {
+            StartCoroutine("CheckAtLowerFPS");
+        }
+    }
+
+    protected override void CheckForInteract(GameObject player)
+    {
+        if (condition != null)
+        {
+            if(Vector3.Distance(transform.position, player.transform.position) < distanceToInteract)
+            {
+                canOpen = condition.CheckCondition();
+            }          
+        }
+
+        if (canOpen)
+        {
+            OpenDoor();
+        }
     }
 
     IEnumerator MoveDoor(Transform door, float dist, DoorState stateToMoveTo)
@@ -67,32 +101,34 @@ public class DoorControllerScript : MonoBehaviour
         }
     }
 
-    // Update is called once per frame
-    void Update()
+    IEnumerator CheckAtLowerFPS()
     {
-        if (Input.GetKeyDown(KeyCode.N))
-        {
-            OpenDoor();
-        }
-        if (Input.GetKeyDown(KeyCode.M))
-        {
-            CloseDoor();
-        }
+        float updateRate = 0.1f;
+        YieldInstruction waitTime = new WaitForSeconds(updateRate);
 
-
-        if (Input.GetKeyDown(KeyCode.H))
+        while (true)
         {
-            if(condition != null)
+            if (condition != null)
             {
                 canOpen = condition.CheckCondition();
-
             }
 
             if (canOpen)
             {
                 OpenDoor();
             }
+            else
+            {
+                CloseDoor();
+            }
 
+            yield return waitTime;
         }
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+     
     }
 }
