@@ -10,6 +10,7 @@ public class MainMenu : MonoBehaviour
     {
         Debug.Log("Starting New Game");
         SceneManager.LoadScene("Greybox TUT Level");
+        KeyChainScript.ClearKeyChain();
     }
 
     //Loads Save Game
