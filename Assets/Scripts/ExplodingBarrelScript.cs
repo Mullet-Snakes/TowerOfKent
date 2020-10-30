@@ -27,6 +27,8 @@ public class ExplodingBarrelScript : MonoBehaviour
     [Range(0, 30)]
     private float upExplosionModifier = 5f;
 
+    public ParticleSystem m_particles = null;
+
     private void Awake()
     {
         m_rb = GetComponent<Rigidbody>();
@@ -65,5 +67,9 @@ public class ExplodingBarrelScript : MonoBehaviour
                     ForceMode.VelocityChange);
             }               
         }
+
+        Instantiate(m_particles, transform.position, transform.rotation);
+
+        Destroy(gameObject);
     }
 }
