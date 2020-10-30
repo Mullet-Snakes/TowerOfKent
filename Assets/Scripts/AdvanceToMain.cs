@@ -5,6 +5,8 @@ using UnityEngine.SceneManagement;
 
 public class AdvanceToMain : MonoBehaviour
 {
+    //hey
+
     // Update is called once per frame
     void Update()
     {
