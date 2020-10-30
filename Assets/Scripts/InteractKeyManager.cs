@@ -22,6 +22,8 @@ public class InteractKeyManager : MonoBehaviour
 
     private void Awake()
     {
+        Cursor.visible = false;
+
         if (_instance != null && _instance != this)
         {
             DestroyThis();
