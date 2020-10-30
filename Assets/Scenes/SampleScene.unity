@@ -666,17 +666,27 @@ PrefabInstance:
     - target: {fileID: 1693942617144515328, guid: 0acca00f9a702bb43b271c90aa447376,
         type: 3}
       propertyPath: EmissionModule.m_Bursts.Array.data[0].countCurve.scalar
-      value: 100
+      value: 500
       objectReference: {fileID: 0}
     - target: {fileID: 1693942617144515328, guid: 0acca00f9a702bb43b271c90aa447376,
         type: 3}
       propertyPath: EmissionModule.m_Bursts.Array.data[0].cycleCount
-      value: 1
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 1693942617144515328, guid: 0acca00f9a702bb43b271c90aa447376,
         type: 3}
-      propertyPath: lengthInSec
-      value: 0.25
+      propertyPath: EmissionModule.m_Bursts.Array.data[0].repeatInterval
+      value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1693942617144515328, guid: 0acca00f9a702bb43b271c90aa447376,
+        type: 3}
+      propertyPath: EmissionModule.rateOverTime.scalar
+      value: 1000
+      objectReference: {fileID: 0}
+    - target: {fileID: 1693942617144515328, guid: 0acca00f9a702bb43b271c90aa447376,
+        type: 3}
+      propertyPath: InitialModule.startLifetime.scalar
+      value: 1.5
       objectReference: {fileID: 0}
     - target: {fileID: 1693942617144515330, guid: 0acca00f9a702bb43b271c90aa447376,
         type: 3}
