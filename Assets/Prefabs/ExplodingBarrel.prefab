@@ -145,6 +145,8 @@ MonoBehaviour:
   explosiveForce: 50
   triggerSpeed: 20
   upExplosionModifier: 5
+  m_particles: {fileID: 1693942617144515328, guid: 0acca00f9a702bb43b271c90aa447376,
+    type: 3}
 --- !u!1001 &5478544732503484912
 PrefabInstance:
   m_ObjectHideFlags: 0
