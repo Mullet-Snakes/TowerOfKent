@@ -51,7 +51,7 @@ public class PauseMenu : MonoBehaviour
     {
         Debug.Log("Game Resumed");
         PauseMenuUI.SetActive(false);
-        SettingsMenuUI.SetActive(false);
+        //SettingsMenuUI.SetActive(false);
         Time.timeScale = 1f;
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
@@ -75,6 +75,11 @@ public class PauseMenu : MonoBehaviour
     public void ExitToMainMenu()
     {
         Debug.Log("Returning to Main Menu");
+        PauseMenuUI.SetActive(false);
+        Time.timeScale = 1f;
+        GameIsPaused = false;
+        //Removed by Matt. Causing a warming and shouldnt need to call unload
+        //SceneManager.UnloadSceneAsync("Greybox TUT Level");
         SceneManager.LoadScene("MainMenu");
     }
 
