@@ -6,6 +6,11 @@ public static class KeyChainScript
 {
     static private Dictionary<string, bool> keyChain = new Dictionary<string, bool>();
 
+    static public void ClearKeyChain()
+    {
+        keyChain.Clear();
+    }
+
     static public void AddKey(string keyName)
     {
         if (keyName != null)
