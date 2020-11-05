@@ -20,6 +20,7 @@ public class GravityCastScript : MonoBehaviour
 
     [SerializeField]
     [Tooltip("Default: 0.1")]
+    [Range(0.05f, 1)]
     private float capsuleCastRadius = 0.1f;
 
     private Vector3 pos1 = new Vector3();
