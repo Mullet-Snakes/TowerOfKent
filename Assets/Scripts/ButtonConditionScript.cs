@@ -12,9 +12,11 @@ public class ButtonConditionScript : DoorConditionScript
     {
         foreach (GameObject button in buttonList)
         {
-            if (button.GetComponent<InteractDoorButtonScript>() != null)
+            InteractDoorButtonScript temp = button.GetComponent<InteractDoorButtonScript>();
+
+            if (temp != null)
             {
-                if (!button.GetComponent<InteractDoorButtonScript>().IsPressed)
+                if (!temp.IsPressed)
                 {
                     return false;
                 }
