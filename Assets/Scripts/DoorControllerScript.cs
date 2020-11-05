@@ -4,9 +4,13 @@ using UnityEngine;
 
 public class DoorControllerScript : InteractableObjectScript
 {
+    //[SerializeField]
+    //[Tooltip("Drag the condition for the door here")]
+    //private DoorConditionScript condition = null;
+
     [SerializeField]
-    [Tooltip("Drag the condition for the door here")]
-    private DoorConditionScript condition = null;
+    [Tooltip("Drag the conditions for the door here")]
+    private List<DoorConditionScript> conditionList = null;
     
     private bool canOpen = false;
 
@@ -41,14 +45,43 @@ public class DoorControllerScript : InteractableObjectScript
     {
         doorState = DoorState.CLOSED;
 
+        foreach(DoorConditionScript d in conditionList)
+        {
+            if (d is PressurePlateDoorCondition || d is ButtonConditionScript)
+            {
+                StartCoroutine("CheckAtLowerFPS");
+                return;
+            }
+        }
+
+        /*
         if(condition is PressurePlateDoorCondition || condition is ButtonConditionScript)
         {
             StartCoroutine("CheckAtLowerFPS");
         }
+        */
     }
 
     protected override void CheckForInteract(GameObject player)
     {
+
+        if(conditionList.Count != 0)
+        {
+            if (Vector3.Distance(transform.position, player.transform.position) < distanceToInteract)
+            {
+                foreach(DoorConditionScript d in conditionList)
+                {
+                    if(!d.CheckCondition())
+                    {
+                        canOpen = false;
+                        return;
+                    }
+
+                    canOpen = true;
+                }
+            }
+        }
+        /*
         if (condition != null)
         {
             if(Vector3.Distance(transform.position, player.transform.position) < distanceToInteract)
@@ -56,6 +89,7 @@ public class DoorControllerScript : InteractableObjectScript
                 canOpen = condition.CheckCondition();
             }          
         }
+        */
 
         if (canOpen)
         {
@@ -108,10 +142,26 @@ public class DoorControllerScript : InteractableObjectScript
 
         while (true)
         {
+
+            if(conditionList.Count != 0)
+            {
+                foreach (DoorConditionScript d in conditionList)
+                {
+                    if (!d.CheckCondition())
+                    {
+                        canOpen = false;
+                        break;
+                    }
+
+                    canOpen = true;
+                }
+            }
+            /*
             if (condition != null)
             {
                 canOpen = condition.CheckCondition();
             }
+            */
 
             if (canOpen)
             {
