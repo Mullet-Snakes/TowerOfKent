@@ -97,7 +97,6 @@ public class GravityController : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
-        print(currentGravity);
 
         if(transform.GetComponent<RoombaMovement>() != null)
         {
@@ -110,7 +109,7 @@ public class GravityController : MonoBehaviour
                 targetVelocity += transform.forward * transform.GetComponent<RoombaMovement>().m_speed;
             }
 
-            if(!transform.GetComponent<RoombaMovement>().isGrounded)
+            if(!transform.GetComponent<RoombaMovement>().isGrounded || transform.GetComponent<RoombaMovement>().rotating)
             {
                 gravVel += currentGravity * Time.deltaTime;
             }
@@ -151,6 +150,7 @@ public class GravityController : MonoBehaviour
 
     void SetCurrentGravity(Vector3 grav, bool changingTargeted)
     {
+        gravVel = Vector3.zero;
 
         if(changingTargeted)
         {

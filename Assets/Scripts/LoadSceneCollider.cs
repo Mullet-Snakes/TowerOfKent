@@ -9,7 +9,6 @@ public class LoadSceneCollider : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-
         if (other.gameObject.CompareTag("Player"))
         {
             if (!loaded)

@@ -8,11 +8,14 @@ public class RoombaMovement : MonoBehaviour
 
     public float m_speed;
 
-    private Vector3 targetVelocity = new Vector3();
-
     public bool isGrounded = false;
 
     public bool rotating = false;
+
+    public Vector3 moveDirection = new Vector3();
+
+    public float movementJitter = 5f;
+    public float radius = 2f;
 
     private void Awake()
     {
@@ -21,13 +24,22 @@ public class RoombaMovement : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        moveDirection
     }
 
     // Update is called once per frame
     void Update()
     {
         
+    }
+
+    Vector3 GetMoveDirection()
+    {
+        Vector3 forward = transform.forward * movementJitter;
+        float randDeg = Random.Range(0, 360);
+        float x = forward.x + radius * Mathf.Cos(randDeg);
+        float y = forward.y + radius * Mathf.Sin(randDeg);
+
     }
 
     private void FixedUpdate()
@@ -58,14 +70,6 @@ public class RoombaMovement : MonoBehaviour
             m_rb.MoveRotation(targetRot);
             rotating = false;
         }
-        
-
-        //targetVelocity = transform.forward * m_speed * Time.deltaTime;
-
-        //if(isGrounded)
-        //{
-        //    m_rb.AddForce(targetVelocity);
-        //}
 
     }
 }
