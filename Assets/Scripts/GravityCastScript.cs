@@ -108,7 +108,7 @@ public class GravityCastScript : MonoBehaviour
             {
                 if (Physics.Raycast(transform.position, transform.forward, out RaycastHit hit, Mathf.Infinity))
                 {
-                    if (hit.transform.GetComponent<Rigidbody>() != null)
+                    if (hit.transform.GetComponent<GravityController>() != null)
                     {
                         if(!hit.transform.GetComponent<GravityController>().Frozen)
                         {
