@@ -4,9 +4,6 @@ using UnityEngine;
 
 public class DoorControllerScript : InteractableObjectScript
 {
-    //[SerializeField]
-    //[Tooltip("Drag the condition for the door here")]
-    //private DoorConditionScript condition = null;
 
     [SerializeField]
     [Tooltip("Drag the conditions for the door here")]
@@ -53,13 +50,6 @@ public class DoorControllerScript : InteractableObjectScript
                 return;
             }
         }
-
-        /*
-        if(condition is PressurePlateDoorCondition || condition is ButtonConditionScript)
-        {
-            StartCoroutine("CheckAtLowerFPS");
-        }
-        */
     }
 
     protected override void CheckForInteract(GameObject player)
@@ -81,15 +71,6 @@ public class DoorControllerScript : InteractableObjectScript
                 }
             }
         }
-        /*
-        if (condition != null)
-        {
-            if(Vector3.Distance(transform.position, player.transform.position) < distanceToInteract)
-            {
-                canOpen = condition.CheckCondition();
-            }          
-        }
-        */
 
         if (canOpen)
         {
@@ -156,12 +137,6 @@ public class DoorControllerScript : InteractableObjectScript
                     canOpen = true;
                 }
             }
-            /*
-            if (condition != null)
-            {
-                canOpen = condition.CheckCondition();
-            }
-            */
 
             if (canOpen)
             {
