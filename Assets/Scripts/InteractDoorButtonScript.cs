@@ -6,11 +6,6 @@ public class InteractDoorButtonScript : InteractableObjectScript
 {
     public bool isPressed = false;
 
-    [SerializeField]
-    [Tooltip("Default 0.5")]
-    [Range(0,2)]
-    private float timeToSwitch = 0.5f;
-
     public bool IsPressed
     {
         get
@@ -28,14 +23,6 @@ public class InteractDoorButtonScript : InteractableObjectScript
         {
             isPressed = isPressed ? false : true;
         }
-
-        Invoke("TurnOffButton", timeToSwitch);
-
-    }
-
-    private void TurnOffButton()
-    {
-        isPressed = false;
     }
 
     private void Awake()
