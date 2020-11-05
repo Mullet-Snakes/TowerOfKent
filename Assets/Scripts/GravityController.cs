@@ -6,6 +6,16 @@ public class GravityController : MonoBehaviour
 {
 
     private Vector3 currentGravity = new Vector3();
+
+    private Vector3 gravVel = new Vector3();
+
+    public Vector3 CurrentGravity
+    {
+        get
+        {
+            return currentGravity.normalized;
+        }
+    }
     private Rigidbody m_rb;
     private bool isTargeted = false;
 
@@ -87,7 +97,41 @@ public class GravityController : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
-        m_rb.AddForce(currentGravity * Time.deltaTime, ForceMode.VelocityChange);
+        print(currentGravity);
+
+        if(transform.GetComponent<RoombaMovement>() != null)
+        {
+            Vector3 targetVelocity = m_rb.velocity;
+
+            if(transform.GetComponent<RoombaMovement>().isGrounded && !transform.GetComponent<RoombaMovement>().rotating)
+            {
+                targetVelocity = Vector3.zero;
+
+                targetVelocity += transform.forward * transform.GetComponent<RoombaMovement>().m_speed;
+            }
+
+            if(!transform.GetComponent<RoombaMovement>().isGrounded)
+            {
+                gravVel += currentGravity * Time.deltaTime;
+            }
+
+            if (transform.GetComponent<RoombaMovement>().isGrounded && !transform.GetComponent<RoombaMovement>().rotating)
+            {
+                gravVel.Set(0, 0, 0);
+            }
+
+            targetVelocity += gravVel * Time.deltaTime;
+
+            m_rb.AddForce(targetVelocity - m_rb.velocity, ForceMode.VelocityChange);
+
+        }
+
+        else
+        {
+            m_rb.AddForce(currentGravity * Time.deltaTime, ForceMode.VelocityChange);
+        }
+        
+
     }
 
     public void FreezeConstraints(bool freezeContraints)
