@@ -50,9 +50,12 @@ public class GravityCastScript : MonoBehaviour
                     {
                         if (go != hit.transform.gameObject)
                         {
-                            //go.GetComponent<Renderer>().material = defaultWallMaterial;
-                            go.GetComponent<Renderer>().material = go.GetComponent<DebugWallScript>().m_material;
-                            go.GetComponent<Renderer>().material.shader = go.GetComponent<DebugWallScript>().m_shader;
+                            if (go.GetComponent<Renderer>() != null)
+                            {
+                                go.GetComponent<Renderer>().material = go.GetComponent<DebugWallScript>().m_material;
+                                go.GetComponent<Renderer>().material.shader = go.GetComponent<DebugWallScript>().m_shader;
+                            }
+                           
                         }
                     }
 
