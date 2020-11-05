@@ -22,6 +22,9 @@ public class GravityCastScript : MonoBehaviour
     [Tooltip("Default: 0.1")]
     private float capsuleCastRadius = 0.1f;
 
+    private Vector3 pos1 = new Vector3();
+    private Vector3 pos2 = new Vector3();
+
     public void AddWall(GameObject wall)
     {
         levelWalls.Add(wall);
@@ -44,8 +47,8 @@ public class GravityCastScript : MonoBehaviour
 
             if (Input.GetMouseButtonDown(0))
             {
-                Vector3 pos1 = transform.position;
-                Vector3 pos2 = transform.position + transform.forward;
+                pos1 = transform.position;
+                pos2 = transform.position + transform.forward;
 
                 if (Physics.CapsuleCast(pos1, pos2, capsuleCastRadius, transform.forward, out RaycastHit hit))
                 {
@@ -74,8 +77,8 @@ public class GravityCastScript : MonoBehaviour
 
             if (Input.GetMouseButtonDown(1))
             {
-                Vector3 pos1 = transform.position;
-                Vector3 pos2 = transform.position + transform.forward;
+                pos1 = transform.position;
+                pos2 = transform.position + transform.forward;
 
                 if (Physics.CapsuleCast(pos1, pos2, capsuleCastRadius, transform.forward, out RaycastHit hit))
                 {
@@ -88,8 +91,8 @@ public class GravityCastScript : MonoBehaviour
 
             if (Input.GetKeyDown(KeyCode.R))
             {
-                Vector3 pos1 = transform.position;
-                Vector3 pos2 = transform.position + transform.forward;
+                pos1 = transform.position;
+                pos2 = transform.position + transform.forward;
 
                 if (Physics.CapsuleCast(pos1, pos2, capsuleCastRadius, transform.forward, out RaycastHit hit))
                 {
@@ -121,8 +124,8 @@ public class GravityCastScript : MonoBehaviour
 
             if (Input.GetKeyDown(KeyCode.F))
             {
-                Vector3 pos1 = transform.position;
-                Vector3 pos2 = transform.position + transform.forward;
+                pos1 = transform.position;
+                pos2 = transform.position + transform.forward;
 
                 if (Physics.CapsuleCast(pos1, pos2, capsuleCastRadius, transform.forward, out RaycastHit hit))
                 {
