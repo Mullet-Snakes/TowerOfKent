@@ -29,6 +29,16 @@ public class GravityController : MonoBehaviour
     [Range(-30, 0)]
     private float gravityFactor = -9.8f;
 
+    private bool frozen = false;
+
+    public bool Frozen
+    {
+        get
+        {
+            return frozen;
+        }
+    }
+
     public float GravityFactor
     {
         get
@@ -78,6 +88,21 @@ public class GravityController : MonoBehaviour
     void FixedUpdate()
     {
         m_rb.AddForce(currentGravity * Time.deltaTime, ForceMode.VelocityChange);
+    }
+
+    public void FreezeConstraints(bool freezeContraints)
+    {
+        if(freezeContraints)
+        {
+            m_rb.constraints = RigidbodyConstraints.FreezeAll;
+            frozen = true;
+        }
+        else
+        {
+            m_rb.constraints = RigidbodyConstraints.None;
+            frozen = false;
+        }
+        
     }
 
     void SetCurrentGravity(Vector3 grav, bool changingTargeted)

@@ -103,6 +103,25 @@ public class GravityCastScript : MonoBehaviour
                     }
                 }
             }
+
+            if (Input.GetKeyDown(KeyCode.F))
+            {
+                if (Physics.Raycast(transform.position, transform.forward, out RaycastHit hit, Mathf.Infinity))
+                {
+                    if (hit.transform.GetComponent<Rigidbody>() != null)
+                    {
+                        if(!hit.transform.GetComponent<GravityController>().Frozen)
+                        {
+                            hit.transform.GetComponent<GravityController>().FreezeConstraints(true);
+                        }
+                        else
+                        {
+                            hit.transform.GetComponent<GravityController>().FreezeConstraints(false);
+                        }
+                        
+                    }
+                }
+            }
         }
     }
 }
