@@ -4,117 +4,101 @@ using UnityEngine;
 
 public class LiftObject : MonoBehaviour
 {
-#region failed code
-    //public Transform destination;
-    //private Camera playerCamera;
-
-    //void Awake()
-    //{
-    //    playerCamera = Camera.main;
-    //}
-    
-    //private void Updat()
-    //{
-    //    if (Input.GetKeyDown(KeyCode.I) && !grabbed)
-    //    {
-    //        Vector3 rayOrigin = playerCamera.ViewportToWorldPoint(new Vector3(0.5f, 0.5f, 0.0f));
-    //        RaycastHit hit;
-
-    //        if (Physics.Raycast(rayOrigin, playerCamera.transform.forward, out hit, Mathf.Infinity))
-    //        {
-    //            if (hit.collider.CompareTag("LevelProp"))
-    //            {
-    //                grabbed = true;
-    //                Rigidbody prop_rb = this.GetComponent<Rigidbody>();
-
-    //                while (grabbed == true)
-    //                {
-    //                    //GetComponent<BoxCollider>().enabled = false;
-    //                    hit.collider.GetComponent<GravityController>().GravityFactor = 0f;
-    //                    this.transform.position = destination.position;
-
-    //                    //Transform propTransform = prop_rb.transform;
-    //                    //float elapsedTime = 0f;
-    //                    //prop_rb.MovePosition(Vector3.Lerp(propTransform.position, destination.position, (elapsedTime / propMove)));
-    //                    //elapsedTime += Time.deltaTime;
-
-    //                    prop_rb.transform.parent = destination;
-
-    //                    if (Input.GetKeyDown(KeyCode.O) && grabbed == true)
-    //                    {
-    //                        grabbed = false;
-    //                        this.transform.parent = null;
-    //                        this.GetComponent<GravityController>().GravityFactor = -9.8f;
-    //                        //GetComponent<BoxCollider>().enabled = true;
-    //                    }
-    //                }
-    //            }
-    //        }
-    //    }
-
-    //}
-    #endregion
-
-    public bool canHold = true;
-    public bool isHolding = false;
-    public GameObject levelProp;
-    public GameObject tempParent;
-    public GameObject player;
-    private Vector3 objectPos;
-    private Vector3 noGrav = new Vector3(0, 0, 0);
+    private bool isHolding = false;
+    private GameObject carriedObject;
+    private GameObject mainCamera;
+    private Camera playerCamera;
+    private Rigidbody prop_rb;
 
     [SerializeField]
-    [Tooltip("Default: 600")]
-    [Range(1, 1000)]
-    public float throwForce;
+    [Tooltip("The movement of the object you're holding (default 20)")]
+    [Range(15, 30)]
+    public float objMove = 0.5f;
 
-    private float distance;
-    private float grabDistance;
+    //[SerializeField]
+    //[Tooltip("Default: 600")]
+    //[Range(1, 1000)]
+    //public float throwForce;
 
-    // Update is called once per frame
-    void Update()
+    //private float distance;
+
+    [SerializeField]
+    [Tooltip("The yoink range")]
+    public float grabDistance;
+
+    [SerializeField]
+    [Tooltip("The distance between an object you're holding and you")]
+    [Range(0, 5)]
+    public float holdDistance;
+
+    private void Awake()
     {
-        distance = Vector3.Distance(levelProp.transform.position, tempParent.transform.position);
-        grabDistance = player.GetComponent<PlayerController>().playerGrab;
+        mainCamera = GameObject.FindWithTag("MainCamera");
+        playerCamera = Camera.main;
+    }
 
-        if (distance >= grabDistance)
+    private void Update()
+    {
+        if (isHolding)
         {
-            isHolding = false;
-        }
-
-        //Check if isholding
-        if (isHolding == true)
-        {
-            levelProp.GetComponent<Rigidbody>().velocity = Vector3.zero;
-            levelProp.GetComponent<Rigidbody>().angularVelocity = Vector3.zero;
-            levelProp.transform.SetParent(tempParent.transform);
-
-            if (Input.GetMouseButtonDown(1))
-            {
-                levelProp.GetComponent<Rigidbody>().AddForce(tempParent.transform.forward * throwForce);
-                isHolding = false;
-            }
+            CheckDrop();
         }
         else
         {
-            objectPos = levelProp.transform.position;
-            levelProp.transform.SetParent(null);
-            this.GetComponent<GravityController>().CurrentGravity = player.GetComponent<PlayerController>().Gravity;
-            levelProp.transform.position = objectPos;
+            Pickup();
         }
     }
 
-    void OnMouseDown()
+    private void FixedUpdate()
     {
-        if (distance <= grabDistance)
+        if(isHolding)
         {
-            isHolding = true;
-            this.GetComponent<GravityController>().CurrentGravity = noGrav;
-            levelProp.GetComponent<Rigidbody>().detectCollisions = true;
+            Carry(carriedObject);
         }
     }
-    void OnMouseUp()
+
+    void Carry(GameObject obj)
+    {
+        obj.transform.position = Vector3.Lerp(obj.transform.position, mainCamera.transform.position + mainCamera.transform.forward * holdDistance, Time.deltaTime * objMove);
+    }
+
+    void Pickup()
+    {
+        if (Input.GetKeyDown(KeyCode.I))
+        {
+            int x = Screen.width / 2;
+            int y = Screen.height / 2;
+
+            Vector3 rayOrigin = playerCamera.ViewportToWorldPoint(new Vector3(x, y));
+            RaycastHit hit;
+
+            if (Physics.Raycast(rayOrigin, playerCamera.transform.forward, out hit, grabDistance))
+            {
+                prop_rb = hit.collider.GetComponent<Rigidbody>();
+
+                if (hit.collider.CompareTag("LevelProp"))
+                {
+                    isHolding = true;
+                    carriedObject = prop_rb.gameObject;
+                    prop_rb.isKinematic = true;
+                }
+            }
+        }
+    }
+
+    void CheckDrop()
+    {
+        if (Input.GetKeyDown(KeyCode.I))
+        {
+            DropObject();
+        }
+    }
+
+    void DropObject()
     {
         isHolding = false;
+        prop_rb.isKinematic = false;
+        prop_rb = null;
+        carriedObject = null;
     }
 }
