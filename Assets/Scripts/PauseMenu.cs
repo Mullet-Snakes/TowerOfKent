@@ -79,7 +79,7 @@ public class PauseMenu : MonoBehaviour
         PauseMenuUI.SetActive(false);
         Time.timeScale = 1f;
         GameIsPaused = false;
-        SceneManager.UnloadSceneAsync("Greybox TUT Level");
+        //SceneManager.UnloadSceneAsync("Greybox TUT Level");
         SceneManager.LoadScene("MainMenu");
     }
 
