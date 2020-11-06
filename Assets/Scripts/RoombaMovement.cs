@@ -81,18 +81,6 @@ public class RoombaMovement : MonoBehaviour
             m_rb.MoveRotation(targetRot);
             rotating = false;
         }
-        else if(isGrounded && !rotating)
-        {
-            //find the vector pointing from our position to the target
-            Vector3 _direction = (unit - transform.position).normalized;
-            print(_direction);
-
-            //create the rotation we need to be in to look at the target
-            Quaternion _lookRotation = Quaternion.LookRotation(_direction);
-
-            //rotate us over time according to speed until we are in the required rotation
-            m_rb.MoveRotation(Quaternion.Slerp(transform.rotation, _lookRotation, Time.deltaTime * 10));
-        }
    
     }
 }
