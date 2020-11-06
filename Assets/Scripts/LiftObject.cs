@@ -33,9 +33,10 @@ public class LiftObject : MonoBehaviour
     [Range(0, 5)]
     public float holdDistance;
 
-
-    [SerializeField]
     private bool isHolding = false;
+
+    //public bool objStop;
+    //public float stopSpeed;
 
     private void Awake()
     {
@@ -73,23 +74,50 @@ public class LiftObject : MonoBehaviour
         prop_rb.AddForce((new Vector3(grabPosition.x, grabby.transform.position.y, grabPosition.z) - obj.transform.position) * objMove, ForceMode.VelocityChange);
 
         #region Slowing on arrival
-        if (obj.transform.position.x <= grabPosition.x + orbitRange || obj.transform.position.x >= grabPosition.x - orbitRange)
-        {
-            prop_rb.velocity = new Vector3(0, prop_rb.velocity.y, prop_rb.velocity.z);
-            prop_rb.angularVelocity = new Vector3(0, prop_rb.velocity.y, prop_rb.velocity.z);
-        }
 
-        if (obj.transform.position.y <= grabPosition.y + orbitRange || obj.transform.position.y >= grabPosition.y - orbitRange)
-        {
-            prop_rb.velocity = new Vector3(prop_rb.velocity.x, 0, prop_rb.velocity.z);
-            prop_rb.angularVelocity = new Vector3(prop_rb.velocity.x, 0, prop_rb.velocity.z);
-        }
+        //Sets the velecity to 0 (Normal)
+        //if (objStop)
+        //{
+            if (obj.transform.position.x <= grabPosition.x + orbitRange || obj.transform.position.x >= grabPosition.x - orbitRange)
+            {
+                prop_rb.velocity = new Vector3(0, prop_rb.velocity.y, prop_rb.velocity.z);
+                prop_rb.angularVelocity = new Vector3(0, prop_rb.velocity.y, prop_rb.velocity.z);
+            }
 
-        if (obj.transform.position.z <= grabPosition.z + orbitRange || obj.transform.position.z >= grabPosition.z - orbitRange)
-        {
-            prop_rb.velocity = new Vector3(prop_rb.velocity.x, prop_rb.velocity.y, 0);
-            prop_rb.angularVelocity = new Vector3(prop_rb.velocity.x, prop_rb.velocity.y, 0);
-        }
+            if (obj.transform.position.y <= grabPosition.y + orbitRange || obj.transform.position.y >= grabPosition.y - orbitRange)
+            {
+                prop_rb.velocity = new Vector3(prop_rb.velocity.x, 0, prop_rb.velocity.z);
+                prop_rb.angularVelocity = new Vector3(prop_rb.velocity.x, 0, prop_rb.velocity.z);
+            }
+
+            if (obj.transform.position.z <= grabPosition.z + orbitRange || obj.transform.position.z >= grabPosition.z - orbitRange)
+            {
+                prop_rb.velocity = new Vector3(prop_rb.velocity.x, prop_rb.velocity.y, 0);
+                prop_rb.angularVelocity = new Vector3(prop_rb.velocity.x, prop_rb.velocity.y, 0);
+            }
+        //}
+
+        //Decellerates the velocity (spins oddly)
+        //else if(!objStop)
+        //{
+        //    if (obj.transform.position.x <= grabPosition.x + orbitRange || obj.transform.position.x >= grabPosition.x - orbitRange)
+        //    {
+        //        prop_rb.velocity = new Vector3(prop_rb.velocity.x - (stopSpeed * prop_rb.velocity.x), prop_rb.velocity.y, prop_rb.velocity.z);
+        //        prop_rb.angularVelocity = new Vector3(prop_rb.velocity.x - (stopSpeed * prop_rb.velocity.x), prop_rb.velocity.y, prop_rb.velocity.z);
+        //    }
+
+        //    if (obj.transform.position.y <= grabPosition.y + orbitRange || obj.transform.position.y >= grabPosition.y - orbitRange)
+        //    {
+        //        prop_rb.velocity = new Vector3(prop_rb.velocity.x, prop_rb.velocity.y - (stopSpeed * prop_rb.velocity.y), prop_rb.velocity.z);
+        //        prop_rb.angularVelocity = new Vector3(prop_rb.velocity.x, prop_rb.velocity.y - (stopSpeed * prop_rb.velocity.y), prop_rb.velocity.z);
+        //    }
+
+        //    if (obj.transform.position.z <= grabPosition.z + orbitRange || obj.transform.position.z >= grabPosition.z - orbitRange)
+        //    {
+        //        prop_rb.velocity = new Vector3(prop_rb.velocity.x, prop_rb.velocity.y, prop_rb.velocity.z - (stopSpeed * prop_rb.velocity.z));
+        //        prop_rb.angularVelocity = new Vector3(prop_rb.velocity.x, prop_rb.velocity.y, prop_rb.velocity.z - (stopSpeed * prop_rb.velocity.z));
+        //    }
+        //}
         #endregion
     }
 
@@ -112,6 +140,7 @@ public class LiftObject : MonoBehaviour
                 {
                     isHolding = true;
                     carriedObject = prop_rb.gameObject;
+                    //carriedObject.transform.parent = grabby.transform;
                     hit.collider.GetComponent<GravityController>().CurrentGravity = noGrav;
                 }
             }
@@ -128,9 +157,10 @@ public class LiftObject : MonoBehaviour
 
     void DropObject()
     {
-        isHolding = false;
         prop_rb.GetComponent<GravityController>().CurrentGravity = player.GetComponent<PlayerController>().Gravity;
         distance = 0;
+        isHolding = false;
+        //carriedObject.transform.parent = null;
         prop_rb = null;
         carriedObject = null;
     }
