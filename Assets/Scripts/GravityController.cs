@@ -92,6 +92,7 @@ public class GravityController : MonoBehaviour
         {
             transform.GetComponent<Renderer>().material = normal;
         }
+
     }
 
     // Update is called once per frame
@@ -106,7 +107,7 @@ public class GravityController : MonoBehaviour
             {
                 targetVelocity = Vector3.zero;
 
-                targetVelocity += transform.forward * transform.GetComponent<RoombaMovement>().m_speed;
+                targetVelocity += (transform.GetComponent<RoombaMovement>().target.transform.position - transform.position).normalized * transform.GetComponent<RoombaMovement>().m_speed;
             }
 
             if(!transform.GetComponent<RoombaMovement>().isGrounded || transform.GetComponent<RoombaMovement>().rotating)

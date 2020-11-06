@@ -12,10 +12,8 @@ public class RoombaMovement : MonoBehaviour
 
     public bool rotating = false;
 
-    public Vector3 moveDirection = new Vector3();
+    public GameObject target = null;
 
-    public float movementJitter = 5f;
-    public float radius = 2f;
 
     private void Awake()
     {
@@ -24,21 +22,17 @@ public class RoombaMovement : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        moveDirection
+
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+
     }
 
-    Vector3 GetMoveDirection()
+    private void OnDrawGizmos()
     {
-        Vector3 forward = transform.forward * movementJitter;
-        float randDeg = Random.Range(0, 360);
-        float x = forward.x + radius * Mathf.Cos(randDeg);
-        float y = forward.y + radius * Mathf.Sin(randDeg);
 
     }
 
@@ -70,6 +64,10 @@ public class RoombaMovement : MonoBehaviour
             m_rb.MoveRotation(targetRot);
             rotating = false;
         }
+
+        Vector3 relativePos = target.transform.position - transform.position;
+        Quaternion rotation = Quaternion.LookRotation(relativePos, Vector3.up);
+        transform.rotation = Quaternion.Slerp(transform.rotation, rotation, Time.time);
 
     }
 }
