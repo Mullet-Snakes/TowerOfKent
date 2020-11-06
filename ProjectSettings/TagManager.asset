@@ -6,6 +6,11 @@ TagManager:
   tags:
   - GravityWall
   - LevelProp
+  - wasdtut
+  - keytut
+  - doortut
+  - gravobjtut
+  - gravplaytut
   layers:
   - Default
   - TransparentFX
