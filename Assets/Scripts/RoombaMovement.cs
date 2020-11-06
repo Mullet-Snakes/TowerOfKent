@@ -14,6 +14,10 @@ public class RoombaMovement : MonoBehaviour
 
     public GameObject target = null;
 
+    public Vector3 tar = new Vector3();
+
+    float t = 0;
+
 
     private void Awake()
     {
@@ -22,13 +26,26 @@ public class RoombaMovement : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-
+        SetTargetPosition();
     }
 
     // Update is called once per frame
     void Update()
     {
+        if(isGrounded)
+            t += Time.deltaTime;
 
+        if(t > 3)
+        {
+            SetTargetPosition();
+            t = 0;
+        }
+
+        if(Mathf.Abs(Vector3.SqrMagnitude(tar - transform.position)) < 0.1)
+        {
+            SetTargetPosition();
+            t = 0;
+        }
     }
 
     private void OnDrawGizmos()
@@ -36,9 +53,20 @@ public class RoombaMovement : MonoBehaviour
 
     }
 
+    void SetTargetPosition()
+    {
+        float angle = Random.Range(0, 360);
+        Vector3 inFront = transform.forward * 5;
+        float radius = 5;
+        float x = inFront.x + radius * Mathf.Cos(angle);
+        float z = inFront.z + radius * Mathf.Sin(angle);
+        tar = new Vector3(x, transform.position.y, z);
+        target.transform.position = tar;
+    }
+
     private void FixedUpdate()
     {
-        isGrounded = Physics.Raycast(transform.position, -transform.up, out RaycastHit hit, 1.01f);
+        isGrounded = Physics.Raycast(transform.position, -transform.up, out RaycastHit hit, 0.38f);
 
         Vector3 right = new Vector3();
         Vector3 forward = new Vector3();
@@ -63,11 +91,13 @@ public class RoombaMovement : MonoBehaviour
             targetRot = Quaternion.LookRotation(forward, -g);
             m_rb.MoveRotation(targetRot);
             rotating = false;
+        } 
+        
+        if(isGrounded && !rotating)
+        {
+            Vector3 relativePos = tar - transform.position;
+            Quaternion rotation = Quaternion.LookRotation(relativePos, transform.up);
+            transform.rotation = Quaternion.Slerp(transform.rotation, rotation, Time.time);
         }
-
-        Vector3 relativePos = target.transform.position - transform.position;
-        Quaternion rotation = Quaternion.LookRotation(relativePos, Vector3.up);
-        transform.rotation = Quaternion.Slerp(transform.rotation, rotation, Time.time);
-
     }
 }
