@@ -14,7 +14,9 @@ public class RoombaMovement : MonoBehaviour
 
     public GameObject target = null;
 
+    public GameObject offset = null;
     public Vector3 tar = new Vector3();
+    public Vector3 unit = new Vector3();
 
     float t = 0;
 
@@ -26,47 +28,34 @@ public class RoombaMovement : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        SetTargetPosition();
+
     }
 
     // Update is called once per frame
     void Update()
     {
-        if(isGrounded)
-            t += Time.deltaTime;
+        t += Time.deltaTime;
 
-        if(t > 3)
+        if(t > 2)
         {
-            SetTargetPosition();
-            t = 0;
-        }
+            GetTarget();
 
-        if(Mathf.Abs(Vector3.SqrMagnitude(tar - transform.position)) < 0.1)
-        {
-            SetTargetPosition();
-            t = 0;
+             t = 0;
         }
     }
 
-    private void OnDrawGizmos()
+    Vector3 GetTarget()
     {
+        unit = Random.onUnitSphere;
+        unit = new Vector3(unit.x, 0, unit.z).normalized * 3;
+        target.transform.position = transform.position + transform.TransformDirection(unit);
 
-    }
-
-    void SetTargetPosition()
-    {
-        float angle = Random.Range(0, 360);
-        Vector3 inFront = transform.forward * 5;
-        float radius = 5;
-        float x = inFront.x + radius * Mathf.Cos(angle);
-        float z = inFront.z + radius * Mathf.Sin(angle);
-        tar = new Vector3(x, transform.position.y, z);
-        target.transform.position = tar;
+        return transform.position + transform.TransformDirection(unit);
     }
 
     private void FixedUpdate()
     {
-        isGrounded = Physics.Raycast(transform.position, -transform.up, out RaycastHit hit, 0.38f);
+        isGrounded = Physics.Raycast(transform.position, -transform.up, out RaycastHit hit, 0.51f);
 
         Vector3 right = new Vector3();
         Vector3 forward = new Vector3();
@@ -91,13 +80,19 @@ public class RoombaMovement : MonoBehaviour
             targetRot = Quaternion.LookRotation(forward, -g);
             m_rb.MoveRotation(targetRot);
             rotating = false;
-        } 
-        
-        if(isGrounded && !rotating)
-        {
-            Vector3 relativePos = tar - transform.position;
-            Quaternion rotation = Quaternion.LookRotation(relativePos, transform.up);
-            transform.rotation = Quaternion.Slerp(transform.rotation, rotation, Time.time);
         }
+        else if(isGrounded && !rotating)
+        {
+            //find the vector pointing from our position to the target
+            Vector3 _direction = (unit - transform.position).normalized;
+            print(_direction);
+
+            //create the rotation we need to be in to look at the target
+            Quaternion _lookRotation = Quaternion.LookRotation(_direction);
+
+            //rotate us over time according to speed until we are in the required rotation
+            m_rb.MoveRotation(Quaternion.Slerp(transform.rotation, _lookRotation, Time.deltaTime * 10));
+        }
+   
     }
 }
