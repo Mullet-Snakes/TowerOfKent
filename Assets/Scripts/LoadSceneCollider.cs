@@ -9,10 +9,12 @@ public class LoadSceneCollider : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
+        print("hittig");
         if (other.gameObject.CompareTag("Player"))
         {
             if (!loaded)
             {
+                print("load");
                 Utilities.LoadScene(levelName);
             }
 

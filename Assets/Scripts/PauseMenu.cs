@@ -50,6 +50,7 @@ public class PauseMenu : MonoBehaviour
     public void Resume()
     {
         Debug.Log("Game Resumed");
+        SettingsMenuUI.SetActive(false);
         PauseMenuUI.SetActive(false);
         //SettingsMenuUI.SetActive(false);
         Time.timeScale = 1f;
@@ -78,7 +79,6 @@ public class PauseMenu : MonoBehaviour
         PauseMenuUI.SetActive(false);
         Time.timeScale = 1f;
         GameIsPaused = false;
-        //Removed by Matt. Causing a warming and shouldnt need to call unload
         //SceneManager.UnloadSceneAsync("Greybox TUT Level");
         SceneManager.LoadScene("MainMenu");
     }
