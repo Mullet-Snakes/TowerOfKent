@@ -41,8 +41,7 @@ public class RoombaMovement : MonoBehaviour
         if(t > 2)
         {
             GetTarget();
-
-             t = 0;
+            t = 0;
         }
     }
 
@@ -54,10 +53,26 @@ public class RoombaMovement : MonoBehaviour
 
     Vector3 GetTarget()
     {
-        unit = Random.onUnitSphere;
-        unit = new Vector3(unit.x, 0, unit.z).normalized;
-        target.transform.position = transform.position + transform.TransformDirection(unit * 3);
-        return transform.position + transform.TransformDirection(unit);
+        bool found = false;
+        while(!found)
+        {
+            unit = Random.onUnitSphere;
+            unit = new Vector3(unit.x, 0, unit.z).normalized;
+            target.transform.position = transform.position + transform.TransformDirection(unit * 3);
+
+
+            if (Physics.Raycast(transform.position, transform.TransformDirection(unit), out RaycastHit checkTarget, 3, floor))
+            {
+                found = false;
+            }
+            else
+            {
+                return transform.position + transform.TransformDirection(unit);
+            }
+        }
+
+        return Vector3.zero;
+        
     }
 
     private void FixedUpdate()
@@ -100,10 +115,9 @@ public class RoombaMovement : MonoBehaviour
             offset.transform.rotation = Quaternion.LookRotation(newDirection, offset.transform.up);
         }
 
-        if (Physics.SphereCast(transform.position, 0.5f, offset.transform.forward , out RaycastHit cast, 1, floor))
+        if (Physics.SphereCast(transform.position, 0.5f, offset.transform.forward, out RaycastHit cast, 1, floor) && t > 0)
         {
-            //GetTarget();
-            //t = 0;
+            GetTarget();
         }
 
     }
