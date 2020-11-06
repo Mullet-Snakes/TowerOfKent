@@ -2487,13 +2487,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 426739521}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: 0.022892177, w: 0.999738}
   m_LocalPosition: {x: 20.916002, y: 0.128, z: -11.99}
   m_LocalScale: {x: 1.911204, y: 0.26046342, z: 3.451537}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 40
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 2.6230001}
 --- !u!1001 &427576378
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3550,13 +3550,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 638424590}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: 0.010273858, w: 0.9999473}
   m_LocalPosition: {x: 12.703, y: 0.128, z: 7.398}
   m_LocalScale: {x: 1.911204, y: 0.26046342, z: 3.451537}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 31
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 1.177}
 --- !u!1001 &641766811
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3825,13 +3825,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 713249910}
-  m_LocalRotation: {x: 0, y: 0.7071068, z: 0, w: 0.7071068}
+  m_LocalRotation: {x: -0.016733646, y: 0.70690876, z: -0.016733643, w: 0.70690876}
   m_LocalPosition: {x: 25.489, y: 0.128, z: -25.671}
   m_LocalScale: {x: 1.911204, y: 0.26046342, z: 3.451537}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 41
-  m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 90.00001, z: -2.7120001}
 --- !u!1001 &726091384
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5708,8 +5708,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 4.935066, y: 0.6, z: 4.9291735}
-  m_Center: {x: 0.0019454956, y: 0, z: 0.005510807}
+  m_Size: {x: 4.935066, y: 0.5495888, z: 4.9291735}
+  m_Center: {x: 0.0019454956, y: 0.025205605, z: 0.005510807}
 --- !u!65 &1077480438
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -5744,8 +5744,8 @@ Rigidbody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1077480433}
   serializedVersion: 2
-  m_Mass: 10
-  m_Drag: 0
+  m_Mass: 30
+  m_Drag: 1
   m_AngularDrag: 0.05
   m_UseGravity: 1
   m_IsKinematic: 0
@@ -6266,6 +6266,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Layer
       value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: -927199367670048503, guid: 66ed02681b7a3604c9850d90cc31aba5,
+        type: 3}
+      propertyPath: m_TagString
+      value: Untagged
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 66ed02681b7a3604c9850d90cc31aba5, type: 3}
@@ -10574,6 +10579,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4567498393041147791, guid: f48986e8176619142b57848d9f137313,
+        type: 3}
+      propertyPath: m_TagString
+      value: Player
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f48986e8176619142b57848d9f137313, type: 3}
 --- !u!1 &1907232477
@@ -11716,10 +11726,20 @@ PrefabInstance:
       propertyPath: levelName
       value: Greybox Level Seth cont
       objectReference: {fileID: 0}
+    - target: {fileID: 1167180296443324100, guid: 482cd35b96dcd474b9ffbfd6c68fc120,
+        type: 3}
+      propertyPath: loaded
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1167180296443324101, guid: 482cd35b96dcd474b9ffbfd6c68fc120,
+        type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1167180296443324102, guid: 482cd35b96dcd474b9ffbfd6c68fc120,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 117.3
+      value: 70
       objectReference: {fileID: 0}
     - target: {fileID: 1167180296443324102, guid: 482cd35b96dcd474b9ffbfd6c68fc120,
         type: 3}
