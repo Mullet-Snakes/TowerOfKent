@@ -12,9 +12,11 @@ public class PressurePlateDoorCondition : DoorConditionScript
     {
         foreach(GameObject plate in pressurePlateList)
         {
-            if(plate.GetComponent<PressurePlateScript>() != null)
+            PressurePlateScript temp = plate.GetComponent<PressurePlateScript>();
+
+            if (temp != null)
             {
-                if(!plate.GetComponent<PressurePlateScript>().IsColliding)
+                if(!temp.IsColliding)
                 {
                     return false;
                 }

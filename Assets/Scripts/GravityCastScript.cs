@@ -18,6 +18,12 @@ public class GravityCastScript : MonoBehaviour
 
     private GravityController targeted = null;
 
+    [SerializeField]
+    [Tooltip("Default: 0.1")]
+    [Range(0.05f, 1)]
+    private float capsuleCastRadius = 0.1f;
+
+
     public void AddWall(GameObject wall)
     {
         levelWalls.Add(wall);
@@ -41,7 +47,7 @@ public class GravityCastScript : MonoBehaviour
             if (Input.GetMouseButtonDown(0))
             {
 
-                if (Physics.Raycast(transform.position, transform.forward, out RaycastHit hit, Mathf.Infinity))
+                if (Physics.SphereCast(transform.position, capsuleCastRadius, transform.forward, out RaycastHit hit))
                 {
 
                     hit.transform.GetComponent<Renderer>().material = highlightedWallMaterial;
@@ -50,9 +56,12 @@ public class GravityCastScript : MonoBehaviour
                     {
                         if (go != hit.transform.gameObject)
                         {
-                            //go.GetComponent<Renderer>().material = defaultWallMaterial;
-                            go.GetComponent<Renderer>().material = go.GetComponent<DebugWallScript>().m_material;
-                            go.GetComponent<Renderer>().material.shader = go.GetComponent<DebugWallScript>().m_shader;
+                            if (go.GetComponent<Renderer>() != null)
+                            {
+                                go.GetComponent<Renderer>().material = go.GetComponent<DebugWallScript>().m_material;
+                                go.GetComponent<Renderer>().material.shader = go.GetComponent<DebugWallScript>().m_shader;
+                            }
+                           
                         }
                     }
 
@@ -65,7 +74,7 @@ public class GravityCastScript : MonoBehaviour
 
             if (Input.GetMouseButtonDown(1))
             {
-                if (Physics.Raycast(transform.position, transform.forward, out RaycastHit hit, Mathf.Infinity))
+                if (Physics.SphereCast(transform.position, capsuleCastRadius, transform.forward, out RaycastHit hit))
                 {
                     if (hit.transform.CompareTag("GravityWall"))
                     {
@@ -76,7 +85,7 @@ public class GravityCastScript : MonoBehaviour
 
             if (Input.GetKeyDown(KeyCode.R))
             {
-                if (Physics.Raycast(transform.position, transform.forward, out RaycastHit hit, Mathf.Infinity))
+                if (Physics.SphereCast(transform.position, capsuleCastRadius, transform.forward, out RaycastHit hit))
                 {
                     if (hit.transform.GetComponent<GravityController>() != null)
                     {
@@ -100,6 +109,25 @@ public class GravityCastScript : MonoBehaviour
                         {
                             GravityManager.ChangeGrav(hit.normal, true);
                         }
+                    }
+                }
+            }
+
+            if (Input.GetKeyDown(KeyCode.F))
+            {
+
+                if (Physics.SphereCast(transform.position, capsuleCastRadius, transform.forward, out RaycastHit hit))
+                {
+                    if (hit.transform.GetComponent<GravityController>() != null)
+                    {
+                        if(!hit.transform.GetComponent<GravityController>().Frozen)
+                        {
+                            hit.transform.GetComponent<GravityController>().FreezeConstraints(true);
+                        }
+                        else
+                        {
+                            hit.transform.GetComponent<GravityController>().FreezeConstraints(false);
+                        }                     
                     }
                 }
             }

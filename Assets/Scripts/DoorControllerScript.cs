@@ -4,9 +4,10 @@ using UnityEngine;
 
 public class DoorControllerScript : InteractableObjectScript
 {
+
     [SerializeField]
-    [Tooltip("Drag the condition for the door here")]
-    private DoorConditionScript condition = null;
+    [Tooltip("Drag the conditions for the door here")]
+    private List<DoorConditionScript> conditionList = null;
     
     private bool canOpen = false;
 
@@ -41,21 +42,34 @@ public class DoorControllerScript : InteractableObjectScript
     {
         doorState = DoorState.CLOSED;
 
-        if(condition is PressurePlateDoorCondition || condition is ButtonConditionScript)
+        foreach(DoorConditionScript d in conditionList)
         {
-            print("new load");
-            StartCoroutine("CheckAtLowerFPS");
+            if (d is PressurePlateDoorCondition || d is ButtonConditionScript)
+            {
+                StartCoroutine("CheckAtLowerFPS");
+                return;
+            }
         }
     }
 
     protected override void CheckForInteract(GameObject player)
     {
-        if (condition != null)
+
+        if(conditionList.Count != 0)
         {
-            if(Vector3.Distance(transform.position, player.transform.position) < distanceToInteract)
+            if (Vector3.Distance(transform.position, player.transform.position) < distanceToInteract)
             {
-                canOpen = condition.CheckCondition();
-            }          
+                foreach(DoorConditionScript d in conditionList)
+                {
+                    if(!d.CheckCondition())
+                    {
+                        canOpen = false;
+                        return;
+                    }
+
+                    canOpen = true;
+                }
+            }
         }
 
         if (canOpen)
@@ -109,9 +123,19 @@ public class DoorControllerScript : InteractableObjectScript
 
         while (true)
         {
-            if (condition != null)
+
+            if(conditionList.Count != 0)
             {
-                canOpen = condition.CheckCondition();
+                foreach (DoorConditionScript d in conditionList)
+                {
+                    if (!d.CheckCondition())
+                    {
+                        canOpen = false;
+                        break;
+                    }
+
+                    canOpen = true;
+                }
             }
 
             if (canOpen)
