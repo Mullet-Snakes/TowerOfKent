@@ -18,6 +18,8 @@ public class RoombaMovement : MonoBehaviour
     public Vector3 tar = new Vector3();
     public Vector3 unit = new Vector3();
 
+    public LayerMask floor;
+
     float t = 0;
 
 
@@ -44,12 +46,17 @@ public class RoombaMovement : MonoBehaviour
         }
     }
 
+    private void OnDrawGizmos()
+    {
+        Vector3 pos = offset.transform.position + (transform.TransformDirection(unit) * 3);
+        Gizmos.DrawSphere(pos, 0.25f);
+    }
+
     Vector3 GetTarget()
     {
         unit = Random.onUnitSphere;
-        unit = new Vector3(unit.x, 0, unit.z).normalized * 3;
-        target.transform.position = transform.position + transform.TransformDirection(unit);
-
+        unit = new Vector3(unit.x, 0, unit.z).normalized;
+        target.transform.position = transform.position + transform.TransformDirection(unit * 3);
         return transform.position + transform.TransformDirection(unit);
     }
 
@@ -63,6 +70,7 @@ public class RoombaMovement : MonoBehaviour
         Quaternion targetRot = new Quaternion();
         float m_rotationSpeed = 2f;
         float dotProduct = Vector3.Dot(Vector3.Normalize(g), -transform.up);
+
 
         if (dotProduct < 0.995f)
         {
@@ -81,6 +89,22 @@ public class RoombaMovement : MonoBehaviour
             m_rb.MoveRotation(targetRot);
             rotating = false;
         }
-   
+        else if (isGrounded)
+        {
+            Vector3 targetDirection = transform.TransformDirection(unit);
+
+            float singleStep = 10 * Time.deltaTime;
+
+            Vector3 newDirection = Vector3.RotateTowards(offset.transform.forward, targetDirection, singleStep, 0.0f);
+
+            offset.transform.rotation = Quaternion.LookRotation(newDirection, offset.transform.up);
+        }
+
+        if (Physics.SphereCast(transform.position, 0.5f, offset.transform.forward , out RaycastHit cast, 1, floor))
+        {
+            //GetTarget();
+            //t = 0;
+        }
+
     }
 }
