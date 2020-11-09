@@ -101,14 +101,14 @@ public class GravityController : MonoBehaviour
 
         if(transform.GetComponent<RoombaMovement>() != null)
         {
-            Vector3 targetVelocity = m_rb.velocity;
+            Vector3 targetVelocity = new Vector3();
 
-            if(transform.GetComponent<RoombaMovement>().isGrounded && !transform.GetComponent<RoombaMovement>().rotating)
+            if (transform.GetComponent<RoombaMovement>().isGrounded && !transform.GetComponent<RoombaMovement>().rotating)
             {
                 targetVelocity = Vector3.zero;
 
                 targetVelocity += (transform.GetComponent<RoombaMovement>().target.transform.position - transform.position).normalized * transform.GetComponent<RoombaMovement>().m_speed;
-                //targetVelocity += transform.forward * transform.GetComponent<RoombaMovement>().m_speed;
+
             }
 
             if(!transform.GetComponent<RoombaMovement>().isGrounded || transform.GetComponent<RoombaMovement>().rotating)

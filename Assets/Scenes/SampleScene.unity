@@ -396,7 +396,8 @@ PrefabInstance:
       propertyPath: m_Name
       value: LevelProp (1)
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 6091616170766099905, guid: 6cf4fb6a4c26c13449943a6d16932c48, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 6cf4fb6a4c26c13449943a6d16932c48, type: 3}
 --- !u!1 &550773671
 GameObject:
@@ -445,6 +446,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: PressurePlate (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1730365750530575441, guid: 543021cc7a49cad4fb6cc61fa920ebd6,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1730365750530575445, guid: 543021cc7a49cad4fb6cc61fa920ebd6,
         type: 3}
@@ -1257,6 +1263,41 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_shader: {fileID: 0}
   m_material: {fileID: 0}
+--- !u!1 &1665036697 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6091616170766099963, guid: 6cf4fb6a4c26c13449943a6d16932c48,
+    type: 3}
+  m_PrefabInstance: {fileID: 394266511}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1665036698
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1665036697}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4903fc12507c3243a65363e487bb01f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  highlighed: {fileID: 2100000, guid: d58bdd8803e3a7f41bd18237f5473a9b, type: 2}
+  normal: {fileID: 2100000, guid: 640b96e506330ce43912b9250440a812, type: 2}
+  gravityFactor: -9.8
+--- !u!114 &1665036699
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1665036697}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e4d3b5675e2fefb459806436ef8bf012, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_forceList:
+  - {fileID: 1665036698}
 --- !u!1 &1716479519
 GameObject:
   m_ObjectHideFlags: 0
@@ -1399,9 +1440,11 @@ GameObject:
   - component: {fileID: 1850672723}
   - component: {fileID: 1850672722}
   - component: {fileID: 1850672721}
-  - component: {fileID: 1850672725}
   - component: {fileID: 1850672726}
   - component: {fileID: 1850672727}
+  - component: {fileID: 1850672729}
+  - component: {fileID: 1850672728}
+  - component: {fileID: 1850672725}
   m_Layer: 0
   m_Name: Cube
   m_TagString: Untagged
@@ -1477,7 +1520,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1850672720}
   m_LocalRotation: {x: 0, y: -0.002181689, z: 0, w: 0.9999976}
-  m_LocalPosition: {x: 1.39, y: 1.07, z: -15.57}
+  m_LocalPosition: {x: -7.8, y: 1.07, z: -3.45}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1716479520}
@@ -1494,12 +1537,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 1850672720}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bd4150203bfc3a445a3dfed2a84478af, type: 3}
+  m_Script: {fileID: 11500000, guid: 69abf94459666174db0221d20938160e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  highlighed: {fileID: 2100000, guid: d58bdd8803e3a7f41bd18237f5473a9b, type: 2}
-  normal: {fileID: 2100000, guid: 640b96e506330ce43912b9250440a812, type: 2}
-  gravityFactor: -9.8
 --- !u!114 &1850672726
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1538,6 +1578,36 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 112
   m_CollisionDetection: 2
+--- !u!114 &1850672728
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1850672720}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4903fc12507c3243a65363e487bb01f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  highlighed: {fileID: 2100000, guid: d58bdd8803e3a7f41bd18237f5473a9b, type: 2}
+  normal: {fileID: 2100000, guid: b3929ccc59ee6724d851c4aeed109d88, type: 2}
+  gravityFactor: -9.8
+--- !u!114 &1850672729
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1850672720}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e4d3b5675e2fefb459806436ef8bf012, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_forceList:
+  - {fileID: 1850672728}
+  - {fileID: 1850672725}
 --- !u!1 &1892023843
 GameObject:
   m_ObjectHideFlags: 0
@@ -2095,6 +2165,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: PressurePlate
       objectReference: {fileID: 0}
+    - target: {fileID: 1730365750530575441, guid: 543021cc7a49cad4fb6cc61fa920ebd6,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1730365750530575445, guid: 543021cc7a49cad4fb6cc61fa920ebd6,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -2163,6 +2238,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: DoorButton
+      objectReference: {fileID: 0}
+    - target: {fileID: 5164565268180377234, guid: 2e49f51f1cf2b084db51e6719ac8a0ab,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5164565268180377246, guid: 2e49f51f1cf2b084db51e6719ac8a0ab,
         type: 3}
@@ -2287,6 +2367,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: LevelProp
+      objectReference: {fileID: 0}
+    - target: {fileID: 6091616170766099963, guid: 6cf4fb6a4c26c13449943a6d16932c48,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6cf4fb6a4c26c13449943a6d16932c48, type: 3}
@@ -2415,6 +2500,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: KeyCard
+      objectReference: {fileID: 0}
+    - target: {fileID: 7598927375961186415, guid: 49659bde2d3847a448ec1ffc450ee259,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7598927375961186452, guid: 49659bde2d3847a448ec1ffc450ee259,
         type: 3}
@@ -2560,6 +2650,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: DoorObject
       objectReference: {fileID: 0}
+    - target: {fileID: 8197095605655057020, guid: 6649991dde669cf489f139e098fa261e,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6649991dde669cf489f139e098fa261e, type: 3}
 --- !u!1 &8197095604689584116 stripped
@@ -2667,6 +2762,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: ExplodingBarrel
+      objectReference: {fileID: 0}
+    - target: {fileID: 9033047618433693966, guid: 4400ccee224b3fa4d8c20c37808bc3a1,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4400ccee224b3fa4d8c20c37808bc3a1, type: 3}

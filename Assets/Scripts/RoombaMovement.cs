@@ -81,7 +81,7 @@ public class RoombaMovement : MonoBehaviour
 
         Vector3 right = new Vector3();
         Vector3 forward = new Vector3();
-        Vector3 g = transform.GetComponent<GravityController>().CurrentGravity;
+        Vector3 g = transform.GetComponent<GravityForce>().GetForce().normalized;
         Quaternion targetRot = new Quaternion();
         float m_rotationSpeed = 2f;
         float dotProduct = Vector3.Dot(Vector3.Normalize(g), -transform.up);
