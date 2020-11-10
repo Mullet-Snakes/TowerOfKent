@@ -8,11 +8,20 @@ public class RoombaMovement : MonoBehaviour
 
     public float m_speed;
 
-    private Vector3 targetVelocity = new Vector3();
-
     public bool isGrounded = false;
 
     public bool rotating = false;
+
+    public GameObject target = null;
+
+    public GameObject offset = null;
+    public Vector3 tar = new Vector3();
+    public Vector3 unit = new Vector3();
+
+    public LayerMask floor;
+
+    float t = 0;
+
 
     private void Awake()
     {
@@ -21,25 +30,62 @@ public class RoombaMovement : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+
     }
 
     // Update is called once per frame
     void Update()
     {
+        t += Time.deltaTime;
+
+        if(t > 2)
+        {
+            GetTarget();
+            t = 0;
+        }
+    }
+
+    private void OnDrawGizmos()
+    {
+        Vector3 pos = offset.transform.position + (transform.TransformDirection(unit) * 3);
+        Gizmos.DrawSphere(pos, 0.25f);
+    }
+
+    Vector3 GetTarget()
+    {
+        bool found = false;
+        while(!found)
+        {
+            unit = Random.onUnitSphere;
+            unit = new Vector3(unit.x, 0, unit.z).normalized;
+            target.transform.position = transform.position + transform.TransformDirection(unit * 3);
+
+
+            if (Physics.Raycast(transform.position, transform.TransformDirection(unit), out RaycastHit checkTarget, 3, floor))
+            {
+                found = false;
+            }
+            else
+            {
+                return transform.position + transform.TransformDirection(unit);
+            }
+        }
+
+        return Vector3.zero;
         
     }
 
     private void FixedUpdate()
     {
-        isGrounded = Physics.Raycast(transform.position, -transform.up, out RaycastHit hit, 1.01f);
+        isGrounded = Physics.Raycast(transform.position, -transform.up, out RaycastHit hit, 0.51f);
 
         Vector3 right = new Vector3();
         Vector3 forward = new Vector3();
-        Vector3 g = transform.GetComponent<GravityController>().CurrentGravity;
+        Vector3 g = transform.GetComponent<GravityForce>().GetForce().normalized;
         Quaternion targetRot = new Quaternion();
         float m_rotationSpeed = 2f;
         float dotProduct = Vector3.Dot(Vector3.Normalize(g), -transform.up);
+
 
         if (dotProduct < 0.995f)
         {
@@ -58,14 +104,21 @@ public class RoombaMovement : MonoBehaviour
             m_rb.MoveRotation(targetRot);
             rotating = false;
         }
-        
+        else if (isGrounded)
+        {
+            Vector3 targetDirection = transform.TransformDirection(unit);
 
-        //targetVelocity = transform.forward * m_speed * Time.deltaTime;
+            float singleStep = 10 * Time.deltaTime;
 
-        //if(isGrounded)
-        //{
-        //    m_rb.AddForce(targetVelocity);
-        //}
+            Vector3 newDirection = Vector3.RotateTowards(offset.transform.forward, targetDirection, singleStep, 0.0f);
+
+            offset.transform.rotation = Quaternion.LookRotation(newDirection, offset.transform.up);
+        }
+
+        if (Physics.SphereCast(transform.position, 0.5f, offset.transform.forward, out RaycastHit cast, 1, floor) && t > 0)
+        {
+            GetTarget();
+        }
 
     }
 }

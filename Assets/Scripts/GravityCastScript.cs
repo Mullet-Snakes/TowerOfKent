@@ -16,7 +16,7 @@ public class GravityCastScript : MonoBehaviour
     [Tooltip("Default wall material")]
     public Material defaultWallMaterial = null;
 
-    private GravityController targeted = null;
+    private GravityForce targeted = null;
 
     [SerializeField]
     [Tooltip("Default: 0.1")]
@@ -87,7 +87,7 @@ public class GravityCastScript : MonoBehaviour
             {
                 if (Physics.SphereCast(transform.position, capsuleCastRadius, transform.forward, out RaycastHit hit))
                 {
-                    if (hit.transform.GetComponent<GravityController>() != null)
+                    if (hit.transform.GetComponent<GravityForce>() != null)
                     {
                         if (targeted != null)
                         {
@@ -100,7 +100,7 @@ public class GravityCastScript : MonoBehaviour
                             }
                         }
 
-                        targeted = hit.transform.GetComponent<GravityController>();
+                        targeted = hit.transform.GetComponent<GravityForce>();
                         targeted.IsTargeted = true;
                     }
                     if (hit.transform.CompareTag("GravityWall"))

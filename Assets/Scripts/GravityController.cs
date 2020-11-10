@@ -92,25 +92,26 @@ public class GravityController : MonoBehaviour
         {
             transform.GetComponent<Renderer>().material = normal;
         }
+
     }
 
     // Update is called once per frame
     void FixedUpdate()
     {
-        print(currentGravity);
 
         if(transform.GetComponent<RoombaMovement>() != null)
         {
-            Vector3 targetVelocity = m_rb.velocity;
+            Vector3 targetVelocity = new Vector3();
 
-            if(transform.GetComponent<RoombaMovement>().isGrounded && !transform.GetComponent<RoombaMovement>().rotating)
+            if (transform.GetComponent<RoombaMovement>().isGrounded && !transform.GetComponent<RoombaMovement>().rotating)
             {
                 targetVelocity = Vector3.zero;
 
-                targetVelocity += transform.forward * transform.GetComponent<RoombaMovement>().m_speed;
+                targetVelocity += (transform.GetComponent<RoombaMovement>().target.transform.position - transform.position).normalized * transform.GetComponent<RoombaMovement>().m_speed;
+
             }
 
-            if(!transform.GetComponent<RoombaMovement>().isGrounded)
+            if(!transform.GetComponent<RoombaMovement>().isGrounded || transform.GetComponent<RoombaMovement>().rotating)
             {
                 gravVel += currentGravity * Time.deltaTime;
             }
@@ -151,6 +152,7 @@ public class GravityController : MonoBehaviour
 
     void SetCurrentGravity(Vector3 grav, bool changingTargeted)
     {
+        gravVel = Vector3.zero;
 
         if(changingTargeted)
         {
