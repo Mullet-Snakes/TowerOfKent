@@ -12,6 +12,7 @@ TagManager:
   - gravobjtut
   - gravplaytut
   - presstut
+  - buttontut
   layers:
   - Default
   - TransparentFX

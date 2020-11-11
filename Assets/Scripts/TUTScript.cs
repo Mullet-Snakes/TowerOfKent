@@ -10,6 +10,7 @@ public class TUTScript : MonoBehaviour
     public GameObject gravobjtut;
     public GameObject gravplayertut;
     public GameObject pressuretut;
+    public GameObject buttontut;
     
     // Start is called before the first frame update
     void Start()
@@ -20,6 +21,7 @@ public class TUTScript : MonoBehaviour
         gravobjtut.SetActive(false);
         gravplayertut.SetActive(false);
         pressuretut.SetActive(false);
+        buttontut.SetActive(false);
     }
 
     void OnTriggerEnter(Collider other)
@@ -49,6 +51,11 @@ public class TUTScript : MonoBehaviour
         else if (other.gameObject.tag == "presstut")
         {
             pressuretut.SetActive(true);
+        }
+
+        else if (other.gameObject.tag == "buttontut")
+        {
+            buttontut.SetActive(true);
         }
 
     }
@@ -91,6 +98,12 @@ public class TUTScript : MonoBehaviour
         {
             pressuretut.SetActive(false);
             Destroy(pressuretut);
+        }
+
+        else if (other.gameObject.tag == "buttontut")
+        {
+            buttontut.SetActive(false);
+            Destroy(buttontut);
         }
     }
 
