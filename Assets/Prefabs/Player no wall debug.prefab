@@ -97,7 +97,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d2bdeee63d2f25248aff7cff09a8befc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mouseSensitivity: 300
 --- !u!114 &4567498392772382946
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -114,6 +113,7 @@ MonoBehaviour:
   highlightedWallMaterial: {fileID: 2100000, guid: 9dbf6f55589812b4b83edd76c999d55a,
     type: 2}
   defaultWallMaterial: {fileID: 2100000, guid: c4dd384702a135c4b8498fbd2111787d, type: 2}
+  capsuleCastRadius: 0.1
 --- !u!1 &4567498393029813045
 GameObject:
   m_ObjectHideFlags: 0
@@ -126,7 +126,7 @@ GameObject:
   - component: {fileID: 4567498393029813046}
   - component: {fileID: 4567498393029813040}
   m_Layer: 0
-  m_Name: Player 1
+  m_Name: Player no wall debug
   m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -202,7 +202,7 @@ GameObject:
   - component: {fileID: 4567498393041147785}
   m_Layer: 0
   m_Name: CapsuleCollider
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
