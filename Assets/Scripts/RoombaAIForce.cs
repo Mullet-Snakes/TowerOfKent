@@ -14,7 +14,7 @@ public class RoombaAIForce : ForceScript
 
     public float distanceToWaypoint = 0.2f;
 
-    public List<Vector3> waypoints = new List<Vector3>();
+    private List<Vector3> waypoints = new List<Vector3>();
 
     private GameObject player;
 
@@ -102,7 +102,6 @@ public class RoombaAIForce : ForceScript
 
                     AddToList();
                 }
-
             }            
         }
 
