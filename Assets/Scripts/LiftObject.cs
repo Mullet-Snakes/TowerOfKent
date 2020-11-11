@@ -6,6 +6,8 @@ public class LiftObject : MonoBehaviour
 {
     public GameObject grabby;
     public GameObject player;
+    private Rigidbody player_rb;
+    private Collider player_collider;
     private GameObject carriedObject;
     private GameObject mainCamera;
     private Camera playerCamera;
@@ -13,6 +15,7 @@ public class LiftObject : MonoBehaviour
     private Vector3 noGrav = new Vector3(0, 0, 0);
     private Vector3 grabPosition;
     private float distance;
+    private float objMass = 0;
 
     [SerializeField]
     [Tooltip("The movement of the object you're holding (Default 10)")]
@@ -33,6 +36,8 @@ public class LiftObject : MonoBehaviour
     [Range(0, 5)]
     public float holdDistance;
 
+    //private Vector3 spin;
+
     private bool isHolding = false;
 
     //public bool objStop;
@@ -42,11 +47,14 @@ public class LiftObject : MonoBehaviour
     {
         mainCamera = GameObject.FindWithTag("MainCamera");
         playerCamera = Camera.main;
+        player_rb = player.GetComponent<Rigidbody>();
+        player_collider = player.GetComponentInChildren<Collider>();
+        //spin = new Vector3(0, 100, 0);
     }
 
     private void Update()
     {
-        grabPosition = mainCamera.transform.position + mainCamera.transform.forward * holdDistance;
+        grabPosition = /*grabby.transform.position */mainCamera.transform.position + mainCamera.transform.forward * holdDistance;
 
         if (isHolding)
         {
@@ -60,7 +68,14 @@ public class LiftObject : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if(isHolding)
+        // Check that we can "see" the grabPosition & nothing is blocking it
+        RaycastHit hitInfo;
+        if (Physics.Raycast(mainCamera.transform.position, mainCamera.transform.forward, out hitInfo, holdDistance, LayerMask.GetMask("Ground")))
+        {
+            grabPosition = hitInfo.point;
+        }
+
+        if (isHolding)
         {
             Carry(carriedObject);
         }
@@ -70,8 +85,16 @@ public class LiftObject : MonoBehaviour
     {
         distance = Vector3.Distance(obj.transform.position, player.transform.position);
 
+        #region Carmine's code
+        //prop_rb = obj.GetComponent<Rigidbody>();
+        //prop_rb.MovePosition(Vector3.Lerp(prop_rb.position, grabPosition, objMove * Time.deltaTime));
+        //prop_rb.rotation = grabby.transform.rotation;
+        #endregion
+
+
         prop_rb = obj.GetComponent<Rigidbody>();
         prop_rb.AddForce((new Vector3(grabPosition.x, grabby.transform.position.y, grabPosition.z) - obj.transform.position) * objMove, ForceMode.VelocityChange);
+        //prop_rb.rotation = grabby.transform.rotation;
 
         #region Slowing on arrival
 
@@ -82,6 +105,7 @@ public class LiftObject : MonoBehaviour
             {
                 prop_rb.velocity = new Vector3(0, prop_rb.velocity.y, prop_rb.velocity.z);
                 prop_rb.angularVelocity = new Vector3(0, prop_rb.velocity.y, prop_rb.velocity.z);
+
             }
 
             if (obj.transform.position.y <= grabPosition.y + orbitRange || obj.transform.position.y >= grabPosition.y - orbitRange)
@@ -97,25 +121,20 @@ public class LiftObject : MonoBehaviour
             }
         //}
 
-        //Decellerates the velocity (spins oddly)
-        //else if(!objStop)
+        ////New attempt
+        //else if (!objStop)
         //{
         //    if (obj.transform.position.x <= grabPosition.x + orbitRange || obj.transform.position.x >= grabPosition.x - orbitRange)
         //    {
-        //        prop_rb.velocity = new Vector3(prop_rb.velocity.x - (stopSpeed * prop_rb.velocity.x), prop_rb.velocity.y, prop_rb.velocity.z);
-        //        prop_rb.angularVelocity = new Vector3(prop_rb.velocity.x - (stopSpeed * prop_rb.velocity.x), prop_rb.velocity.y, prop_rb.velocity.z);
+        //        prop_rb.MovePosition(Vector3.Lerp(prop_rb.position, grabPosition, (objMove / 10) * Time.deltaTime));
         //    }
-
         //    if (obj.transform.position.y <= grabPosition.y + orbitRange || obj.transform.position.y >= grabPosition.y - orbitRange)
         //    {
-        //        prop_rb.velocity = new Vector3(prop_rb.velocity.x, prop_rb.velocity.y - (stopSpeed * prop_rb.velocity.y), prop_rb.velocity.z);
-        //        prop_rb.angularVelocity = new Vector3(prop_rb.velocity.x, prop_rb.velocity.y - (stopSpeed * prop_rb.velocity.y), prop_rb.velocity.z);
+        //        prop_rb.MovePosition(Vector3.Lerp(prop_rb.position, grabPosition, (objMove / 10) * Time.deltaTime));
         //    }
-
         //    if (obj.transform.position.z <= grabPosition.z + orbitRange || obj.transform.position.z >= grabPosition.z - orbitRange)
         //    {
-        //        prop_rb.velocity = new Vector3(prop_rb.velocity.x, prop_rb.velocity.y, prop_rb.velocity.z - (stopSpeed * prop_rb.velocity.z));
-        //        prop_rb.angularVelocity = new Vector3(prop_rb.velocity.x, prop_rb.velocity.y, prop_rb.velocity.z - (stopSpeed * prop_rb.velocity.z));
+        //        prop_rb.MovePosition(Vector3.Lerp(prop_rb.position, grabPosition, (objMove / 10) * Time.deltaTime));
         //    }
         //}
         #endregion
@@ -140,8 +159,10 @@ public class LiftObject : MonoBehaviour
                 {
                     isHolding = true;
                     carriedObject = prop_rb.gameObject;
-                    //carriedObject.transform.parent = grabby.transform;
                     hit.collider.GetComponent<GravityController>().CurrentGravity = noGrav;
+
+                    // Disable collision with player
+                    //Physics.IgnoreCollision(hit.collider, player_collider, true);
                 }
             }
         }
@@ -157,10 +178,13 @@ public class LiftObject : MonoBehaviour
 
     void DropObject()
     {
+        // Reenable collision with player
+        //Physics.IgnoreCollision(prop_rb.GetComponent<Collider>(), player_collider, false);
+
         prop_rb.GetComponent<GravityController>().CurrentGravity = player.GetComponent<PlayerController>().Gravity;
         distance = 0;
+
         isHolding = false;
-        //carriedObject.transform.parent = null;
         prop_rb = null;
         carriedObject = null;
     }
