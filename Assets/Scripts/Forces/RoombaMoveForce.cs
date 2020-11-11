@@ -24,7 +24,7 @@ public class RoombaMoveForce : ForceScript
         if (controllerScript.isGrounded && !controllerScript.rotating)
         {
 
-            force += (controllerScript.target.transform.position - transform.position).normalized * controllerScript.m_speed;
+            //force += (controllerScript.target.transform.position - transform.position).normalized * controllerScript.m_speed;
 
         }
     }

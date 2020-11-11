@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class RoombaMovement : MonoBehaviour
 {
@@ -12,20 +13,33 @@ public class RoombaMovement : MonoBehaviour
 
     public bool rotating = false;
 
-    public GameObject target = null;
-
-    public GameObject offset = null;
+    public GameObject taar;
     public Vector3 tar = new Vector3();
     public Vector3 unit = new Vector3();
 
     public LayerMask floor;
 
+    public NavMeshAgent m_agent = null;
+
+
+
     float t = 0;
+
+    private void OnEnable()
+    {
+        GravityManager.GravityChange += TurnOffAgent;
+    }
+
+    private void OnDisable()
+    {
+        GravityManager.GravityChange -= TurnOffAgent;
+    }
 
 
     private void Awake()
     {
         m_rb = GetComponent<Rigidbody>();
+        m_agent = GetComponent<NavMeshAgent>();
     }
     // Start is called before the first frame update
     void Start()
@@ -33,7 +47,12 @@ public class RoombaMovement : MonoBehaviour
 
     }
 
-    // Update is called once per frame
+    void TurnOffAgent(Vector3 grav, bool changingTargeted)
+    {
+        m_agent.enabled = false;
+    }
+
+        // Update is called once per frame
     void Update()
     {
         t += Time.deltaTime;
@@ -45,30 +64,27 @@ public class RoombaMovement : MonoBehaviour
         }
     }
 
-    private void OnDrawGizmos()
-    {
-        Vector3 pos = offset.transform.position + (transform.TransformDirection(unit) * 3);
-        Gizmos.DrawSphere(pos, 0.25f);
-    }
-
     Vector3 GetTarget()
     {
         bool found = false;
+
         while(!found)
         {
-            unit = Random.onUnitSphere;
-            unit = new Vector3(unit.x, 0, unit.z).normalized;
-            target.transform.position = transform.position + transform.TransformDirection(unit * 3);
-
-
-            if (Physics.Raycast(transform.position, transform.TransformDirection(unit), out RaycastHit checkTarget, 3, floor))
+            Vector3 finalPosition = new Vector3();
+            Vector3 randomDirection = Random.insideUnitSphere * 20;
+            randomDirection = new Vector3(randomDirection.x, transform.position.y, randomDirection.z);
+            randomDirection += transform.position;          
+            
+            if(NavMesh.SamplePosition(randomDirection, out NavMeshHit hit, 2, 1))
             {
-                found = false;
+                finalPosition = hit.position;
+
+                taar.transform.position = finalPosition;
+
+                found = true;
             }
-            else
-            {
-                return transform.position + transform.TransformDirection(unit);
-            }
+
+            return finalPosition;
         }
 
         return Vector3.zero;
@@ -106,19 +122,7 @@ public class RoombaMovement : MonoBehaviour
         }
         else if (isGrounded)
         {
-            Vector3 targetDirection = transform.TransformDirection(unit);
-
-            float singleStep = 10 * Time.deltaTime;
-
-            Vector3 newDirection = Vector3.RotateTowards(offset.transform.forward, targetDirection, singleStep, 0.0f);
-
-            offset.transform.rotation = Quaternion.LookRotation(newDirection, offset.transform.up);
+            m_agent.enabled = true;
         }
-
-        if (Physics.SphereCast(transform.position, 0.5f, offset.transform.forward, out RaycastHit cast, 1, floor) && t > 0)
-        {
-            GetTarget();
-        }
-
     }
 }
