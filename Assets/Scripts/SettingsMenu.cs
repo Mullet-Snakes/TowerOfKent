@@ -12,8 +12,14 @@ public class SettingsMenu : MonoBehaviour
     //Resolutions DropDown
     public Dropdown resolutionDropDown;
 
+    //Mouse Slider
+    public Slider sensitivitySlider;
+
     //Array of Supported Resolutions
     Resolution[] resolutions;
+
+    public static float MouseSense;
+
 
     void Start()
     {
@@ -52,5 +58,15 @@ public class SettingsMenu : MonoBehaviour
     {
         //TOggle FullScreen
         Screen.fullScreen = isFullScreen;
+    }
+
+    public void SetSensitivity()
+    {
+        Debug.Log("Sensitivity Adjusted");
+
+        MouseSense = sensitivitySlider.value;
+
+        CameraController.mouseSensitivity = MouseSense;
+        
     }
 }

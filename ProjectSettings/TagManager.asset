@@ -11,6 +11,8 @@ TagManager:
   - doortut
   - gravobjtut
   - gravplaytut
+  - presstut
+  - buttontut
   layers:
   - Default
   - TransparentFX
