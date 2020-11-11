@@ -7,15 +7,14 @@ public class LiftObject : MonoBehaviour
     public GameObject grabby;
     public GameObject player;
     private Rigidbody player_rb;
-    private Collider player_collider;
     private GameObject carriedObject;
     private GameObject mainCamera;
     private Camera playerCamera;
     private Rigidbody prop_rb;
     private Vector3 noGrav = new Vector3(0, 0, 0);
+    private Vector3 objGrav = new Vector3(0, 0, 0);
     private Vector3 grabPosition;
     private float distance;
-    private float objMass = 0;
 
     [SerializeField]
     [Tooltip("The movement of the object you're holding (Default 10)")]
@@ -36,6 +35,11 @@ public class LiftObject : MonoBehaviour
     [Range(0, 5)]
     public float holdDistance;
 
+    [SerializeField]
+    [Tooltip("The power of your throw (Default 5)")]
+    [Range(0, 10)]
+    public float throwForce;
+
     //private Vector3 spin;
 
     private bool isHolding = false;
@@ -48,13 +52,12 @@ public class LiftObject : MonoBehaviour
         mainCamera = GameObject.FindWithTag("MainCamera");
         playerCamera = Camera.main;
         player_rb = player.GetComponent<Rigidbody>();
-        player_collider = player.GetComponentInChildren<Collider>();
         //spin = new Vector3(0, 100, 0);
     }
 
     private void Update()
     {
-        grabPosition = /*grabby.transform.position */mainCamera.transform.position + mainCamera.transform.forward * holdDistance;
+        grabPosition = mainCamera.transform.position + mainCamera.transform.forward * holdDistance;
 
         if (isHolding)
         {
@@ -159,10 +162,8 @@ public class LiftObject : MonoBehaviour
                 {
                     isHolding = true;
                     carriedObject = prop_rb.gameObject;
+                    objGrav = hit.collider.GetComponent<GravityController>().CurrentGravity;
                     hit.collider.GetComponent<GravityController>().CurrentGravity = noGrav;
-
-                    // Disable collision with player
-                    //Physics.IgnoreCollision(hit.collider, player_collider, true);
                 }
             }
         }
@@ -174,15 +175,27 @@ public class LiftObject : MonoBehaviour
         {
             DropObject();
         }
+        else if(Input.GetKeyDown(KeyCode.O))
+        {
+            ThrowObject();
+        }
     }
 
     void DropObject()
     {
-        // Reenable collision with player
-        //Physics.IgnoreCollision(prop_rb.GetComponent<Collider>(), player_collider, false);
-
-        prop_rb.GetComponent<GravityController>().CurrentGravity = player.GetComponent<PlayerController>().Gravity;
+        prop_rb.GetComponent<GravityController>().CurrentGravity = objGrav;
         distance = 0;
+
+        isHolding = false;
+        prop_rb = null;
+        carriedObject = null;
+    }
+
+    void ThrowObject()
+    {
+        prop_rb.GetComponent<GravityController>().CurrentGravity = objGrav;
+        distance = 0;
+        prop_rb.AddForce((grabby.transform.position - player.transform.position) * throwForce, ForceMode.VelocityChange);
 
         isHolding = false;
         prop_rb = null;
