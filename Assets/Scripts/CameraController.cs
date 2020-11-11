@@ -7,7 +7,7 @@ public class CameraController : MonoBehaviour
 {
     [Range(0, 1000)]
     [Tooltip("Default: 300")]
-    public float mouseSensitivity = 300f;
+    public static float mouseSensitivity = 300f;
 
     private Transform player = null;
 
@@ -46,6 +46,8 @@ public class CameraController : MonoBehaviour
             player.Rotate(Vector3.up * mouseX);
         }
     }
+
+
 
     // Update is called once per frame
     void Update()
