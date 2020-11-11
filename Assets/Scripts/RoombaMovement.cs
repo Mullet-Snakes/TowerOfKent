@@ -18,13 +18,17 @@ public class RoombaMovement : MonoBehaviour
 
     public float m_speed;
 
-    public bool isGrounded = false;
+    private bool isGrounded = false;
 
-    public bool rotating = false;
+    public bool IsGrounded { get { return isGrounded; } }
+
+    private bool rotating = false;
+
+    public bool Rotating { get { return rotating; } }
 
     public LayerMask floor;
 
-    public NavMeshAgent m_agent = null;
+    private NavMeshAgent m_agent = null;
 
     private GameObject player;
 
@@ -32,9 +36,6 @@ public class RoombaMovement : MonoBehaviour
 
     public RoombaState m_state = RoombaState.DEFAULT;
 
-
-
-    float t = 0;
 
     private void OnEnable()
     {
@@ -64,13 +65,13 @@ public class RoombaMovement : MonoBehaviour
         m_agent.enabled = false;
     }
 
-        // Update is called once per frame
+    // Update is called once per frame
     void Update()
     {
 
         float dot = Vector3.Dot(transform.up, player.transform.up);
 
-        if(!rotating)
+        if (!rotating)
         {
             if (dot > 0.8f)
             {
@@ -88,41 +89,8 @@ public class RoombaMovement : MonoBehaviour
                 m_state = RoombaState.PATROLING;
             }
         }
-        
-
-        t += Time.deltaTime;
-
-        if(t > 2)
-        {
-            GetTarget();
-            t = 0;
-        }
     }
-
-    Vector3 GetTarget()
-    {
-        bool found = false;
-
-        while(!found)
-        {
-            Vector3 finalPosition = new Vector3();
-            Vector3 randomDirection = Random.insideUnitSphere * 20;
-            randomDirection = new Vector3(randomDirection.x, transform.position.y, randomDirection.z);
-            randomDirection += transform.position;          
-            
-            if(NavMesh.SamplePosition(randomDirection, out NavMeshHit hit, 2, 1))
-            {
-                finalPosition = hit.position;
-
-                found = true;
-            }
-
-            return finalPosition;
-        }
-
-        return Vector3.zero;
         
-    }
 
     private void FixedUpdate()
     {

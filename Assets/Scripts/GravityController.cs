@@ -98,7 +98,7 @@ public class GravityController : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
-
+        /*
         if(transform.GetComponent<RoombaMovement>() != null)
         {
             Vector3 targetVelocity = new Vector3();
@@ -131,6 +131,7 @@ public class GravityController : MonoBehaviour
         {
             m_rb.AddForce(currentGravity * Time.deltaTime, ForceMode.VelocityChange);
         }
+        */
         
 
     }
