@@ -5761,12 +5761,26 @@ MonoBehaviour:
   m_GameObject: {fileID: 1077480433}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bd4150203bfc3a445a3dfed2a84478af, type: 3}
+  m_Script: {fileID: 11500000, guid: f4903fc12507c3243a65363e487bb01f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  highlighed: {fileID: 2100000, guid: d58bdd8803e3a7f41bd18237f5473a9b, type: 2}
-  normal: {fileID: 2100000, guid: 640b96e506330ce43912b9250440a812, type: 2}
+  highlighed: {fileID: 2100000, guid: baf0228ea3b820b46a1c15118fbe5676, type: 2}
+  normal: {fileID: 2100000, guid: 0ec9453da50b5744d95a5f32c193282c, type: 2}
   gravityFactor: -9.8
+--- !u!114 &1077480442
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1077480433}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e4d3b5675e2fefb459806436ef8bf012, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_forceList:
+  - {fileID: 1077480441}
 --- !u!1 &1084393555
 GameObject:
   m_ObjectHideFlags: 0
