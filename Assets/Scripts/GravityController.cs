@@ -107,7 +107,7 @@ public class GravityController : MonoBehaviour
             {
                 targetVelocity = Vector3.zero;
 
-                targetVelocity += (transform.GetComponent<RoombaMovement>().target.transform.position - transform.position).normalized * transform.GetComponent<RoombaMovement>().m_speed;
+                //targetVelocity += (transform.GetComponent<RoombaMovement>().target.transform.position - transform.position).normalized * transform.GetComponent<RoombaMovement>().m_speed;
 
             }
 
