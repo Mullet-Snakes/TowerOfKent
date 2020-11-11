@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Linq.Expressions;
 using UnityEditor.Timeline;
 using UnityEngine;
 using UnityEngine.AI;
@@ -14,14 +15,22 @@ public class RoombaAIForce : ForceScript
 
     public float distanceToWaypoint = 0.2f;
 
-    private List<Vector3> waypoints = new List<Vector3>();
+    public List<Vector3> waypoints = new List<Vector3>();
 
     private GameObject player;
+    private RoombaMovement controller;
+
+    public RoombaState lastState = RoombaState.DEFAULT;
+
+    public bool completedPath = true;
+
+    public GameObject tarr;
 
     float t = 0f;
 
     private void Awake()
     {
+        controller = GetComponent<RoombaMovement>();
         player = GameObject.FindWithTag("Player");
         m_rb = GetComponent<Rigidbody>();
         m_agent = GetComponent<NavMeshAgent>();
@@ -38,6 +47,20 @@ public class RoombaAIForce : ForceScript
 
     public override Vector3 GetForce()
     {
+
+        if(waypoints.Count == 0)
+        {
+            return Vector3.zero;
+        }
+        else if (m_agent.isOnNavMesh)
+        {
+            return direction - m_rb.velocity;
+        }
+        else
+        {
+            return Vector3.zero;
+        }
+        /*
         if ((transform.position - player.transform.position).magnitude <= 10 && m_agent.isOnNavMesh)
         {
             return Vector3.zero - m_rb.velocity;
@@ -48,6 +71,12 @@ public class RoombaAIForce : ForceScript
         }
 
         return Vector3.zero;
+        */
+    }
+
+    private void OnDrawGizmos()
+    {
+        Gizmos.DrawSphere(tarr.transform.position, 1f);
     }
 
     void AddToList()
@@ -62,10 +91,90 @@ public class RoombaAIForce : ForceScript
         }
     }
 
+    private IEnumerator PatrolState()
+    {
+
+        while (true)
+        {
+            if(completedPath && controller.isGrounded)
+            {
+                print("Getting path");
+                Vector3 randomDirection = Random.insideUnitSphere * 20;
+                randomDirection = new Vector3(randomDirection.x, 0, randomDirection.z);
+                randomDirection += transform.position;
+                Vector3 final = transform.TransformDirection(randomDirection);
+
+                tarr.transform.position = randomDirection;
+
+                if (NavMesh.SamplePosition(final, out NavMeshHit hit, 2, NavMesh.AllAreas))
+                {
+                    NavMesh.CalculatePath(transform.position, hit.position, NavMesh.AllAreas, path);
+
+                    AddToList();
+
+                    print("got path");
+
+                    completedPath = false;
+
+                    yield return new WaitForSeconds(1);
+                }
+            }
+
+            yield return null;
+
+        }
+    }
+
+    private IEnumerator AttackState()
+    {
+        while(true)
+        {
+            NavMeshHit hit;
+
+            if (NavMesh.SamplePosition(player.transform.position, out hit, 2, NavMesh.AllAreas))
+            {
+                NavMesh.CalculatePath(transform.position, hit.position, NavMesh.AllAreas, path);
+
+                AddToList();
+            }
+
+            yield return new WaitForSeconds(3);
+        }
+    }
+
     // Update is called once per frame
     void Update()
     {
         m_agent.nextPosition = transform.position;
+
+        //print(controller.m_state + " " + lastState);
+
+        if(controller.m_state != lastState)
+        {
+            if(controller.m_state == RoombaState.PATROLING)
+            {
+                StopCoroutine("AttackState");
+                lastState = controller.m_state;
+                StartCoroutine("PatrolState");
+            }
+            else if(controller.m_state == RoombaState.ATTACKING)
+            {
+                StopCoroutine("PatrolState");
+                lastState = controller.m_state;
+                StartCoroutine("AttackState");
+                completedPath = true;
+            }
+            else if(controller.m_state == RoombaState.ROTATING)
+            {
+                waypoints.Clear();
+                lastState = controller.m_state;
+                StopCoroutine("PatrolState");
+                StopCoroutine("AttackState");
+                completedPath = true;
+            }
+        }
+
+    
 
         if (waypoints.Count != 0)
         {
@@ -81,11 +190,13 @@ public class RoombaAIForce : ForceScript
                 }
                 else
                 {
+                    completedPath = true;
                     direction = Vector3.zero;
                 }
             }
         }
 
+        /*
         t += Time.deltaTime;
 
         if(t > 3)
@@ -104,7 +215,7 @@ public class RoombaAIForce : ForceScript
                 }
             }            
         }
-
+        */
 
         if (Input.GetMouseButtonDown(0))
         {

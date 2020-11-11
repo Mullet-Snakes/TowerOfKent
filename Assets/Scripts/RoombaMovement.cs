@@ -3,6 +3,15 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
+public enum RoombaState
+{
+    DEFAULT,
+    PATROLING,
+    ATTACKING,
+    ROTATING
+
+};
+
 public class RoombaMovement : MonoBehaviour
 {
     private Rigidbody m_rb = null;
@@ -13,13 +22,15 @@ public class RoombaMovement : MonoBehaviour
 
     public bool rotating = false;
 
-    public GameObject taar;
-    public Vector3 tar = new Vector3();
-    public Vector3 unit = new Vector3();
-
     public LayerMask floor;
 
     public NavMeshAgent m_agent = null;
+
+    private GameObject player;
+
+    
+
+    public RoombaState m_state = RoombaState.DEFAULT;
 
 
 
@@ -38,6 +49,7 @@ public class RoombaMovement : MonoBehaviour
 
     private void Awake()
     {
+        player = GameObject.FindGameObjectWithTag("Player");
         m_rb = GetComponent<Rigidbody>();
         m_agent = GetComponent<NavMeshAgent>();
     }
@@ -55,6 +67,29 @@ public class RoombaMovement : MonoBehaviour
         // Update is called once per frame
     void Update()
     {
+
+        float dot = Vector3.Dot(transform.up, player.transform.up);
+
+        if(!rotating)
+        {
+            if (dot > 0.8f)
+            {
+                if ((transform.position - player.transform.position).magnitude <= 10)
+                {
+                    m_state = RoombaState.ATTACKING;
+                }
+                else
+                {
+                    m_state = RoombaState.PATROLING;
+                }
+            }
+            else
+            {
+                m_state = RoombaState.PATROLING;
+            }
+        }
+        
+
         t += Time.deltaTime;
 
         if(t > 2)
@@ -78,8 +113,6 @@ public class RoombaMovement : MonoBehaviour
             if(NavMesh.SamplePosition(randomDirection, out NavMeshHit hit, 2, 1))
             {
                 finalPosition = hit.position;
-
-                taar.transform.position = finalPosition;
 
                 found = true;
             }
@@ -110,6 +143,7 @@ public class RoombaMovement : MonoBehaviour
             forward = Vector3.Cross(right, -g);
             targetRot = Quaternion.LookRotation(forward, -g);
             m_rb.MoveRotation(Quaternion.RotateTowards(transform.rotation, targetRot, m_rotationSpeed));
+            m_state = RoombaState.ROTATING;
 
         }
         else if (rotating)
@@ -119,9 +153,11 @@ public class RoombaMovement : MonoBehaviour
             targetRot = Quaternion.LookRotation(forward, -g);
             m_rb.MoveRotation(targetRot);
             rotating = false;
+            
         }
         else if (isGrounded)
         {
+            m_state = RoombaState.PATROLING;
             m_agent.enabled = true;
         }
     }

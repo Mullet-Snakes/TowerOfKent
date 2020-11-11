@@ -767,7 +767,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 907531436}
   m_LocalRotation: {x: 0, y: 0.15445171, z: 0, w: 0.98800033}
-  m_LocalPosition: {x: 0, y: 1.6, z: 0}
+  m_LocalPosition: {x: 0, y: 1, z: 0}
   m_LocalScale: {x: 1, y: 0.5, z: 1}
   m_Children:
   - {fileID: 1248285728}
@@ -857,13 +857,11 @@ MonoBehaviour:
   m_speed: 5
   isGrounded: 0
   rotating: 0
-  taar: {fileID: 1248285724}
-  tar: {x: 0, y: 0, z: 0}
-  unit: {x: 0, y: 0, z: 0}
   floor:
     serializedVersion: 2
     m_Bits: 256
   m_agent: {fileID: 0}
+  m_state: 0
 --- !u!114 &907531446
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -878,6 +876,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   distanceToWaypoint: 0.2
   waypoints: []
+  lastState: 0
+  completedPath: 1
+  tarr: {fileID: 1248285724}
 --- !u!1 &961437990
 GameObject:
   m_ObjectHideFlags: 0
@@ -1865,13 +1866,11 @@ MonoBehaviour:
   m_speed: 5
   isGrounded: 0
   rotating: 0
-  taar: {fileID: 0}
-  tar: {x: 0, y: 0, z: 0}
-  unit: {x: 0, y: 0, z: 0}
   floor:
     serializedVersion: 2
     m_Bits: 256
   m_agent: {fileID: 0}
+  m_state: 0
 --- !u!54 &1850672727
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -1954,6 +1953,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   distanceToWaypoint: 0.2
   waypoints: []
+  lastState: 0
+  completedPath: 0
+  tarr: {fileID: 0}
 --- !u!1 &1892023843
 GameObject:
   m_ObjectHideFlags: 0
