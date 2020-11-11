@@ -18,7 +18,8 @@ public class SettingsMenu : MonoBehaviour
     //Array of Supported Resolutions
     Resolution[] resolutions;
 
-    public float MouseSense;
+    public static float MouseSense;
+
 
     void Start()
     {
