@@ -51,8 +51,11 @@ public class GravityCastScript : MonoBehaviour
 
                 if (Physics.SphereCast(transform.position, capsuleCastRadius, transform.forward, out RaycastHit hit, Mathf.Infinity, ~ignoreMask))
                 {
-
-                    hit.transform.GetComponent<Renderer>().material = highlightedWallMaterial;
+                    if(hit.transform.GetComponent<Renderer>() != null)
+                    {
+                        hit.transform.GetComponent<Renderer>().material = highlightedWallMaterial;
+                    }
+                    
 
                     foreach (GameObject go in levelWalls)
                     {
