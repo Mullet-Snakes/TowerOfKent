@@ -50,6 +50,7 @@ public class LiftObject : MonoBehaviour
 
     //private Vector3 spin;
 
+    [SerializeField]
     private bool isHolding = false;
 
     //public bool objStop;
