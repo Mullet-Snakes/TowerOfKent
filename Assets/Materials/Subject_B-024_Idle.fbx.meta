@@ -6,7 +6,12 @@ ModelImporter:
   - first:
       74: 1827226128182048838
     second: Take 001
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Subject_B024_Skin_PBS
+    second: {fileID: 2100000, guid: 77347c7ae0c90f841bf3367d1c8acd2f, type: 2}
   materials:
     materialImportMode: 1
     materialName: 0
