@@ -5,16 +5,28 @@ using UnityEngine;
 public class BarrelSpawn : MonoBehaviour
 {
     public GameObject barrelPrefab;
+    public Vector3 spawnPos = new Vector3();
 
     private void Start()
     {
-        //barrel = barrelPrefab;
-        Instantiate(barrelPrefab, this.transform.position, this.transform.rotation);
+        spawnPos = transform.position;
+        print(spawnPos);
+        NewBarrel(transform.position, transform.rotation);
     }
 
-    public void Explode()
+    private void Update()
     {
-        //barrel = barrelPrefab;
-        Instantiate(barrelPrefab, this.transform.position, this.transform.rotation);
+        if(Input.GetKeyDown(KeyCode.P))
+        {
+            NewBarrel(transform.position, transform.rotation);
+        }
+    }
+
+    public void NewBarrel(Vector3 pos, Quaternion rot)
+    {
+        print("explode : " + spawnPos);
+
+        Instantiate(barrelPrefab, pos, rot);
+
     }
 }

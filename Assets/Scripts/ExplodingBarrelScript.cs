@@ -70,6 +70,8 @@ public class ExplodingBarrelScript : MonoBehaviour
 
     private void ExplodeBarrel()
     {
+        spawner.GetComponent<BarrelSpawn>().NewBarrel(spawner.transform.position, spawner.transform.rotation);
+
 
         Collider[] hitColliders = Physics.OverlapSphere(transform.position, explosionRadius);
 
@@ -84,7 +86,8 @@ public class ExplodingBarrelScript : MonoBehaviour
 
         Instantiate(m_particles, transform.position, transform.rotation);
 
-        spawner.GetComponent<BarrelSpawn>().Explode();
+        
+
         Destroy(gameObject);
     }
 }
