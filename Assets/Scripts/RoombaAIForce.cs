@@ -55,18 +55,33 @@ public class RoombaAIForce : ForceScript
 
         if (waypoints.Count == 0)
         {
-            //print("now waypoint");
             return Vector3.zero;
         }
-        else if (m_agent.isOnNavMesh)
+
+        else if(controller.m_state == RoombaState.ATTACKING)
         {
-            //print("normal");
-            return direction - m_rb.velocity;
+            if(m_agent.isOnNavMesh)
+            {
+                if(controller.distToPlayer > 5)
+                {
+                    return direction - m_rb.velocity;
+                }
+                else
+                {
+                    return Vector3.zero - m_rb.velocity;
+                }
+                    
+            }
         }
-        else if (controller.Rotating)
+
+        else if(controller.m_state == RoombaState.PATROLING)
         {
-            return Vector3.zero;
+            if (m_agent.isOnNavMesh)
+            {
+                return direction - m_rb.velocity;
+            }
         }
+        
 
         //print("nothing");
         return Vector3.zero;
@@ -111,10 +126,12 @@ public class RoombaAIForce : ForceScript
             {
                 Vector3 randomDirection = Random.insideUnitSphere * wanderRange;
                 randomDirection = new Vector3(randomDirection.x, 0, randomDirection.z);
+                randomDirection = transform.TransformDirection(randomDirection);
                 randomDirection += transform.position;
 
-                if (NavMesh.SamplePosition(randomDirection, out NavMeshHit hit, 2, NavMesh.AllAreas))
+                if (NavMesh.SamplePosition(randomDirection, out NavMeshHit hit, 0.5f, NavMesh.AllAreas))
                 {
+
                     NavMesh.CalculatePath(transform.position, hit.position, NavMesh.AllAreas, path);
 
                     taar.transform.position = hit.position;
@@ -140,7 +157,7 @@ public class RoombaAIForce : ForceScript
         {
             NavMeshHit hit;
 
-            if (NavMesh.SamplePosition(player.transform.position, out hit, 2, NavMesh.AllAreas))
+            if (NavMesh.SamplePosition(player.transform.position, out hit, 2f, NavMesh.AllAreas))
             {
                 NavMesh.CalculatePath(transform.position, hit.position, NavMesh.AllAreas, path);
 
@@ -187,11 +204,8 @@ public class RoombaAIForce : ForceScript
         {
             Vector3 dist = waypoints[posIndex] - transform.position;
 
-            print(dist.magnitude);
-
             if (dist.magnitude < distanceToWaypoint)
             {
-                print("at spot");
 
                 if (posIndex < waypoints.Count - 1)
                 {

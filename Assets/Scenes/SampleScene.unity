@@ -313,7 +313,6 @@ GameObject:
   - component: {fileID: 304107341}
   - component: {fileID: 304107340}
   - component: {fileID: 304107343}
-  - component: {fileID: 304107344}
   m_Layer: 8
   m_Name: SmallWall_1
   m_TagString: GravityWall
@@ -409,22 +408,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_shader: {fileID: 0}
   m_material: {fileID: 0}
---- !u!208 &304107344
-NavMeshObstacle:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 304107338}
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Shape: 1
-  m_Extents: {x: 0.5, y: 0.5, z: 0.5}
-  m_MoveThreshold: 0.1
-  m_Carve: 1
-  m_CarveOnlyStationary: 1
-  m_Center: {x: 0, y: 0, z: 0}
-  m_TimeToStationary: 0.5
 --- !u!1001 &394266511
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -956,6 +939,7 @@ MonoBehaviour:
   floor:
     serializedVersion: 2
     m_Bits: 256
+  distToPlayer: 0
   m_state: 0
 --- !u!114 &907531446
 MonoBehaviour:
@@ -1212,7 +1196,7 @@ MonoBehaviour:
   m_OverrideTileSize: 0
   m_TileSize: 256
   m_OverrideVoxelSize: 0
-  m_VoxelSize: 0.16666667
+  m_VoxelSize: 0.25
   m_BuildHeightMesh: 0
   m_NavMeshData: {fileID: 23800000, guid: 61689c5d937e537499536b0badf7bb01, type: 2}
 --- !u!1 &1293033579
@@ -1443,7 +1427,7 @@ MonoBehaviour:
   m_OverrideTileSize: 0
   m_TileSize: 256
   m_OverrideVoxelSize: 0
-  m_VoxelSize: 0.16666667
+  m_VoxelSize: 0.25
   m_BuildHeightMesh: 0
   m_NavMeshData: {fileID: 23800000, guid: 7e877e762347da04d828b451c838f4e4, type: 2}
 --- !u!1 &1644842712
@@ -1581,7 +1565,7 @@ MonoBehaviour:
   m_OverrideTileSize: 0
   m_TileSize: 256
   m_OverrideVoxelSize: 0
-  m_VoxelSize: 0.16666667
+  m_VoxelSize: 0.25
   m_BuildHeightMesh: 0
   m_NavMeshData: {fileID: 23800000, guid: 38375371f5f26d740ba3a0392d45eb17, type: 2}
 --- !u!1 &1665036697 stripped
@@ -1881,6 +1865,7 @@ MonoBehaviour:
   floor:
     serializedVersion: 2
     m_Bits: 256
+  distToPlayer: 0
   m_state: 0
 --- !u!54 &1850672727
 Rigidbody:
@@ -2196,7 +2181,7 @@ MonoBehaviour:
   m_OverrideTileSize: 0
   m_TileSize: 256
   m_OverrideVoxelSize: 0
-  m_VoxelSize: 0.16666667
+  m_VoxelSize: 0.25
   m_BuildHeightMesh: 0
   m_NavMeshData: {fileID: 23800000, guid: 52a2ce083077d3b42b442957969d92df, type: 2}
 --- !u!1 &1983969770
@@ -2212,7 +2197,6 @@ GameObject:
   - component: {fileID: 1983969773}
   - component: {fileID: 1983969772}
   - component: {fileID: 1983969775}
-  - component: {fileID: 1983969776}
   m_Layer: 8
   m_Name: SmallWall_2
   m_TagString: GravityWall
@@ -2308,22 +2292,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_shader: {fileID: 0}
   m_material: {fileID: 0}
---- !u!208 &1983969776
-NavMeshObstacle:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1983969770}
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Shape: 1
-  m_Extents: {x: 0.5, y: 0.5, z: 0.5}
-  m_MoveThreshold: 0.1
-  m_Carve: 1
-  m_CarveOnlyStationary: 1
-  m_Center: {x: 0, y: 0, z: 0}
-  m_TimeToStationary: 0.5
 --- !u!1001 &1040937112535868750
 PrefabInstance:
   m_ObjectHideFlags: 0
