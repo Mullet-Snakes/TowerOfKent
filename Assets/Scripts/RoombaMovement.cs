@@ -18,11 +18,11 @@ public class RoombaMovement : MonoBehaviour
 
     public float m_speed;
 
-    private bool isGrounded = false;
+    public bool isGrounded = false;
 
     public bool IsGrounded { get { return isGrounded; } }
 
-    private bool rotating = false;
+    public bool rotating = false;
 
     public bool Rotating { get { return rotating; } }
 
@@ -65,6 +65,8 @@ public class RoombaMovement : MonoBehaviour
         m_agent.enabled = false;
     }
 
+
+
     // Update is called once per frame
     void Update()
     {
@@ -90,12 +92,6 @@ public class RoombaMovement : MonoBehaviour
             }
         }
     }
-
-    private void OnDrawGizmos()
-    {
-        Gizmos.DrawLine(transform.position, transform.position + m_rb.velocity * 10);
-    }
-
 
     private void FixedUpdate()
     {
@@ -132,7 +128,10 @@ public class RoombaMovement : MonoBehaviour
         {
             right = Vector3.Cross(-g, m_rb.velocity);
             forward = Vector3.Cross(right, -g);
-            targetRot = Quaternion.LookRotation(forward, -g);
+            if (forward != Vector3.zero)
+            {
+                targetRot = Quaternion.LookRotation(forward, -g);
+            }
             m_rb.MoveRotation(Quaternion.RotateTowards(transform.rotation, targetRot, m_rotationSpeed));
             m_agent.enabled = true;
         }

@@ -15,19 +15,21 @@ public class RoombaAIForce : ForceScript
 
     public float distanceToWaypoint = 0.2f;
 
-    private List<Vector3> waypoints = new List<Vector3>();
+    public List<Vector3> waypoints = new List<Vector3>();
 
     private GameObject player;
     private RoombaMovement controller;
 
     private RoombaState lastState = RoombaState.DEFAULT;
 
-    private bool completedPath = true;
+    public bool completedPath = true;
 
     public float wanderRange = 30f;
 
     public float attackTargetCooldown = 3f;
     public float patrolTargetCooldown = 1f;
+
+    public GameObject taar;
 
 
 
@@ -51,17 +53,36 @@ public class RoombaAIForce : ForceScript
     public override Vector3 GetForce()
     {
 
-        if(waypoints.Count == 0)
+        if (waypoints.Count == 0)
         {
+            //print("now waypoint");
             return Vector3.zero;
         }
         else if (m_agent.isOnNavMesh)
         {
+            //print("normal");
             return direction - m_rb.velocity;
         }
-        else
+        else if (controller.Rotating)
         {
             return Vector3.zero;
+        }
+
+        //print("nothing");
+        return Vector3.zero;
+
+    }
+
+    private void OnDrawGizmos()
+    {
+        Gizmos.DrawLine(transform.position, transform.position + direction * 10);
+
+        if (waypoints.Count != 0)
+        {
+            foreach(Vector3 v in waypoints)
+            {
+                Gizmos.DrawSphere(v, 1);
+            }
         }
     }
 
@@ -95,6 +116,8 @@ public class RoombaAIForce : ForceScript
                 if (NavMesh.SamplePosition(randomDirection, out NavMeshHit hit, 2, NavMesh.AllAreas))
                 {
                     NavMesh.CalculatePath(transform.position, hit.position, NavMesh.AllAreas, path);
+
+                    taar.transform.position = hit.position;
 
                     AddToList();
 
@@ -164,8 +187,12 @@ public class RoombaAIForce : ForceScript
         {
             Vector3 dist = waypoints[posIndex] - transform.position;
 
+            print(dist.magnitude);
+
             if (dist.magnitude < distanceToWaypoint)
             {
+                print("at spot");
+
                 if (posIndex < waypoints.Count - 1)
                 {
                     posIndex++;

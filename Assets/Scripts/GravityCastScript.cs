@@ -118,15 +118,15 @@ public class GravityCastScript : MonoBehaviour
 
                 if (Physics.SphereCast(transform.position, capsuleCastRadius, transform.forward, out RaycastHit hit))
                 {
-                    if (hit.transform.GetComponent<GravityController>() != null)
+                    if (hit.transform.GetComponent<ForceController>() != null)
                     {
-                        if(!hit.transform.GetComponent<GravityController>().Frozen)
+                        if(!hit.transform.GetComponent<ForceController>().Frozen)
                         {
-                            hit.transform.GetComponent<GravityController>().FreezeConstraints(true);
+                            hit.transform.GetComponent<ForceController>().FreezeConstraints(true);
                         }
                         else
                         {
-                            hit.transform.GetComponent<GravityController>().FreezeConstraints(false);
+                            hit.transform.GetComponent<ForceController>().FreezeConstraints(false);
                         }                     
                     }
                 }
