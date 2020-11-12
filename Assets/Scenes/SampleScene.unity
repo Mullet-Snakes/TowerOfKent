@@ -774,7 +774,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!136 &907531437
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -2811,11 +2811,6 @@ PrefabInstance:
       propertyPath: levelWalls.Array.data[5]
       value: 
       objectReference: {fileID: 1983969770}
-    - target: {fileID: 6986354698282277809, guid: df33eebb884e8cd48afa52d8ed3c386d,
-        type: 3}
-      propertyPath: ignoreMask.m_Bits
-      value: 512
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: df33eebb884e8cd48afa52d8ed3c386d, type: 3}
 --- !u!1001 &7598927377047112464

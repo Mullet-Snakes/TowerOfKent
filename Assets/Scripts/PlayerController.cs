@@ -155,7 +155,7 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
-        isGrounded = Physics.Raycast(transform.position, -transform.up, out RaycastHit hit, 1.03f);
+        isGrounded = Physics.Raycast(transform.position, -transform.up, out RaycastHit hit, 1.03f, groundMask);
 
         targetVelocity = m_rb.velocity;
 
