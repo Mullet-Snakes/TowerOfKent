@@ -49,7 +49,7 @@ public class GravityCastScript : MonoBehaviour
             if (Input.GetMouseButtonDown(0))
             {
 
-                if (Physics.SphereCast(transform.position, capsuleCastRadius, transform.forward, out RaycastHit hit, ~ignoreMask))
+                if (Physics.SphereCast(transform.position, capsuleCastRadius, transform.forward, out RaycastHit hit, Mathf.Infinity, ~ignoreMask))
                 {
 
                     hit.transform.GetComponent<Renderer>().material = highlightedWallMaterial;
@@ -76,7 +76,7 @@ public class GravityCastScript : MonoBehaviour
 
             if (Input.GetMouseButtonDown(1))
             {
-                if (Physics.SphereCast(transform.position, capsuleCastRadius, transform.forward, out RaycastHit hit, ~ignoreMask))
+                if (Physics.SphereCast(transform.position, capsuleCastRadius, transform.forward, out RaycastHit hit, Mathf.Infinity, ~ignoreMask))
                 {
                     if (hit.transform.CompareTag("GravityWall"))
                     {
@@ -87,7 +87,7 @@ public class GravityCastScript : MonoBehaviour
 
             if (Input.GetKeyDown(KeyCode.R))
             {
-                if (Physics.SphereCast(transform.position, capsuleCastRadius, transform.forward, out RaycastHit hit, ~ignoreMask))
+                if (Physics.SphereCast(transform.position, capsuleCastRadius, transform.forward, out RaycastHit hit, Mathf.Infinity, ~ignoreMask))
                 {
                     if (hit.transform.GetComponent<GravityForce>() != null)
                     {
@@ -118,7 +118,7 @@ public class GravityCastScript : MonoBehaviour
             if (Input.GetKeyDown(KeyCode.F))
             {
 
-                if (Physics.SphereCast(transform.position, capsuleCastRadius, transform.forward, out RaycastHit hit))
+                if (Physics.SphereCast(transform.position, capsuleCastRadius, transform.forward, out RaycastHit hit, Mathf.Infinity, ~ignoreMask))
                 {
                     if (hit.transform.GetComponent<ForceController>() != null)
                     {
