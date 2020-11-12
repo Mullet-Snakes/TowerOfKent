@@ -24,6 +24,11 @@ public class RoombaAIForce : ForceScript
 
     private bool completedPath = true;
 
+    public float wanderRange = 30f;
+
+    public float attackTargetCooldown = 3f;
+    public float patrolTargetCooldown = 1f;
+
 
 
     private void Awake()
@@ -77,12 +82,13 @@ public class RoombaAIForce : ForceScript
     {
 
         YieldInstruction lowfps = new WaitForSeconds(0.1f);
+        YieldInstruction patrolCooldown = new WaitForSeconds(patrolTargetCooldown);
 
         while (true)
         {
             if(completedPath && controller.IsGrounded)
             {
-                Vector3 randomDirection = Random.insideUnitSphere * 30;
+                Vector3 randomDirection = Random.insideUnitSphere * wanderRange;
                 randomDirection = new Vector3(randomDirection.x, 0, randomDirection.z);
                 randomDirection += transform.position;
 
@@ -94,7 +100,7 @@ public class RoombaAIForce : ForceScript
 
                     completedPath = false;
 
-                    yield return new WaitForSeconds(1);
+                    yield return patrolCooldown;
                 }
             }
 
@@ -105,6 +111,8 @@ public class RoombaAIForce : ForceScript
 
     private IEnumerator AttackState()
     {
+        YieldInstruction attackCooldown = new WaitForSeconds(attackTargetCooldown);
+
         while(true)
         {
             NavMeshHit hit;
@@ -116,7 +124,7 @@ public class RoombaAIForce : ForceScript
                 AddToList();
             }
 
-            yield return new WaitForSeconds(3);
+            yield return attackCooldown;
         }
     }
 

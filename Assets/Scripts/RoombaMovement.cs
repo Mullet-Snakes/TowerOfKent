@@ -90,7 +90,12 @@ public class RoombaMovement : MonoBehaviour
             }
         }
     }
-        
+
+    private void OnDrawGizmos()
+    {
+        Gizmos.DrawLine(transform.position, transform.position + m_rb.velocity * 10);
+    }
+
 
     private void FixedUpdate()
     {
@@ -125,8 +130,12 @@ public class RoombaMovement : MonoBehaviour
         }
         else if (isGrounded)
         {
-            m_state = RoombaState.PATROLING;
+            right = Vector3.Cross(-g, m_rb.velocity);
+            forward = Vector3.Cross(right, -g);
+            targetRot = Quaternion.LookRotation(forward, -g);
+            m_rb.MoveRotation(Quaternion.RotateTowards(transform.rotation, targetRot, m_rotationSpeed));
             m_agent.enabled = true;
         }
+
     }
 }
