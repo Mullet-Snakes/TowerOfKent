@@ -5,6 +5,7 @@ using UnityEngine;
 public class Spawner : MonoBehaviour
 {
     public GameObject itemToSpawn = null;
+    private GameObject currentObject = null;
 
     // Start is called before the first frame update
     void Start()
@@ -15,14 +16,17 @@ public class Spawner : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(Input.GetKeyDown(KeyCode.M))
+        if(currentObject == null)
         {
-            Spawn(transform.position, transform.rotation);
+            Spawn(transform.position, transform.rotation);         
         }
     }
 
     public void Spawn(Vector3 pos, Quaternion rot)
     {
-        Instantiate(itemToSpawn, pos, rot);
+        GameObject go = Instantiate(itemToSpawn, pos, rot);
+        go.SetActive(true);
+        currentObject = go;
+
     }
 }
