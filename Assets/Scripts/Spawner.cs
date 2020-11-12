@@ -10,7 +10,6 @@ public class Spawner : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        StartCoroutine("CheckObject");
     }
 
     // Update is called once per frame
@@ -24,7 +23,7 @@ public class Spawner : MonoBehaviour
 
     public void Spawn(Vector3 pos, Quaternion rot)
     {
-        GameObject go = Instantiate(itemToSpawn, pos, rot);
+        GameObject go = Instantiate(itemToSpawn, pos, rot) as GameObject;
         go.SetActive(true);
         currentObject = go;
 

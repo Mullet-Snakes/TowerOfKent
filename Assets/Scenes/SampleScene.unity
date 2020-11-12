@@ -994,12 +994,6 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1308489735}
   m_Mesh: {fileID: 10208, guid: 0000000000000000e000000000000000, type: 0}
---- !u!1 &1503286478 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 9033047618433693966, guid: 4400ccee224b3fa4d8c20c37808bc3a1,
-    type: 3}
-  m_PrefabInstance: {fileID: 9033047619668293614}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1598650128
 GameObject:
   m_ObjectHideFlags: 0
@@ -1336,6 +1330,7 @@ MonoBehaviour:
   grabDistance: 10
   holdDistance: 4
   throwForce: 5
+  isHolding: 0
 --- !u!1 &1834219721
 GameObject:
   m_ObjectHideFlags: 0
@@ -2085,7 +2080,8 @@ PrefabInstance:
         type: 3}
       propertyPath: itemToSpawn
       value: 
-      objectReference: {fileID: 1503286478}
+      objectReference: {fileID: 9033047618433693966, guid: 4400ccee224b3fa4d8c20c37808bc3a1,
+        type: 3}
     - target: {fileID: 5914754477544493461, guid: ee5dc547614cd8546b9be5df5585f570,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -2608,7 +2604,7 @@ PrefabInstance:
     - target: {fileID: 9033047618433693966, guid: 4400ccee224b3fa4d8c20c37808bc3a1,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4400ccee224b3fa4d8c20c37808bc3a1, type: 3}
