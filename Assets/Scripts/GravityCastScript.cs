@@ -23,6 +23,8 @@ public class GravityCastScript : MonoBehaviour
     [Range(0.05f, 1)]
     private float capsuleCastRadius = 0.1f;
 
+    public LayerMask ignoreMask;
+
 
     public void AddWall(GameObject wall)
     {
@@ -47,7 +49,7 @@ public class GravityCastScript : MonoBehaviour
             if (Input.GetMouseButtonDown(0))
             {
 
-                if (Physics.SphereCast(transform.position, capsuleCastRadius, transform.forward, out RaycastHit hit))
+                if (Physics.SphereCast(transform.position, capsuleCastRadius, transform.forward, out RaycastHit hit, ~ignoreMask))
                 {
 
                     hit.transform.GetComponent<Renderer>().material = highlightedWallMaterial;
@@ -74,7 +76,7 @@ public class GravityCastScript : MonoBehaviour
 
             if (Input.GetMouseButtonDown(1))
             {
-                if (Physics.SphereCast(transform.position, capsuleCastRadius, transform.forward, out RaycastHit hit))
+                if (Physics.SphereCast(transform.position, capsuleCastRadius, transform.forward, out RaycastHit hit, ~ignoreMask))
                 {
                     if (hit.transform.CompareTag("GravityWall"))
                     {
@@ -85,7 +87,7 @@ public class GravityCastScript : MonoBehaviour
 
             if (Input.GetKeyDown(KeyCode.R))
             {
-                if (Physics.SphereCast(transform.position, capsuleCastRadius, transform.forward, out RaycastHit hit))
+                if (Physics.SphereCast(transform.position, capsuleCastRadius, transform.forward, out RaycastHit hit, ~ignoreMask))
                 {
                     if (hit.transform.GetComponent<GravityForce>() != null)
                     {

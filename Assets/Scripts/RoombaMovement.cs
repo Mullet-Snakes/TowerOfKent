@@ -33,8 +33,6 @@ public class RoombaMovement : MonoBehaviour
     private GameObject player;
 
     public float distToPlayer = 0f;
-
-    private Vector3 curGrav = new Vector3();
     
 
     public RoombaState m_state = RoombaState.DEFAULT;
@@ -55,7 +53,6 @@ public class RoombaMovement : MonoBehaviour
 
     private void Awake()
     {
-        curGrav.Set(0, 1, 0);
         player = GameObject.FindGameObjectWithTag("Player");
         m_rb = GetComponent<Rigidbody>();
         m_agent = GetComponent<NavMeshAgent>();
@@ -69,8 +66,7 @@ public class RoombaMovement : MonoBehaviour
     void TurnOffAgent(Vector3 grav, bool changingTargeted)
     {
         m_agent.enabled = false;
-        m_rb.AddForce(curGrav * 2, ForceMode.Impulse);
-        curGrav = grav;
+        m_rb.AddForce(transform.up * 2, ForceMode.Impulse);
     }
 
 
@@ -143,6 +139,7 @@ public class RoombaMovement : MonoBehaviour
                 targetRot = Quaternion.LookRotation(forward, -g);
             }
             m_rb.MoveRotation(Quaternion.RotateTowards(transform.rotation, targetRot, m_rotationSpeed));
+
             m_agent.enabled = true;
         }
 
