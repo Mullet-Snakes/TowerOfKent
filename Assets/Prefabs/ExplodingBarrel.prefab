@@ -12,12 +12,13 @@ GameObject:
   - component: {fileID: 9033047618433693962}
   - component: {fileID: 9033047618433693965}
   - component: {fileID: 9033047618433693964}
-  - component: {fileID: 9033047618433693967}
   - component: {fileID: 9033047618433693960}
   - component: {fileID: 9033047618433693961}
+  - component: {fileID: 806165095}
+  - component: {fileID: 806165096}
   m_Layer: 0
   m_Name: ExplodingBarrel
-  m_TagString: Untagged
+  m_TagString: LevelProp
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -52,7 +53,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 9033047618433693966}
-  m_Enabled: 0
+  m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -98,21 +99,6 @@ CapsuleCollider:
   m_Height: 2
   m_Direction: 1
   m_Center: {x: 0.000000059604645, y: 0, z: -0.00000008940697}
---- !u!114 &9033047618433693967
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9033047618433693966}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bd4150203bfc3a445a3dfed2a84478af, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  highlighed: {fileID: 2100000, guid: d58bdd8803e3a7f41bd18237f5473a9b, type: 2}
-  normal: {fileID: 2100000, guid: 640b96e506330ce43912b9250440a812, type: 2}
-  gravityFactor: -9.8
 --- !u!54 &9033047618433693960
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -121,7 +107,7 @@ Rigidbody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 9033047618433693966}
   serializedVersion: 2
-  m_Mass: 1
+  m_Mass: 0.001
   m_Drag: 0
   m_AngularDrag: 0
   m_UseGravity: 0
@@ -141,12 +127,42 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3daa9a981d186634fa56f93a6cc1b71a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  spawner: {fileID: 1844354927049483754, guid: f71f8ee23b4207148a884106141a0f1a, type: 3}
   explosionRadius: 10
   explosiveForce: 50
   triggerSpeed: 20
   upExplosionModifier: 5
   m_particles: {fileID: 1693942617144515328, guid: 0acca00f9a702bb43b271c90aa447376,
     type: 3}
+--- !u!114 &806165095
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9033047618433693966}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4903fc12507c3243a65363e487bb01f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  highlighed: {fileID: 2100000, guid: d58bdd8803e3a7f41bd18237f5473a9b, type: 2}
+  normal: {fileID: 2100000, guid: 640b96e506330ce43912b9250440a812, type: 2}
+  gravityFactor: -9.8
+--- !u!114 &806165096
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9033047618433693966}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e4d3b5675e2fefb459806436ef8bf012, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_forceList:
+  - {fileID: 806165095}
 --- !u!1001 &5478544732503484912
 PrefabInstance:
   m_ObjectHideFlags: 0

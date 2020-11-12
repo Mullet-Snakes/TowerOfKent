@@ -6,13 +6,13 @@ using UnityEngine.UIElements;
 
 public class RoombaMoveForce : ForceScript
 {
-    private RoombaMovement controllerScript = null;
+    private RoombaController controllerScript = null;
 
     private Rigidbody m_rb = null;
 
     private void Awake()
     {
-        controllerScript = GetComponent<RoombaMovement>();
+        controllerScript = GetComponent<RoombaController>();
 
         m_rb = GetComponent<Rigidbody>();
     }
