@@ -10,14 +10,27 @@ public class Spawner : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        StartCoroutine("CheckIfNull");
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (currentObject == null)
+
+    }
+
+    public IEnumerator CheckIfNull()
+    {
+        YieldInstruction wfs = new WaitForSeconds(0.2f);
+
+        while (true)
         {
-            Spawn(transform.position, transform.rotation);
+            print("checking");
+            if (currentObject == null)
+            {
+                Spawn(transform.position, transform.rotation);
+            }
+            yield return wfs;
         }
     }
 
