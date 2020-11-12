@@ -10,6 +10,11 @@ public class ForceController : MonoBehaviour
 
     private Vector3 forceToApply = new Vector3();
 
+    private bool frozen = false;
+
+    public bool Frozen { get { return frozen; } }
+
+
     private void Awake()
     {
         m_rb = GetComponent<Rigidbody>();
@@ -25,6 +30,21 @@ public class ForceController : MonoBehaviour
         }
 
         m_rb.AddForce(forceToApply, ForceMode.VelocityChange);
+    }
+
+    public void FreezeConstraints(bool freezeContraints)
+    {
+        if (freezeContraints)
+        {
+            m_rb.constraints = RigidbodyConstraints.FreezeAll;
+            frozen = true;
+        }
+        else
+        {
+            m_rb.constraints = RigidbodyConstraints.None;
+            frozen = false;
+        }
+
     }
 
     // Start is called before the first frame update

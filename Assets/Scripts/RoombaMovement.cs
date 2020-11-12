@@ -20,21 +20,25 @@ public class RoombaMovement : MonoBehaviour
 
     public bool isGrounded = false;
 
+    public bool IsGrounded { get { return isGrounded; } }
+
     public bool rotating = false;
+
+    public bool Rotating { get { return rotating; } }
 
     public LayerMask floor;
 
-    public NavMeshAgent m_agent = null;
+    private NavMeshAgent m_agent = null;
 
     private GameObject player;
 
+    public float distToPlayer = 0f;
+
+    private Vector3 curGrav = new Vector3();
     
 
     public RoombaState m_state = RoombaState.DEFAULT;
 
-
-
-    float t = 0;
 
     private void OnEnable()
     {
@@ -49,6 +53,7 @@ public class RoombaMovement : MonoBehaviour
 
     private void Awake()
     {
+        curGrav = GravityManager.worldGravity;
         player = GameObject.FindGameObjectWithTag("Player");
         m_rb = GetComponent<Rigidbody>();
         m_agent = GetComponent<NavMeshAgent>();
@@ -62,21 +67,28 @@ public class RoombaMovement : MonoBehaviour
     void TurnOffAgent(Vector3 grav, bool changingTargeted)
     {
         m_agent.enabled = false;
+        m_rb.AddForce(curGrav * 2, ForceMode.Impulse);
+        curGrav = grav;
     }
 
-        // Update is called once per frame
+
+
+    // Update is called once per frame
     void Update()
     {
 
         float dot = Vector3.Dot(transform.up, player.transform.up);
 
-        if(!rotating)
+        if (!rotating)
         {
             if (dot > 0.8f)
             {
-                if ((transform.position - player.transform.position).magnitude <= 10)
+                distToPlayer = (transform.position - player.transform.position).magnitude;
+
+                if (distToPlayer <= 20)
                 {
                     m_state = RoombaState.ATTACKING;
+
                 }
                 else
                 {
@@ -88,40 +100,6 @@ public class RoombaMovement : MonoBehaviour
                 m_state = RoombaState.PATROLING;
             }
         }
-        
-
-        t += Time.deltaTime;
-
-        if(t > 2)
-        {
-            GetTarget();
-            t = 0;
-        }
-    }
-
-    Vector3 GetTarget()
-    {
-        bool found = false;
-
-        while(!found)
-        {
-            Vector3 finalPosition = new Vector3();
-            Vector3 randomDirection = Random.insideUnitSphere * 20;
-            randomDirection = new Vector3(randomDirection.x, transform.position.y, randomDirection.z);
-            randomDirection += transform.position;          
-            
-            if(NavMesh.SamplePosition(randomDirection, out NavMeshHit hit, 2, 1))
-            {
-                finalPosition = hit.position;
-
-                found = true;
-            }
-
-            return finalPosition;
-        }
-
-        return Vector3.zero;
-        
     }
 
     private void FixedUpdate()
@@ -157,8 +135,15 @@ public class RoombaMovement : MonoBehaviour
         }
         else if (isGrounded)
         {
-            m_state = RoombaState.PATROLING;
+            right = Vector3.Cross(-g, m_rb.velocity);
+            forward = Vector3.Cross(right, -g);
+            if (forward != Vector3.zero)
+            {
+                targetRot = Quaternion.LookRotation(forward, -g);
+            }
+            m_rb.MoveRotation(Quaternion.RotateTowards(transform.rotation, targetRot, m_rotationSpeed));
             m_agent.enabled = true;
         }
+
     }
 }

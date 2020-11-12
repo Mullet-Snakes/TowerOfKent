@@ -50,6 +50,8 @@ public class GravityForce : ForceScript
         GravityManager.GravityChange -= SetCurrentGravity;
     }
 
+
+
     void SetCurrentGravity(Vector3 grav, bool changingTargeted)
     {
 
