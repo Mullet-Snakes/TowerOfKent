@@ -33,6 +33,10 @@ public class GravityForce : ForceScript
         {
             return force.normalized;
         }
+        set
+        {
+            force = value;
+        }
     }
 
     public override Vector3 GetForce()

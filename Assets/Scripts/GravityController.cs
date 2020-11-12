@@ -15,6 +15,10 @@ public class GravityController : MonoBehaviour
         {
             return currentGravity.normalized;
         }
+        set
+        {
+            currentGravity = value;
+        }
     }
     private Rigidbody m_rb;
     private bool isTargeted = false;
