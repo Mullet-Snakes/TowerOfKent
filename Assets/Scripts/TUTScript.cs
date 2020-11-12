@@ -11,6 +11,7 @@ public class TUTScript : MonoBehaviour
     public GameObject gravplayertut;
     public GameObject pressuretut;
     public GameObject buttontut;
+    public GameObject textbox;
     
     // Start is called before the first frame update
     void Start()
@@ -22,6 +23,7 @@ public class TUTScript : MonoBehaviour
         gravplayertut.SetActive(false);
         pressuretut.SetActive(false);
         buttontut.SetActive(false);
+        textbox.SetActive(false);
     }
 
     void OnTriggerEnter(Collider other)
@@ -29,16 +31,19 @@ public class TUTScript : MonoBehaviour
         if (other.gameObject.tag == "wasdtut")
         {
             wasdtut.SetActive(true);
+            textbox.SetActive(true);
         }
 
         else if (other.gameObject.tag == "keytut")
         {
             keytut.SetActive(true);
+            textbox.SetActive(true);
         }
 
         else if (other.gameObject.tag == "gravobjtut")
         {
             gravobjtut.SetActive(true);
+            textbox.SetActive(true);
             doortut.SetActive(false);
             Destroy(doortut);
         }
@@ -46,16 +51,19 @@ public class TUTScript : MonoBehaviour
         else if (other.gameObject.tag == "gravplaytut")
         {
             gravplayertut.SetActive(true);
+            textbox.SetActive(true);
         }
 
         else if (other.gameObject.tag == "presstut")
         {
             pressuretut.SetActive(true);
+            textbox.SetActive(true);
         }
 
         else if (other.gameObject.tag == "buttontut")
         {
             buttontut.SetActive(true);
+            textbox.SetActive(true);
         }
 
     }
@@ -73,36 +81,42 @@ public class TUTScript : MonoBehaviour
         if (other.gameObject.tag == "wasdtut")
         {
             wasdtut.SetActive(false);
+            textbox.SetActive(false);
             Destroy(other.gameObject);
         }
 
         else if (other.gameObject.tag == "keytut")
         {
             keytut.SetActive(false);
+            textbox.SetActive(false);
             Destroy(keytut);
         }
 
         else if (other.gameObject.tag == "gravobjtut")
         {
             gravobjtut.SetActive(false);
+            textbox.SetActive(false);
             Destroy(gravobjtut);
         }
 
         else if (other.gameObject.tag == "gravplaytut")
         {
             gravplayertut.SetActive(false);
+            textbox.SetActive(false);
             Destroy(gravplayertut);
         }
 
         else if (other.gameObject.tag == "presstut")
         {
             pressuretut.SetActive(false);
+            textbox.SetActive(false);
             Destroy(pressuretut);
         }
 
         else if (other.gameObject.tag == "buttontut")
         {
             buttontut.SetActive(false);
+            textbox.SetActive(false);
             Destroy(buttontut);
         }
     }
@@ -112,6 +126,7 @@ public class TUTScript : MonoBehaviour
         if (KeyChainScript.HasKey("bluekey") == true)
         {
             doortut.SetActive(true);
+            textbox.SetActive(true);
             StartCoroutine("WaitForSec");
         }
     }
@@ -120,6 +135,7 @@ public class TUTScript : MonoBehaviour
     {
         yield return new WaitForSeconds(2);
         doortut.SetActive(false);
+        textbox.SetActive(false);
         Destroy(doortut);
     }
 }
