@@ -10,15 +10,15 @@ public class Spawner : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        StartCoroutine("CheckObject");
     }
 
     // Update is called once per frame
     void Update()
     {
-        if(currentObject == null)
+        if (currentObject == null)
         {
-            Spawn(transform.position, transform.rotation);         
+            Spawn(transform.position, transform.rotation);
         }
     }
 
