@@ -82,11 +82,11 @@ public class GravityForce : ForceScript
     {
         if (isTargeted)
         {
-            transform.GetComponent<Renderer>().material = highlighed;
+            transform.GetComponentInChildren<Renderer>().material = highlighed;
         }
         else
         {
-            transform.GetComponent<Renderer>().material = normal;
+            transform.GetComponentInChildren<Renderer>().material = normal;
         }
     }
 }
