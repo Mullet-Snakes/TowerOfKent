@@ -18,17 +18,22 @@ public class RoombaAIForce : ForceScript
     private List<Vector3> waypoints = new List<Vector3>();
 
     private GameObject player;
-    private RoombaMovement controller;
+    private RoombaController controller;
 
     private RoombaState lastState = RoombaState.DEFAULT;
 
-    private bool completedPath = true;
+    public float wanderRange = 30f;
+
+    public float attackTargetCooldown = 3f;
+    public float patrolTargetCooldown = 1f;
+
+    private float cooldown = 0f;
 
 
 
     private void Awake()
     {
-        controller = GetComponent<RoombaMovement>();
+        controller = GetComponent<RoombaController>();
         player = GameObject.FindWithTag("Player");
         m_rb = GetComponent<Rigidbody>();
         m_agent = GetComponent<NavMeshAgent>();
@@ -46,17 +51,43 @@ public class RoombaAIForce : ForceScript
     public override Vector3 GetForce()
     {
 
-        if(waypoints.Count == 0)
+        if(controller.m_state == RoombaState.ATTACKING)
         {
-            return Vector3.zero;
+            if(m_agent.isOnNavMesh)
+            {
+                if(controller.DistToPlayer > 5)
+                {
+                    return direction - m_rb.velocity;
+                }
+                else
+                {
+                    return Vector3.zero - m_rb.velocity;
+                }
+                    
+            }
         }
-        else if (m_agent.isOnNavMesh)
+
+        else if(controller.m_state == RoombaState.PATROLING)
         {
-            return direction - m_rb.velocity;
+            if (m_agent.isOnNavMesh)
+            {
+                return direction - m_rb.velocity;
+            }
         }
-        else
+
+        return Vector3.zero;
+    }
+
+    private void OnDrawGizmos()
+    {
+        Gizmos.DrawLine(transform.position, transform.position + direction * 10);
+
+        if (waypoints.Count != 0)
         {
-            return Vector3.zero;
+            foreach(Vector3 v in waypoints)
+            {
+                Gizmos.DrawSphere(v, 1);
+            }
         }
     }
 
@@ -69,84 +100,83 @@ public class RoombaAIForce : ForceScript
 
         for (int i = 0; i < path.corners.Length; i++)
         {
-            waypoints.Add(new Vector3(path.corners[i].x, transform.position.y, path.corners[i].z));
+
+            waypoints.Add(path.corners[i]);
         }
     }
 
-    private IEnumerator PatrolState()
+    bool IsAtLastPoint()
     {
-
-        YieldInstruction lowfps = new WaitForSeconds(0.1f);
-
-        while (true)
+        if(waypoints.Count > 0)
         {
-            if(completedPath && controller.IsGrounded)
-            {
-                Vector3 randomDirection = Random.insideUnitSphere * 30;
-                randomDirection = new Vector3(randomDirection.x, 0, randomDirection.z);
-                randomDirection += transform.position;
+            float temp = (transform.position - waypoints[waypoints.Count - 1]).magnitude;
 
-                if (NavMesh.SamplePosition(randomDirection, out NavMeshHit hit, 2, NavMesh.AllAreas))
-                {
-                    NavMesh.CalculatePath(transform.position, hit.position, NavMesh.AllAreas, path);
+            return temp < 0.5f;
+        }
 
-                    AddToList();
+        return false;
+        
+    }
 
-                    completedPath = false;
+    void SetWaypoints(Vector3 target, float sizeOfCast)
+    {
+        if (NavMesh.SamplePosition(target, out NavMeshHit hit, sizeOfCast, NavMesh.AllAreas))
+        {
+            NavMesh.CalculatePath(transform.position, hit.position, NavMesh.AllAreas, path);
 
-                    yield return new WaitForSeconds(1);
-                }
-            }
-
-            yield return lowfps;
-
+            AddToList();
         }
     }
 
-    private IEnumerator AttackState()
+    Vector3 GetRandomPoint()
     {
-        while(true)
-        {
-            NavMeshHit hit;
-
-            if (NavMesh.SamplePosition(player.transform.position, out hit, 2, NavMesh.AllAreas))
-            {
-                NavMesh.CalculatePath(transform.position, hit.position, NavMesh.AllAreas, path);
-
-                AddToList();
-            }
-
-            yield return new WaitForSeconds(3);
-        }
+        Vector3 randomDirection = Random.insideUnitSphere * wanderRange;
+        randomDirection += transform.position;
+        return randomDirection;
     }
 
     // Update is called once per frame
     void Update()
     {
+        if(controller.m_state == RoombaState.PATROLING)
+        {
+            if (IsAtLastPoint() || waypoints.Count == 0)
+            {
+                SetWaypoints(GetRandomPoint(), 0.5f);
+            }
+        }
+        else if(controller.m_state == RoombaState.ATTACKING)
+        {
+            cooldown += Time.deltaTime;
+
+            if(cooldown > 1 || waypoints.Count == 0)
+            {
+                SetWaypoints(player.transform.position, 2f);
+                cooldown = 0;
+            }
+        }
+
+        
+
         m_agent.nextPosition = transform.position;
 
         if(controller.m_state != lastState)
         {
             if(controller.m_state == RoombaState.PATROLING)
             {
-                StopCoroutine("AttackState");
+                SetWaypoints(GetRandomPoint(), 0.5f);
                 lastState = controller.m_state;
-                StartCoroutine("PatrolState");
+ 
             }
             else if(controller.m_state == RoombaState.ATTACKING)
             {
-                StopCoroutine("PatrolState");
+                SetWaypoints(player.transform.position, 2f); 
                 lastState = controller.m_state;
-                StartCoroutine("AttackState");
-                completedPath = true;
             }
             else if(controller.m_state == RoombaState.ROTATING)
             {
                 waypoints.Clear();
                 lastState = controller.m_state;
-                StopCoroutine("PatrolState");
-                StopCoroutine("AttackState");
-                completedPath = true;
             }
         }
 
@@ -158,35 +188,17 @@ public class RoombaAIForce : ForceScript
 
             if (dist.magnitude < distanceToWaypoint)
             {
+
                 if (posIndex < waypoints.Count - 1)
                 {
                     posIndex++;
 
-                    direction = (waypoints[posIndex] - transform.position).normalized * 10;
+                    direction = (waypoints[posIndex] - transform.position).normalized * controller.m_speed;
                 }
                 else
                 {
-                    completedPath = true;
                     direction = Vector3.zero;
                 }
-            }
-        }
-
-        if (Input.GetMouseButtonDown(0))
-        {
-
-            //create a ray cast and set it to the mouses cursor position in game
-            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-            RaycastHit hit;
-            if (Physics.Raycast(ray, out hit))
-            {
-                //draw invisible ray cast/vector
-                Debug.DrawLine(ray.origin, hit.point);
-
-                NavMesh.CalculatePath(transform.position, hit.point, NavMesh.AllAreas, path);
-
-                AddToList();
-
             }
         }
     }

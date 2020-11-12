@@ -23,6 +23,8 @@ public class GravityCastScript : MonoBehaviour
     [Range(0.05f, 1)]
     private float capsuleCastRadius = 0.1f;
 
+    public LayerMask ignoreMask;
+
 
     public void AddWall(GameObject wall)
     {
@@ -47,10 +49,13 @@ public class GravityCastScript : MonoBehaviour
             if (Input.GetMouseButtonDown(0))
             {
 
-                if (Physics.SphereCast(transform.position, capsuleCastRadius, transform.forward, out RaycastHit hit))
+                if (Physics.SphereCast(transform.position, capsuleCastRadius, transform.forward, out RaycastHit hit, Mathf.Infinity, ~ignoreMask))
                 {
-
-                    hit.transform.GetComponent<Renderer>().material = highlightedWallMaterial;
+                    if(hit.transform.GetComponent<Renderer>() != null)
+                    {
+                        hit.transform.GetComponent<Renderer>().material = highlightedWallMaterial;
+                    }
+                    
 
                     foreach (GameObject go in levelWalls)
                     {
@@ -74,7 +79,7 @@ public class GravityCastScript : MonoBehaviour
 
             if (Input.GetMouseButtonDown(1))
             {
-                if (Physics.SphereCast(transform.position, capsuleCastRadius, transform.forward, out RaycastHit hit))
+                if (Physics.SphereCast(transform.position, capsuleCastRadius, transform.forward, out RaycastHit hit, Mathf.Infinity, ~ignoreMask))
                 {
                     if (hit.transform.CompareTag("GravityWall"))
                     {
@@ -85,7 +90,7 @@ public class GravityCastScript : MonoBehaviour
 
             if (Input.GetKeyDown(KeyCode.R))
             {
-                if (Physics.SphereCast(transform.position, capsuleCastRadius, transform.forward, out RaycastHit hit))
+                if (Physics.SphereCast(transform.position, capsuleCastRadius, transform.forward, out RaycastHit hit, Mathf.Infinity, ~ignoreMask))
                 {
                     if (hit.transform.GetComponent<GravityForce>() != null)
                     {
@@ -116,17 +121,17 @@ public class GravityCastScript : MonoBehaviour
             if (Input.GetKeyDown(KeyCode.F))
             {
 
-                if (Physics.SphereCast(transform.position, capsuleCastRadius, transform.forward, out RaycastHit hit))
+                if (Physics.SphereCast(transform.position, capsuleCastRadius, transform.forward, out RaycastHit hit, Mathf.Infinity, ~ignoreMask))
                 {
-                    if (hit.transform.GetComponent<GravityController>() != null)
+                    if (hit.transform.GetComponent<ForceController>() != null)
                     {
-                        if(!hit.transform.GetComponent<GravityController>().Frozen)
+                        if(!hit.transform.GetComponent<ForceController>().Frozen)
                         {
-                            hit.transform.GetComponent<GravityController>().FreezeConstraints(true);
+                            hit.transform.GetComponent<ForceController>().FreezeConstraints(true);
                         }
                         else
                         {
-                            hit.transform.GetComponent<GravityController>().FreezeConstraints(false);
+                            hit.transform.GetComponent<ForceController>().FreezeConstraints(false);
                         }                     
                     }
                 }

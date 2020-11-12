@@ -12,7 +12,7 @@ public enum RoombaState
 
 };
 
-public class RoombaMovement : MonoBehaviour
+public class RoombaController : MonoBehaviour
 {
     private Rigidbody m_rb = null;
 
@@ -32,9 +32,13 @@ public class RoombaMovement : MonoBehaviour
 
     private GameObject player;
 
-    
+    private float distToPlayer = 0f;
+
+    public float DistToPlayer { get { return distToPlayer; } }
 
     public RoombaState m_state = RoombaState.DEFAULT;
+
+    public float distanceToAttack = 20f;
 
 
     private void OnEnable()
@@ -63,21 +67,26 @@ public class RoombaMovement : MonoBehaviour
     void TurnOffAgent(Vector3 grav, bool changingTargeted)
     {
         m_agent.enabled = false;
+        m_rb.AddForce(transform.up * 2, ForceMode.Impulse);
     }
+
+
 
     // Update is called once per frame
     void Update()
     {
-
         float dot = Vector3.Dot(transform.up, player.transform.up);
 
         if (!rotating)
         {
             if (dot > 0.8f)
             {
-                if ((transform.position - player.transform.position).magnitude <= 10)
+                distToPlayer = (transform.position - player.transform.position).magnitude;
+
+                if (distToPlayer <= distanceToAttack)
                 {
                     m_state = RoombaState.ATTACKING;
+
                 }
                 else
                 {
@@ -90,7 +99,6 @@ public class RoombaMovement : MonoBehaviour
             }
         }
     }
-        
 
     private void FixedUpdate()
     {
@@ -121,12 +129,20 @@ public class RoombaMovement : MonoBehaviour
             targetRot = Quaternion.LookRotation(forward, -g);
             m_rb.MoveRotation(targetRot);
             rotating = false;
-            
+
         }
         else if (isGrounded)
         {
-            m_state = RoombaState.PATROLING;
+            right = Vector3.Cross(-g, m_rb.velocity);
+            forward = Vector3.Cross(right, -g);
+            if (forward != Vector3.zero)
+            {
+                targetRot = Quaternion.LookRotation(forward, -g);
+            }
+            m_rb.MoveRotation(Quaternion.RotateTowards(transform.rotation, targetRot, m_rotationSpeed));
+
             m_agent.enabled = true;
         }
+
     }
 }
