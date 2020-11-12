@@ -84,7 +84,7 @@ public class ExplodingBarrelScript : MonoBehaviour
 
         Instantiate(m_particles, transform.position, transform.rotation);
 
-        spawner.GetComponent<BarrelSpawn>().Explode();
+        //spawner.GetComponent<BarrelSpawn>().Explode();
         Destroy(gameObject);
     }
 }
