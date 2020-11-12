@@ -12,17 +12,17 @@ public enum RoombaState
 
 };
 
-public class RoombaMovement : MonoBehaviour
+public class RoombaController : MonoBehaviour
 {
     private Rigidbody m_rb = null;
 
     public float m_speed;
 
-    public bool isGrounded = false;
+    private bool isGrounded = false;
 
     public bool IsGrounded { get { return isGrounded; } }
 
-    public bool rotating = false;
+    private bool rotating = false;
 
     public bool Rotating { get { return rotating; } }
 
@@ -32,8 +32,9 @@ public class RoombaMovement : MonoBehaviour
 
     private GameObject player;
 
-    public float distToPlayer = 0f;
-    
+    private float distToPlayer = 0f;
+
+    public float DistToPlayer { get { return distToPlayer; } }
 
     public RoombaState m_state = RoombaState.DEFAULT;
 
@@ -128,7 +129,7 @@ public class RoombaMovement : MonoBehaviour
             targetRot = Quaternion.LookRotation(forward, -g);
             m_rb.MoveRotation(targetRot);
             rotating = false;
-            
+
         }
         else if (isGrounded)
         {

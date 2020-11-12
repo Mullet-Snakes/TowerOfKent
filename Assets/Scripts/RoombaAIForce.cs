@@ -15,29 +15,25 @@ public class RoombaAIForce : ForceScript
 
     public float distanceToWaypoint = 0.2f;
 
-    public List<Vector3> waypoints = new List<Vector3>();
+    private List<Vector3> waypoints = new List<Vector3>();
 
     private GameObject player;
-    private RoombaMovement controller;
+    private RoombaController controller;
 
-    public RoombaState lastState = RoombaState.DEFAULT;
-
-    public bool completedPath = true;
+    private RoombaState lastState = RoombaState.DEFAULT;
 
     public float wanderRange = 30f;
 
     public float attackTargetCooldown = 3f;
     public float patrolTargetCooldown = 1f;
 
-    public GameObject taar;
-
-    public float cooldown = 0f;
+    private float cooldown = 0f;
 
 
 
     private void Awake()
     {
-        controller = GetComponent<RoombaMovement>();
+        controller = GetComponent<RoombaController>();
         player = GameObject.FindWithTag("Player");
         m_rb = GetComponent<Rigidbody>();
         m_agent = GetComponent<NavMeshAgent>();
@@ -59,7 +55,7 @@ public class RoombaAIForce : ForceScript
         {
             if(m_agent.isOnNavMesh)
             {
-                if(controller.distToPlayer > 5)
+                if(controller.DistToPlayer > 5)
                 {
                     return direction - m_rb.velocity;
                 }
@@ -128,8 +124,6 @@ public class RoombaAIForce : ForceScript
         {
             NavMesh.CalculatePath(transform.position, hit.position, NavMesh.AllAreas, path);
 
-            taar.transform.position = hit.position;
-
             AddToList();
         }
     }
@@ -170,14 +164,12 @@ public class RoombaAIForce : ForceScript
         {
             if(controller.m_state == RoombaState.PATROLING)
             {
-                print("should get patrol");
                 SetWaypoints(GetRandomPoint(), 0.5f);
                 lastState = controller.m_state;
  
             }
             else if(controller.m_state == RoombaState.ATTACKING)
             {
-                print("should get attack");
                 SetWaypoints(player.transform.position, 2f); 
                 lastState = controller.m_state;
             }
@@ -201,7 +193,7 @@ public class RoombaAIForce : ForceScript
                 {
                     posIndex++;
 
-                    direction = (waypoints[posIndex] - transform.position).normalized * 10;
+                    direction = (waypoints[posIndex] - transform.position).normalized * controller.m_speed;
                 }
                 else
                 {
