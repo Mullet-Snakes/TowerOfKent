@@ -178,7 +178,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &19987810
 RectTransform:
   m_ObjectHideFlags: 0
@@ -4971,7 +4971,7 @@ MonoBehaviour:
   gravplayertut: {fileID: 322286807}
   pressuretut: {fileID: 1049248697}
   buttontut: {fileID: 1664126065}
-  textbox: {fileID: 0}
+  textbox: {fileID: 19987809}
 --- !u!65 &724871330
 BoxCollider:
   m_ObjectHideFlags: 0
