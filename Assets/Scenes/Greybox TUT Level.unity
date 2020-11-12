@@ -6422,6 +6422,25 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_shader: {fileID: 0}
   m_material: {fileID: 0}
+--- !u!1 &973542070 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5670526785880367428, guid: e58ae6a885421b645ac214b06bffbef4,
+    type: 3}
+  m_PrefabInstance: {fileID: 1466596103}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &973542072
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 973542070}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 13f08e5b31bc87e43b607757ff4076a8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CrossHairUI: {fileID: 1093781154}
 --- !u!1 &973633675
 GameObject:
   m_ObjectHideFlags: 0
@@ -7165,6 +7184,12 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: -2735661160803206836, guid: f0d832adf3a1f9841849cab769d93235, type: 3}
+--- !u!1 &1093781154 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6940898992200839596, guid: e58ae6a885421b645ac214b06bffbef4,
+    type: 3}
+  m_PrefabInstance: {fileID: 1466596103}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1094808123 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 5801057428453377668, guid: e58ae6a885421b645ac214b06bffbef4,
@@ -9674,6 +9699,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 864172996309237687, guid: e58ae6a885421b645ac214b06bffbef4,
+        type: 3}
+      propertyPath: m_PreserveAspect
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1715566094866830648, guid: e58ae6a885421b645ac214b06bffbef4,
         type: 3}
       propertyPath: m_AnchorMax.y
@@ -14097,7 +14127,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1847539855
 MonoBehaviour:
   m_ObjectHideFlags: 0

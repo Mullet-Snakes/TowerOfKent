@@ -14,4 +14,14 @@ public static class Utilities
         }
     
     }
+
+    public static void UnloadScene(string sceneName)
+    {
+        Scene temp = SceneManager.GetSceneByName(sceneName);
+
+        if(temp != null)
+        {
+            SceneManager.UnloadSceneAsync(sceneName);
+        }
+    }
 }
