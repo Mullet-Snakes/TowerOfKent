@@ -1168,7 +1168,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   itemToSpawn: {fileID: 1503286478}
-  currentObject: {fileID: 0}
 --- !u!4 &1625501811
 Transform:
   m_ObjectHideFlags: 0
