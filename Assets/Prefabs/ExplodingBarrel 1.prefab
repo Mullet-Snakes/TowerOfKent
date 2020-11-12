@@ -12,9 +12,10 @@ GameObject:
   - component: {fileID: 4658005263885925545}
   - component: {fileID: 4658005263885925550}
   - component: {fileID: 4658005263885925551}
-  - component: {fileID: 4658005263885925548}
   - component: {fileID: 4658005263885925547}
   - component: {fileID: 4658005263885925546}
+  - component: {fileID: -2295227644246454734}
+  - component: {fileID: -2131683230410953589}
   m_Layer: 0
   m_Name: ExplodingBarrel 1
   m_TagString: Untagged
@@ -98,21 +99,6 @@ CapsuleCollider:
   m_Height: 2
   m_Direction: 1
   m_Center: {x: 0.000000059604645, y: 0, z: -0.00000008940697}
---- !u!114 &4658005263885925548
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4658005263885925549}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bd4150203bfc3a445a3dfed2a84478af, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  highlighed: {fileID: 2100000, guid: d58bdd8803e3a7f41bd18237f5473a9b, type: 2}
-  normal: {fileID: 2100000, guid: 640b96e506330ce43912b9250440a812, type: 2}
-  gravityFactor: -9.8
 --- !u!54 &4658005263885925547
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -147,6 +133,35 @@ MonoBehaviour:
   upExplosionModifier: 5
   m_particles: {fileID: 1693942617144515328, guid: 0acca00f9a702bb43b271c90aa447376,
     type: 3}
+--- !u!114 &-2295227644246454734
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4658005263885925549}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e4d3b5675e2fefb459806436ef8bf012, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_forceList:
+  - {fileID: -2131683230410953589}
+--- !u!114 &-2131683230410953589
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4658005263885925549}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4903fc12507c3243a65363e487bb01f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  highlighed: {fileID: 2100000, guid: d3bc2426f570b5d4e9aa9748f15806c5, type: 2}
+  normal: {fileID: 2100000, guid: 676cf4217aa9d8b4ba63ded1d76ba1d9, type: 2}
+  gravityFactor: -9.8
 --- !u!1001 &8212569560298646611
 PrefabInstance:
   m_ObjectHideFlags: 0

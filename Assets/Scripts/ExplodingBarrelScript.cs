@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class ExplodingBarrelScript : MonoBehaviour
 {
-    public GameObject spawner;
     private Rigidbody m_rb = null;
     private Vector3 lastVel = new Vector3();
 
@@ -70,8 +69,6 @@ public class ExplodingBarrelScript : MonoBehaviour
 
     private void ExplodeBarrel()
     {
-        spawner.GetComponent<BarrelSpawn>().NewBarrel(spawner.transform.position, spawner.transform.rotation);
-
 
         Collider[] hitColliders = Physics.OverlapSphere(transform.position, explosionRadius);
 
@@ -85,8 +82,6 @@ public class ExplodingBarrelScript : MonoBehaviour
         }
 
         Instantiate(m_particles, transform.position, transform.rotation);
-
-        
 
         Destroy(gameObject);
     }
