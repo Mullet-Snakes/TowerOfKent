@@ -4,14 +4,14 @@ using UnityEngine;
 
 public class LoadSceneCollider : MonoBehaviour
 {
-    public bool completed = false;
+    private bool completed = false;
     public string levelName = "";
-    public bool load = false;
+    public bool trueIfWantingToLoad = false;
 
     private void OnTriggerEnter(Collider other)
     {
         print("hittig");
-        if(load)
+        if(trueIfWantingToLoad)
         {
             if (other.gameObject.CompareTag("Player"))
             {
