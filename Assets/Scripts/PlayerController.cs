@@ -99,6 +99,8 @@ public class PlayerController : MonoBehaviour
 
     private void Awake()
     {
+        DontDestroyOnLoad(gameObject);
+
         Physics.gravity = Vector3.zero;
 
         m_rb = GetComponent<Rigidbody>();
