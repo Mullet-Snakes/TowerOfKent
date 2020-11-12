@@ -4,8 +4,22 @@ using UnityEngine;
 
 public class ExplodingBarrelScript : MonoBehaviour
 {
+    public GameObject spawner;
     private Rigidbody m_rb = null;
     private Vector3 lastVel = new Vector3();
+
+    private bool isExplodable = true;
+    public bool IsExplodable
+    {
+        get
+        {
+            return isExplodable;
+        }
+        set
+        {
+            isExplodable = value;
+        }
+    }
 
     [SerializeField]
     [Tooltip("Default: 10")]
@@ -45,7 +59,7 @@ public class ExplodingBarrelScript : MonoBehaviour
     {
         if (lastVel != Vector3.zero)
         {
-            if (Vector3.Magnitude(lastVel - m_rb.velocity) > triggerSpeed)
+            if (Vector3.Magnitude(lastVel - m_rb.velocity) > triggerSpeed && isExplodable)
             {
                 ExplodeBarrel();
             }
@@ -70,6 +84,7 @@ public class ExplodingBarrelScript : MonoBehaviour
 
         Instantiate(m_particles, transform.position, transform.rotation);
 
+        spawner.GetComponent<BarrelSpawn>().Explode();
         Destroy(gameObject);
     }
 }
