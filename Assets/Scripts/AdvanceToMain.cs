@@ -34,6 +34,11 @@ public class AdvanceToMain : MonoBehaviour
         StartCoroutine(LoadTutorial());
     }
 
+    public void ExitToMain()
+    {
+        StartCoroutine(ExitMain());
+    }
+
     IEnumerator LoadMenu(int levelIndex)
     {
         //Play Animation
@@ -56,5 +61,12 @@ public class AdvanceToMain : MonoBehaviour
 
         //Load Scene
         SceneManager.LoadScene("Greybox TUT Level");
+    }
+
+    IEnumerator ExitMain()
+    {
+        transition.SetTrigger("Start");
+        yield return new WaitForSeconds(transitionTime);
+        SceneManager.LoadScene("MainMenu");
     }
 }
