@@ -983,7 +983,7 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 339054877}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
---- !u!1001 &387201460
+--- !u!1001 &402060056
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -998,7 +998,7 @@ PrefabInstance:
     - target: {fileID: 5900177053971983798, guid: d2ecbdf3d740ece4aa93fb6c3de1c9cd,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 21.431225
+      value: 23.283499
       objectReference: {fileID: 0}
     - target: {fileID: 5900177053971983798, guid: d2ecbdf3d740ece4aa93fb6c3de1c9cd,
         type: 3}
@@ -1008,7 +1008,7 @@ PrefabInstance:
     - target: {fileID: 5900177053971983798, guid: d2ecbdf3d740ece4aa93fb6c3de1c9cd,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 94.75102
+      value: 89.10202
       objectReference: {fileID: 0}
     - target: {fileID: 5900177053971983798, guid: d2ecbdf3d740ece4aa93fb6c3de1c9cd,
         type: 3}
@@ -2600,12 +2600,12 @@ PrefabInstance:
     - target: {fileID: 5197182676738455018, guid: eafe0ab0eda17734890d64882e3cc791,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -170.31105
+      value: -176.41
       objectReference: {fileID: 0}
     - target: {fileID: 5197182676738455018, guid: eafe0ab0eda17734890d64882e3cc791,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 105.07261
+      value: 108.81
       objectReference: {fileID: 0}
     - target: {fileID: 5197182676738455018, guid: eafe0ab0eda17734890d64882e3cc791,
         type: 3}
@@ -2652,10 +2652,30 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5197182676738455018, guid: eafe0ab0eda17734890d64882e3cc791,
+        type: 3}
+      propertyPath: m_LocalScale.x
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5197182676738455018, guid: eafe0ab0eda17734890d64882e3cc791,
+        type: 3}
+      propertyPath: m_LocalScale.z
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5197182676738455018, guid: eafe0ab0eda17734890d64882e3cc791,
+        type: 3}
+      propertyPath: m_LocalScale.y
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 6521990555024732674, guid: eafe0ab0eda17734890d64882e3cc791,
         type: 3}
       propertyPath: m_Name
       value: GEESphere
+      objectReference: {fileID: 0}
+    - target: {fileID: 6521990555024732674, guid: eafe0ab0eda17734890d64882e3cc791,
+        type: 3}
+      propertyPath: m_TagString
+      value: LevelProp
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: eafe0ab0eda17734890d64882e3cc791, type: 3}
@@ -4809,7 +4829,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &2120894993
 Transform:
   m_ObjectHideFlags: 0
