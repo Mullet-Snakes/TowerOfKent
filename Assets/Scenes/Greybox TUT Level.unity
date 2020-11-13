@@ -172,7 +172,7 @@ GameObject:
   - component: {fileID: 19987810}
   - component: {fileID: 19987812}
   - component: {fileID: 19987811}
-  m_Layer: 9
+  m_Layer: 5
   m_Name: Textbox
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -203,7 +203,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 960, y: 540}
+  m_SizeDelta: {x: 640, y: 360}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &19987811
 MonoBehaviour:
@@ -223,7 +223,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: af1eb4d818e142641a17f8da12dbeb5e, type: 3}
+  m_Sprite: {fileID: 21300000, guid: a77b966a3082c2240a9a8b8a5e778e0c, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -790,7 +790,7 @@ GameObject:
   m_Component:
   - component: {fileID: 94240200}
   - component: {fileID: 94240202}
-  m_Layer: 9
+  m_Layer: 0
   m_Name: WASDTUT
   m_TagString: wasdtut
   m_Icon: {fileID: 0}
@@ -2418,7 +2418,7 @@ GameObject:
   - component: {fileID: 322286808}
   - component: {fileID: 322286810}
   - component: {fileID: 322286809}
-  m_Layer: 9
+  m_Layer: 5
   m_Name: gravplaytut
   m_TagString: gravplaytut
   m_Icon: {fileID: 0}
@@ -2606,6 +2606,21 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5404718545584848212, guid: 1554629fb409a854a8e063c73ae24970,
+        type: 3}
+      propertyPath: wasdtut
+      value: 
+      objectReference: {fileID: 1154485837}
+    - target: {fileID: 5404718545584848212, guid: 1554629fb409a854a8e063c73ae24970,
+        type: 3}
+      propertyPath: keytut
+      value: 
+      objectReference: {fileID: 1635027582}
+    - target: {fileID: 5404718545584848212, guid: 1554629fb409a854a8e063c73ae24970,
+        type: 3}
+      propertyPath: doortut
+      value: 
+      objectReference: {fileID: 1984428123}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1554629fb409a854a8e063c73ae24970, type: 3}
 --- !u!1 &361965289 stripped
@@ -6919,7 +6934,7 @@ GameObject:
   - component: {fileID: 1049248698}
   - component: {fileID: 1049248700}
   - component: {fileID: 1049248699}
-  m_Layer: 9
+  m_Layer: 5
   m_Name: presstut
   m_TagString: gravplaytut
   m_Icon: {fileID: 0}
@@ -7525,7 +7540,7 @@ GameObject:
   - component: {fileID: 1154485838}
   - component: {fileID: 1154485840}
   - component: {fileID: 1154485839}
-  m_Layer: 9
+  m_Layer: 5
   m_Name: wasdtut
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -9014,6 +9029,45 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1406496328 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3934869719439491934, guid: 1554629fb409a854a8e063c73ae24970,
+    type: 3}
+  m_PrefabInstance: {fileID: 351772043}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1406496329
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1406496328}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4477add509ac0ac428dfc4ec586107fc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  wasdtut: {fileID: 1154485837}
+  keytut: {fileID: 1635027582}
+  doortut: {fileID: 1984428123}
+  gravobjtut: {fileID: 1524349744}
+  gravplayertut: {fileID: 322286807}
+  pressuretut: {fileID: 1049248697}
+  buttontut: {fileID: 1664126065}
+  textbox: {fileID: 19987809}
+--- !u!65 &1406496334
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1406496328}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.5, y: 1, z: 0.5}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &1409515340 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: -3689004138572060880, guid: f0d832adf3a1f9841849cab769d93235,
@@ -9928,7 +9982,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1510785168}
   - component: {fileID: 1510785169}
-  m_Layer: 9
+  m_Layer: 0
   m_Name: KEYTUT
   m_TagString: keytut
   m_Icon: {fileID: 0}
@@ -10121,7 +10175,7 @@ GameObject:
   - component: {fileID: 1524349745}
   - component: {fileID: 1524349747}
   - component: {fileID: 1524349746}
-  m_Layer: 9
+  m_Layer: 5
   m_Name: objtut
   m_TagString: gravobjtut
   m_Icon: {fileID: 0}
@@ -12816,7 +12870,7 @@ GameObject:
   - component: {fileID: 1635027583}
   - component: {fileID: 1635027585}
   - component: {fileID: 1635027584}
-  m_Layer: 9
+  m_Layer: 5
   m_Name: keytut
   m_TagString: keytut
   m_Icon: {fileID: 0}
@@ -12935,7 +12989,7 @@ GameObject:
   - component: {fileID: 1664126066}
   - component: {fileID: 1664126068}
   - component: {fileID: 1664126067}
-  m_Layer: 9
+  m_Layer: 5
   m_Name: buttontut
   m_TagString: buttontut
   m_Icon: {fileID: 0}
@@ -15148,7 +15202,7 @@ GameObject:
   - component: {fileID: 1984428124}
   - component: {fileID: 1984428126}
   - component: {fileID: 1984428125}
-  m_Layer: 9
+  m_Layer: 5
   m_Name: doortut
   m_TagString: doortut
   m_Icon: {fileID: 0}

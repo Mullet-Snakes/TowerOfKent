@@ -222,7 +222,7 @@ GameObject:
   - component: {fileID: 3934869719453464550}
   - component: {fileID: 3934869719453464551}
   - component: {fileID: 3934869719453464545}
-  - component: {fileID: -4556218696591136539}
+  - component: {fileID: 5404718545584848212}
   m_Layer: 0
   m_Name: Player no debugg
   m_TagString: Player
@@ -286,7 +286,7 @@ MonoBehaviour:
   normalFOV: 60
   dashingFOV: 70
   timeToChangeFOV: 0.25
---- !u!114 &-4556218696591136539
+--- !u!114 &5404718545584848212
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
