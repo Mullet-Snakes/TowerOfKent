@@ -6,8 +6,8 @@ public class GravityCastScript : MonoBehaviour
 {
     private PlayerController playerControllerScript = null;
 
-    [Tooltip("List of walls")]
-    public List<GameObject> levelWalls;
+    //[Tooltip("List of walls")]
+    //public List<GameObject> levelWalls;
 
 
     [Tooltip("Highlighted wall material")]
@@ -28,7 +28,7 @@ public class GravityCastScript : MonoBehaviour
 
     public void AddWall(GameObject wall)
     {
-        levelWalls.Add(wall);
+        //levelWalls.Add(wall);
     }
 
 
@@ -53,10 +53,10 @@ public class GravityCastScript : MonoBehaviour
                 {
                     if(hit.transform.GetComponent<Renderer>() != null)
                     {
-                        hit.transform.GetComponent<Renderer>().material = highlightedWallMaterial;
+                        //hit.transform.GetComponent<Renderer>().material = highlightedWallMaterial;
                     }
                     
-
+                    /*
                     foreach (GameObject go in levelWalls)
                     {
                         if (go != hit.transform.gameObject)
@@ -69,6 +69,7 @@ public class GravityCastScript : MonoBehaviour
                            
                         }
                     }
+                    */
 
                     if (hit.transform.CompareTag("GravityWall"))
                     {

@@ -4,22 +4,40 @@ using UnityEngine;
 
 public class LoadSceneCollider : MonoBehaviour
 {
-    public bool loaded = false;
+    private bool completed = false;
     public string levelName = "";
+    public bool trueIfWantingToLoad = false;
 
     private void OnTriggerEnter(Collider other)
     {
         print("hittig");
-        if (other.gameObject.CompareTag("Player"))
+        if(trueIfWantingToLoad)
         {
-            if (!loaded)
+            if (other.gameObject.CompareTag("Player"))
             {
-                print("load");
-                Utilities.LoadScene(levelName);
-            }
+                if (!completed)
+                {
+                    print("load");
+                    Utilities.LoadScene(levelName);
+                }
 
-            loaded = true;
-        }      
+                completed = true;
+            }
+        }
+        else
+        {
+            if (other.gameObject.CompareTag("Player"))
+            {
+                if (!completed)
+                {
+                    print("delete");
+                    Utilities.UnloadScene(levelName);
+                }
+
+                completed = true;
+            }
+        }
+        
     }
 
     // Start is called before the first frame update
