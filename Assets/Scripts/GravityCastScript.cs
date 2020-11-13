@@ -53,7 +53,7 @@ public class GravityCastScript : MonoBehaviour
                 {
                     if(hit.transform.GetComponent<Renderer>() != null)
                     {
-                        hit.transform.GetComponent<Renderer>().material = highlightedWallMaterial;
+                        //hit.transform.GetComponent<Renderer>().material = highlightedWallMaterial;
                     }
                     
                     /*
