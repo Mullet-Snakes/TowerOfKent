@@ -8746,11 +8746,21 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1606604391}
     m_Modifications:
+    - target: {fileID: 8197095603853313205, guid: 6649991dde669cf489f139e098fa261e,
+        type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 8197095603853313210, guid: 6649991dde669cf489f139e098fa261e,
         type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: 502077eb040153b4e82bae6ce8bd7008, type: 2}
+    - target: {fileID: 8197095604029690738, guid: 6649991dde669cf489f139e098fa261e,
+        type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 8197095604029690743, guid: 6649991dde669cf489f139e098fa261e,
         type: 3}
       propertyPath: m_Materials.Array.data[0]
