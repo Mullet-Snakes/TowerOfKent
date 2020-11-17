@@ -5,7 +5,7 @@ using UnityEngine;
 public class GravityForce : ForceScript
 {
 
-    private bool isTargeted = false;
+    public bool isTargeted = false;
 
     public bool IsTargeted
     {

@@ -405,6 +405,11 @@ PrefabInstance:
       propertyPath: levelName.Array.data[0]
       value: Room1
       objectReference: {fileID: 0}
+    - target: {fileID: 1167180296443324100, guid: 482cd35b96dcd474b9ffbfd6c68fc120,
+        type: 3}
+      propertyPath: trueIfWantingToLoad
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1167180296443324102, guid: 482cd35b96dcd474b9ffbfd6c68fc120,
         type: 3}
       propertyPath: m_LocalPosition.x

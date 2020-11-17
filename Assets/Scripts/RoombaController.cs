@@ -133,12 +133,12 @@ public class RoombaController : MonoBehaviour
         }
         else if (isGrounded)
         {
-            right = Vector3.Cross(-g, m_rb.velocity);
-            forward = Vector3.Cross(right, -g);
-            if (forward != Vector3.zero)
-            {
-                targetRot = Quaternion.LookRotation(forward, -g);
-            }
+            //right = Vector3.Cross(-g, m_rb.velocity);
+            //forward = Vector3.Cross(right, -g);
+            //if (forward != Vector3.zero)
+            //{
+                targetRot = Quaternion.LookRotation(m_rb.velocity, -g);
+            //}
             m_rb.MoveRotation(Quaternion.RotateTowards(transform.rotation, targetRot, m_rotationSpeed));
 
             m_agent.enabled = true;
