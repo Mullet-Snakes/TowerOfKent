@@ -21,11 +21,11 @@ public static class GravityManager
         }
     }
 
-    private static void NewGrav()
+    private static void NewGrav(Vector3 grav, bool changingTargeted)
     {
         foreach (GravityForce g in currentGravityList)
         {
-            g.SetCurrentGravity(worldGravity, false);
+            g.SetCurrentGravity(grav, changingTargeted);
         }
     }
 
@@ -37,7 +37,15 @@ public static class GravityManager
     public static void ChangeGrav(Vector3 worldGrav, bool changingTargeted)
     {
         worldGravity = worldGrav;
-        NewGrav();
+        if(changingTargeted)
+        {
+            NewGrav(worldGrav, true);
+        }
+        else
+        {
+            NewGrav(worldGrav, false);
+        }
+        
         //GravityChange?.Invoke(worldGrav, changingTargeted);
     }
 }
