@@ -40,6 +40,11 @@ public class PlayerController : MonoBehaviour
 
     private Vector3 targetVelocity = new Vector3();
 
+    public Vector3 spawnPosition = new Vector3();
+
+    public Vector3 SpawnPosition { set { spawnPosition = value; } }
+
+
     [Tooltip("Default: 3")]
     [Range(1, 1000)]
     public float m_jumpSpeed = 3;
@@ -121,6 +126,11 @@ public class PlayerController : MonoBehaviour
 
     private void Update()
     {
+
+        if(Input.GetKeyDown(KeyCode.C))
+        {
+            OnDeath();
+        }
 
         if (allowLookScript)
         {
@@ -233,5 +243,10 @@ public class PlayerController : MonoBehaviour
             yield return null;
         }
         cameraMoving = false;
+    }
+
+    public void OnDeath()
+    {
+        transform.position = spawnPosition;
     }
 }

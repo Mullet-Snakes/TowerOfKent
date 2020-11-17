@@ -46,7 +46,7 @@ public class GravityCastScript : MonoBehaviour
         if (!PauseMenu.GameIsPaused)
         {
 
-            if (Input.GetMouseButtonDown(0))
+            if (Input.GetKeyDown(KeyCode.X))
             {
 
                 if (Physics.SphereCast(transform.position, capsuleCastRadius, transform.forward, out RaycastHit hit, Mathf.Infinity, ~ignoreMask))

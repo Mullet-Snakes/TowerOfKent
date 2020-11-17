@@ -15,7 +15,7 @@ public class GravityColliderController : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.tag == "Player")
+        if (other.gameObject.CompareTag("Player"))
         {
             print("hello");
             GravityManager.AddToGravityList(m_collider.transform.position, m_collider.size, m_collider.transform.rotation, layer);
@@ -24,6 +24,7 @@ public class GravityColliderController : MonoBehaviour
 
     private void OnTriggerExit(Collider other)
     {
+        print("goodbye");
         GravityManager.ClearCurrentList();
     }
 

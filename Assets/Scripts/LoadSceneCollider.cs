@@ -10,7 +10,6 @@ public class LoadSceneCollider : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        print("hittig");
         if(trueIfWantingToLoad)
         {
             if (other.gameObject.CompareTag("Player"))
@@ -34,8 +33,7 @@ public class LoadSceneCollider : MonoBehaviour
             if (other.gameObject.CompareTag("Player"))
             {
                 if (!completed)
-                {
-                    print("delete");
+                { 
 
                     foreach (string levelName in levelName)
                     {
