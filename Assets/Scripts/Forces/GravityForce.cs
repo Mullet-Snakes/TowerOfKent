@@ -56,7 +56,7 @@ public class GravityForce : ForceScript
 
 
 
-    void SetCurrentGravity(Vector3 grav, bool changingTargeted)
+    public void SetCurrentGravity(Vector3 grav, bool changingTargeted)
     {
 
         if (changingTargeted)
@@ -78,7 +78,7 @@ public class GravityForce : ForceScript
     // Start is called before the first frame update
     void Start()
     {
-        force = GravityManager.worldGravity;
+        force = transform.up * gravityFactor;
     }
 
     // Update is called once per frame

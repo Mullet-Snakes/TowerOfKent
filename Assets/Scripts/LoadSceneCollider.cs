@@ -5,7 +5,7 @@ using UnityEngine;
 public class LoadSceneCollider : MonoBehaviour
 {
     private bool completed = false;
-    public string levelName = "";
+    public List <string> levelName = new List<string>();
     public bool trueIfWantingToLoad = false;
 
     private void OnTriggerEnter(Collider other)
@@ -18,7 +18,12 @@ public class LoadSceneCollider : MonoBehaviour
                 if (!completed)
                 {
                     print("load");
-                    Utilities.LoadScene(levelName);
+
+                    foreach(string levelName in levelName)
+                    {
+                        Utilities.LoadScene(levelName);
+                    }
+                    
                 }
 
                 completed = true;
@@ -31,7 +36,12 @@ public class LoadSceneCollider : MonoBehaviour
                 if (!completed)
                 {
                     print("delete");
-                    Utilities.UnloadScene(levelName);
+
+                    foreach (string levelName in levelName)
+                    {
+                        Utilities.UnloadScene(levelName);
+                    }
+                    
                 }
 
                 completed = true;
