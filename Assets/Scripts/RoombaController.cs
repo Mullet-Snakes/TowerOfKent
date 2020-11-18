@@ -41,7 +41,7 @@ public class RoombaController : MonoBehaviour
     public float distanceToAttack = 20f;
 
 
-    float delay = 0f;
+    public float delay = 0f;
 
     private void OnEnable()
     {
@@ -135,9 +135,13 @@ public class RoombaController : MonoBehaviour
         }
         else if (isGrounded)
         {
-            delay += Time.deltaTime;
+            if(m_agent.enabled == false)
+            {
+                delay += Time.deltaTime;
+            }
+            
 
-            if(delay > 0.25f)
+            if(delay > 1f & m_agent.enabled == false)
             {
                 m_agent.enabled = true;
                 delay = 0f;
