@@ -41,6 +41,8 @@ public class RoombaController : MonoBehaviour
     public float distanceToAttack = 20f;
 
 
+    float delay = 0f;
+
     private void OnEnable()
     {
         GravityManager.GravityChange += TurnOffAgent;
@@ -133,15 +135,14 @@ public class RoombaController : MonoBehaviour
         }
         else if (isGrounded)
         {
-            //right = Vector3.Cross(-g, m_rb.velocity);
-            //forward = Vector3.Cross(right, -g);
-            //if (forward != Vector3.zero)
-            //{
-                targetRot = Quaternion.LookRotation(m_rb.velocity, -g);
-            //}
-            m_rb.MoveRotation(Quaternion.RotateTowards(transform.rotation, targetRot, m_rotationSpeed));
+            delay += Time.deltaTime;
 
-            m_agent.enabled = true;
+            if(delay > 0.25f)
+            {
+                m_agent.enabled = true;
+                delay = 0f;
+            }
+            
         }
 
     }
