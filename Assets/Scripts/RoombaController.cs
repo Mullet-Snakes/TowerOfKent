@@ -41,7 +41,7 @@ public class RoombaController : MonoBehaviour
     public float distanceToAttack = 20f;
 
 
-    public float delay = 0f;
+    private float delay = 0f;
 
     private void OnEnable()
     {
