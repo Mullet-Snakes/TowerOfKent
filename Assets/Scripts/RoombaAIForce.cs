@@ -29,6 +29,8 @@ public class RoombaAIForce : ForceScript
 
     private float cooldown = 0f;
 
+    private float height = 0f;
+
 
 
     private void Awake()
@@ -42,6 +44,7 @@ public class RoombaAIForce : ForceScript
     // Start is called before the first frame update
     void Start()
     {
+        height = player.transform.GetComponentInChildren<CapsuleCollider>().height / 2;
         path = m_agent.path;
         m_agent.updatePosition = false;
         m_agent.updateRotation = false;
@@ -138,27 +141,42 @@ public class RoombaAIForce : ForceScript
     // Update is called once per frame
     void Update()
     {
-        if(controller.m_state == RoombaState.PATROLING)
+        if (controller.m_state == RoombaState.PATROLING)
         {
             if (IsAtLastPoint() || waypoints.Count == 0)
             {
                 SetWaypoints(GetRandomPoint(), 0.5f);
             }
+
+            if (waypoints.Count > 0)
+            {
+                controller.Target = (waypoints[posIndex] - transform.position).normalized;
+            }
+
+
+
         }
-        else if(controller.m_state == RoombaState.ATTACKING)
+        else if (controller.m_state == RoombaState.ATTACKING)
         {
             cooldown += Time.deltaTime;
 
-            if(cooldown > 1 || waypoints.Count == 0)
+            if (cooldown > 1 || waypoints.Count == 0)
             {
                 SetWaypoints(player.transform.position, 2f);
                 cooldown = 0;
             }
+
+            controller.Target = -(transform.position + transform.up * height - player.transform.position).normalized;
         }
 
-        
+        else if (controller.m_state == RoombaState.ROTATING)
+        {
+            controller.Target = transform.forward;
+        }
 
-        m_agent.nextPosition = transform.position;
+
+
+            m_agent.nextPosition = transform.position;
 
         if(controller.m_state != lastState)
         {

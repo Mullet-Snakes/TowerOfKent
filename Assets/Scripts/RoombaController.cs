@@ -40,6 +40,12 @@ public class RoombaController : MonoBehaviour
 
     public float distanceToAttack = 20f;
 
+    private Vector3 target = new Vector3();
+
+    public Vector3 Target { set{ target = value; } }
+
+    private Transform body = null;
+
 
     private float delay = 0f;
 
@@ -56,6 +62,7 @@ public class RoombaController : MonoBehaviour
 
     private void Awake()
     {
+        body = transform.GetChild(0);
         player = GameObject.FindGameObjectWithTag("Player");
         m_rb = GetComponent<Rigidbody>();
         m_agent = GetComponent<NavMeshAgent>();
@@ -72,11 +79,17 @@ public class RoombaController : MonoBehaviour
         m_rb.AddForce(transform.up * 2, ForceMode.Impulse);
     }
 
+    private void OnDrawGizmos()
+    {
+        //Gizmos.DrawLine(transform.position + transform.up * player.transform.GetComponentInChildren<CapsuleCollider>().height / 2, player.transform.position);
+    }
+
 
 
     // Update is called once per frame
     void Update()
     {
+
         float dot = Vector3.Dot(transform.up, player.transform.up);
 
         if (!rotating)
@@ -146,7 +159,9 @@ public class RoombaController : MonoBehaviour
                 m_agent.enabled = true;
                 delay = 0f;
             }
-            
+
+            targetRot = Quaternion.LookRotation(target, -g);
+            body.rotation = targetRot;
         }
 
     }
