@@ -40,10 +40,19 @@ public class PlayerController : MonoBehaviour
 
     private Vector3 targetVelocity = new Vector3();
 
-    public Vector3 spawnPosition = new Vector3();
+    private Vector3 spawnPosition = new Vector3();
 
     public Vector3 SpawnPosition { set { spawnPosition = value; } }
 
+    public Animator m_animator = null;
+
+    private float animationTime = 0f;
+
+    [Tooltip("Default: 200")]
+    [Range(1, 400)]
+    public float animationDuration = 200f;
+
+    private float playerSpeed = 0f;
 
     [Tooltip("Default: 3")]
     [Range(1, 1000)]
@@ -127,6 +136,15 @@ public class PlayerController : MonoBehaviour
     private void Update()
     {
 
+        playerSpeed = Mathf.Lerp(playerSpeed, m_rb.velocity.magnitude, animationTime);
+
+        if (animationTime <= 1)
+        {
+            animationTime += Time.deltaTime / animationDuration;
+        }
+
+        m_animator.SetFloat("Speed", playerSpeed);
+
         if(Input.GetKeyDown(KeyCode.C))
         {
             OnDeath();
@@ -144,6 +162,7 @@ public class PlayerController : MonoBehaviour
 
         m_input = (transform.right * x + transform.forward * z).normalized;
 
+
         if (Input.GetButtonDown("Jump") && isGrounded)
         {
             m_rb.AddForce(-m_jumpSpeed * m_gravity.normalized, ForceMode.Impulse);
@@ -151,7 +170,7 @@ public class PlayerController : MonoBehaviour
 
         if (Input.GetButton("Shift") && isGrounded && m_input != Vector3.zero)
         {
-            dashing = true;         
+            dashing = true;            
         }
 
         if(dashing && !cameraMoving)
@@ -170,6 +189,8 @@ public class PlayerController : MonoBehaviour
         isGrounded = Physics.Raycast(transform.position, -transform.up, out RaycastHit hit, 1.03f, groundMask);
 
         targetVelocity = m_rb.velocity;
+
+        print(m_rb.velocity.magnitude);
 
         if (isGrounded && !rotating)
         {

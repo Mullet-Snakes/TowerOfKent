@@ -1631,7 +1631,22 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1167180296443324100, guid: 482cd35b96dcd474b9ffbfd6c68fc120,
         type: 3}
+      propertyPath: levelName.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1167180296443324100, guid: 482cd35b96dcd474b9ffbfd6c68fc120,
+        type: 3}
       propertyPath: levelName
+      value: Greybox Tut Plates and buttons pt 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1167180296443324100, guid: 482cd35b96dcd474b9ffbfd6c68fc120,
+        type: 3}
+      propertyPath: trueIfWantingToLoad
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1167180296443324100, guid: 482cd35b96dcd474b9ffbfd6c68fc120,
+        type: 3}
+      propertyPath: levelName.Array.data[0]
       value: Greybox Tut Plates and buttons pt 1
       objectReference: {fileID: 0}
     - target: {fileID: 1167180296443324102, guid: 482cd35b96dcd474b9ffbfd6c68fc120,
@@ -5079,6 +5094,11 @@ PrefabInstance:
       propertyPath: conditionList.Array.data[1]
       value: 
       objectReference: {fileID: 850625312}
+    - target: {fileID: 8197095605655056995, guid: 6649991dde669cf489f139e098fa261e,
+        type: 3}
+      propertyPath: timeToMove
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 8197095605655057020, guid: 6649991dde669cf489f139e098fa261e,
         type: 3}
       propertyPath: m_Name
@@ -5341,6 +5361,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f4903fc12507c3243a65363e487bb01f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isTargeted: 0
   highlighed: {fileID: 2100000, guid: baf0228ea3b820b46a1c15118fbe5676, type: 2}
   normal: {fileID: 2100000, guid: 0ec9453da50b5744d95a5f32c193282c, type: 2}
   gravityFactor: -9.8
@@ -13404,6 +13425,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1167180296443324100, guid: 482cd35b96dcd474b9ffbfd6c68fc120,
         type: 3}
+      propertyPath: levelName.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1167180296443324100, guid: 482cd35b96dcd474b9ffbfd6c68fc120,
+        type: 3}
       propertyPath: levelName
       value: Greybox Level Seth cont, 1
       objectReference: {fileID: 0}
@@ -13416,6 +13442,11 @@ PrefabInstance:
         type: 3}
       propertyPath: trueIfWantingToLoad
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1167180296443324100, guid: 482cd35b96dcd474b9ffbfd6c68fc120,
+        type: 3}
+      propertyPath: levelName.Array.data[0]
+      value: Greybox Level Seth cont, 1
       objectReference: {fileID: 0}
     - target: {fileID: 1167180296443324101, guid: 482cd35b96dcd474b9ffbfd6c68fc120,
         type: 3}

@@ -352,10 +352,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   grabby: {fileID: 1022600273}
   player: {fileID: 3934869719453464548}
-  objMove: 10
-  orbitRange: 4
+  objMove: 7.5
+  orbitRange: 5
   grabDistance: 10
-  holdDistance: 4
+  holdDistance: 5
   throwForce: 5
   isHolding: 0
 --- !u!95 &6228464798788693943
