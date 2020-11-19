@@ -46,9 +46,13 @@ public class PlayerController : MonoBehaviour
 
     public Animator m_animator = null;
 
-    public float animationTime = 0f;
+    private float animationTime = 0f;
 
-    public float playerSpeed = 0f;
+    [Tooltip("Default: 200")]
+    [Range(1, 400)]
+    public float animationDuration = 200f;
+
+    private float playerSpeed = 0f;
 
     [Tooltip("Default: 3")]
     [Range(1, 1000)]
@@ -134,7 +138,10 @@ public class PlayerController : MonoBehaviour
 
         playerSpeed = Mathf.Lerp(playerSpeed, m_rb.velocity.magnitude, animationTime);
 
-        if (animationTime <= 1) animationTime += Time.deltaTime / 200f;
+        if (animationTime <= 1)
+        {
+            animationTime += Time.deltaTime / animationDuration;
+        }
 
         m_animator.SetFloat("Speed", playerSpeed);
 
