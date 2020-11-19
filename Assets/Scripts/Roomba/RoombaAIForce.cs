@@ -10,7 +10,7 @@ public class RoombaAIForce : ForceScript
     private Rigidbody m_rb = null;
     private NavMeshPath path = null;
     private int posIndex = 0;
-    private Vector3 direction = new Vector3();
+    private Vector3 direction;
 
     public float distanceToWaypoint = 0.2f;
 

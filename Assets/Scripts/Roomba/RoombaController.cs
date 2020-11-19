@@ -41,7 +41,7 @@ public class RoombaController : MonoBehaviour
 
     public float distanceToAttack = 20f;
 
-    private Vector3 target = new Vector3();
+    private Vector3 target;
 
     public Vector3 Target { set{ target = value; } }
 
@@ -120,10 +120,10 @@ public class RoombaController : MonoBehaviour
     {
         isGrounded = Physics.Raycast(transform.position, -transform.up, out RaycastHit hit, 0.51f);
 
-        Vector3 right = new Vector3();
-        Vector3 forward = new Vector3();
+        Vector3 right;
+        Vector3 forward;
         Vector3 g = transform.GetComponent<GravityForce>().GetForce().normalized;
-        Quaternion targetRot = new Quaternion();
+        Quaternion targetRot;
         float m_rotationSpeed = 4f;
         float dotProduct = Vector3.Dot(Vector3.Normalize(g), -transform.up);
 
