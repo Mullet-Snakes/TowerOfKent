@@ -7,6 +7,7 @@ public class TUTScript : MonoBehaviour
     public GameObject wasdtut;
     public GameObject keytut;
     public GameObject doortut;
+    public GameObject doortutCollider;
     public GameObject gravobjtut;
     public GameObject gravplayertut;
     public GameObject pressuretut;
@@ -45,7 +46,7 @@ public class TUTScript : MonoBehaviour
             gravobjtut.SetActive(true);
             textbox.SetActive(true);
             doortut.SetActive(false);
-            Destroy(doortut);
+            Destroy(doortutCollider);
         }
 
         else if (other.gameObject.tag == "gravplaytut")
@@ -89,35 +90,35 @@ public class TUTScript : MonoBehaviour
         {
             keytut.SetActive(false);
             textbox.SetActive(false);
-            Destroy(keytut);
+            Destroy(other.gameObject);
         }
 
         else if (other.gameObject.tag == "gravobjtut")
         {
             gravobjtut.SetActive(false);
             textbox.SetActive(false);
-            Destroy(gravobjtut);
+            Destroy(other.gameObject);
         }
 
         else if (other.gameObject.tag == "gravplaytut")
         {
             gravplayertut.SetActive(false);
             textbox.SetActive(false);
-            Destroy(gravplayertut);
+            Destroy(other.gameObject);
         }
 
         else if (other.gameObject.tag == "presstut")
         {
             pressuretut.SetActive(false);
             textbox.SetActive(false);
-            Destroy(pressuretut);
+            Destroy(other.gameObject);
         }
 
         else if (other.gameObject.tag == "buttontut")
         {
             buttontut.SetActive(false);
             textbox.SetActive(false);
-            Destroy(buttontut);
+            Destroy(other.gameObject);
         }
     }
 
@@ -136,6 +137,6 @@ public class TUTScript : MonoBehaviour
         yield return new WaitForSeconds(2);
         doortut.SetActive(false);
         textbox.SetActive(false);
-        Destroy(doortut);
+        Destroy(doortutCollider);
     }
 }
