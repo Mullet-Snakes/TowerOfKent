@@ -2,95 +2,99 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GravityForce : ForceScript
+namespace Gravity
 {
-
-    public bool isTargeted = false;
-
-    public bool IsTargeted
+    public class GravityForce : ForceScript
     {
-        get
+
+        public bool isTargeted = false;
+
+        public bool IsTargeted
         {
-            return isTargeted;
+            get
+            {
+                return isTargeted;
+            }
+            set
+            {
+                isTargeted = value;
+            }
         }
-        set
+
+        public Material highlighed;
+        public Material normal;
+
+        [SerializeField]
+        [Tooltip("Default: -9.8")]
+        [Range(-30, 0)]
+        private float gravityFactor = -9.8f;
+
+        public Vector3 Force
         {
-            isTargeted = value;
+            get
+            {
+                return force.normalized;
+            }
+            set
+            {
+                force = value;
+            }
         }
-    }
 
-    public Material highlighed;
-    public Material normal;
-
-    [SerializeField]
-    [Tooltip("Default: -9.8")]
-    [Range(-30, 0)]
-    private float gravityFactor = -9.8f;
-
-    public Vector3 Force
-    {
-        get
+        public override Vector3 GetForce()
         {
-            return force.normalized;
+            return force * Time.deltaTime;
         }
-        set
+
+        private void OnEnable()
         {
-            force = value;
+            GravityManager.GravityChange += SetCurrentGravity;
         }
-    }
 
-    public override Vector3 GetForce()
-    {
-        return force * Time.deltaTime;
-    }
-
-    private void OnEnable()
-    {
-        GravityManager.GravityChange += SetCurrentGravity;
-    }
-
-    private void OnDisable()
-    {
-        GravityManager.GravityChange -= SetCurrentGravity;
-    }
+        private void OnDisable()
+        {
+            GravityManager.GravityChange -= SetCurrentGravity;
+        }
 
 
 
-    public void SetCurrentGravity(Vector3 grav, bool changingTargeted)
-    {
+        public void SetCurrentGravity(Vector3 grav, bool changingTargeted)
+        {
 
-        if (changingTargeted)
+            if (changingTargeted)
+            {
+                if (isTargeted)
+                {
+                    force = grav * gravityFactor;
+                }
+            }
+            else
+            {
+                if (!isTargeted)
+                {
+                    force = grav * gravityFactor;
+                }
+            }
+        }
+
+        // Start is called before the first frame update
+        void Start()
+        {
+            force = transform.up * gravityFactor;
+        }
+
+        // Update is called once per frame
+        void Update()
         {
             if (isTargeted)
             {
-                force = grav * gravityFactor;
+                transform.GetComponentInChildren<Renderer>().material = highlighed;
             }
-        }
-        else
-        {
-            if (!isTargeted)
+            else
             {
-                force = grav * gravityFactor;
+                transform.GetComponentInChildren<Renderer>().material = normal;
             }
-        }
-    }
-
-    // Start is called before the first frame update
-    void Start()
-    {
-        force = transform.up * gravityFactor;
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        if (isTargeted)
-        {
-            transform.GetComponentInChildren<Renderer>().material = highlighed;
-        }
-        else
-        {
-            transform.GetComponentInChildren<Renderer>().material = normal;
         }
     }
 }
+
