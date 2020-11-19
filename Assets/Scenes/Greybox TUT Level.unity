@@ -4359,6 +4359,7 @@ MonoBehaviour:
   doortut: {fileID: 1984428123}
   doortutCollider: {fileID: 1524349744}
   gravobjtut: {fileID: 322286807}
+  gravobjtutR: {fileID: 0}
   gravplayertut: {fileID: 322286807}
   pressuretut: {fileID: 1049248697}
   buttontut: {fileID: 1664126065}
@@ -4377,6 +4378,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   grabby: {fileID: 0}
   player: {fileID: 0}
+  ignoreMe:
+    serializedVersion: 2
+    m_Bits: 0
   objMove: 9.85
   orbitRange: 4
   grabDistance: 5

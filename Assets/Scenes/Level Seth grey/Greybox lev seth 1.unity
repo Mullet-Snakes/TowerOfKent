@@ -2401,6 +2401,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 2044663379}
     m_Modifications:
+    - target: {fileID: -6071685195288219839, guid: bce229b22833270478e325ec4aed607c,
+        type: 3}
+      propertyPath: freezable
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1457368090220102458, guid: bce229b22833270478e325ec4aed607c,
         type: 3}
       propertyPath: m_Name
@@ -5349,6 +5354,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_forceList:
   - {fileID: 862832908}
+  freezable: 0
+  frozen: 0
 --- !u!114 &862832908
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8974,6 +8981,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 2044663379}
     m_Modifications:
+    - target: {fileID: -6071685195288219839, guid: bce229b22833270478e325ec4aed607c,
+        type: 3}
+      propertyPath: freezable
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1457368090220102458, guid: bce229b22833270478e325ec4aed607c,
         type: 3}
       propertyPath: m_Name
@@ -11668,6 +11680,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 2044663379}
     m_Modifications:
+    - target: {fileID: -6071685195288219839, guid: bce229b22833270478e325ec4aed607c,
+        type: 3}
+      propertyPath: freezable
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1457368090220102458, guid: bce229b22833270478e325ec4aed607c,
         type: 3}
       propertyPath: m_Name
