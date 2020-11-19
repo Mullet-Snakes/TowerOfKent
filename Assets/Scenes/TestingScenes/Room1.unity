@@ -986,6 +986,16 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 2011865081}
     m_Modifications:
+    - target: {fileID: 6091616169487749222, guid: 6cf4fb6a4c26c13449943a6d16932c48,
+        type: 3}
+      propertyPath: normal
+      value: 
+      objectReference: {fileID: 2100000, guid: eaa6b6ae3c9686644b1583a711f424f2, type: 2}
+    - target: {fileID: 6091616169487749223, guid: 6cf4fb6a4c26c13449943a6d16932c48,
+        type: 3}
+      propertyPath: freezable
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6091616170766099904, guid: 6cf4fb6a4c26c13449943a6d16932c48,
         type: 3}
       propertyPath: m_Mass
