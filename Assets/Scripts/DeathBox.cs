@@ -19,6 +19,10 @@ public class DeathBox : MonoBehaviour
                     deathTarget.GetComponent<LiftObject>().DropObject();
                 }
             }
+            else if(deathTarget.CompareTag("LevelProp"))
+            {
+
+            }
         }
     }
 }
