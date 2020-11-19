@@ -194,6 +194,10 @@ public class PlayerController : MonoBehaviour
     {
         isGrounded = Physics.Raycast(transform.position, -transform.up, out RaycastHit hit, 1.03f, groundMask);
 
+        bool isG = Physics.CapsuleCast(transform.position, transform.position - transform.up * 1.03f, 0.5f, -transform.up);
+
+        print(isG);
+
         targetVelocity = m_rb.velocity;
 
         if(isGrounded)
