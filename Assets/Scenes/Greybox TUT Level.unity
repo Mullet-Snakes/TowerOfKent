@@ -2970,6 +2970,29 @@ PrefabInstance:
       propertyPath: buttontut
       value: 
       objectReference: {fileID: 1664126065}
+    - target: {fileID: 2021411377, guid: 1554629fb409a854a8e063c73ae24970, type: 3}
+      propertyPath: ignoreMe.m_Bits
+      value: 512
+      objectReference: {fileID: 0}
+    - target: {fileID: 2021411377, guid: 1554629fb409a854a8e063c73ae24970, type: 3}
+      propertyPath: holdDistance
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 3934869719439491934, guid: 1554629fb409a854a8e063c73ae24970,
+        type: 3}
+      propertyPath: m_TagString
+      value: Player
+      objectReference: {fileID: 0}
+    - target: {fileID: 3934869719439491934, guid: 1554629fb409a854a8e063c73ae24970,
+        type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 3934869719439491934, guid: 1554629fb409a854a8e063c73ae24970,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3934869719453464545, guid: 1554629fb409a854a8e063c73ae24970,
         type: 3}
       propertyPath: m_groundSpeed

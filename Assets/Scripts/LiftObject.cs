@@ -56,6 +56,13 @@ public class LiftObject : MonoBehaviour
 
     [SerializeField]
     private bool isHolding = false;
+    public bool IsHolding
+    {
+        get
+        {
+            return isHolding;
+        }
+    }
 
     //public bool objStop;
     //public float stopSpeed;
@@ -188,7 +195,7 @@ public class LiftObject : MonoBehaviour
         }
     }
 
-    void DropObject()
+    public void DropObject()
     {
         prop_rb.GetComponent<GravityForce>().Force = objGrav * 9.8f;
         distance = 0;

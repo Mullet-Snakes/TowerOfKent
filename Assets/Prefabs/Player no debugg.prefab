@@ -160,7 +160,7 @@ GameObject:
   - component: {fileID: 3934869719439491930}
   - component: {fileID: 3934869719439491931}
   - component: {fileID: 3934869719439491928}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: CapsuleCollider
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -312,6 +312,7 @@ MonoBehaviour:
   m_groundSpeed: 10
   m_dashMultiplier: 1.5
   m_inAirMovementSpeed: 0.1
+  spawnPosition: {x: 0, y: 0, z: 0}
   m_jumpSpeed: 4
   m_rotationSpeed: 3
   gravityFactor: -9.8
@@ -352,6 +353,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   grabby: {fileID: 1022600273}
   player: {fileID: 3934869719453464548}
+  ignoreMe:
+    serializedVersion: 2
+    m_Bits: 512
   objMove: 10
   orbitRange: 4
   grabDistance: 10

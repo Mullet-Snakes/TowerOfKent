@@ -7,11 +7,10 @@ TagManager:
   - GravityWall
   - LevelProp
   - wasdtut
-  - keytut
-  - doortut
-  - gravobjtut
   - gravplaytut
-  - presstut
+  - doortut
+  - keytut
+  - gravobjtut
   - buttontut
   layers:
   - Default
@@ -23,8 +22,8 @@ TagManager:
   - 
   - 
   - Ground
-  - TutorialColliders
-  - LevelProp
+  - Player
+  - 
   - 
   - 
   - 
