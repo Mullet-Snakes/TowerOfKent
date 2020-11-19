@@ -132,7 +132,8 @@ public class PlayerController : MonoBehaviour
     void Start()
     {
 
-        m_gravity = GravityManager.worldGravity;
+        m_gravity = new Vector3(0, -9.8f, 0);
+        //m_gravity = GravityManager.worldGravity;
 
         m_camera.fieldOfView = normalFOV;
     }
