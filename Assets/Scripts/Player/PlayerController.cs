@@ -16,7 +16,7 @@ public class PlayerController : MonoBehaviour
 
     private bool isGrounded = false;
 
-    private bool isOnProp = false;
+    public bool isOnProp = false;
 
     [Tooltip("Default: 10")]
     [Range(1, 30)]
@@ -137,7 +137,7 @@ public class PlayerController : MonoBehaviour
     }
 
     private void Update()
-    {       
+    {
 
         if (isOnProp && m_input == Vector3.zero)
         {
@@ -194,9 +194,25 @@ public class PlayerController : MonoBehaviour
     {
         isGrounded = Physics.Raycast(transform.position, -transform.up, out RaycastHit hit, 1.03f, groundMask);
 
-        isOnProp = Physics.Raycast(transform.position, -transform.up, out RaycastHit objHit, 1.03f, objectMask);
-
         targetVelocity = m_rb.velocity;
+
+        if(isGrounded)
+        {
+            isOnProp = hit.collider.gameObject.IsInLayerMask(objectMask);
+        }
+            
+
+        if (!isGrounded)
+        {
+            isOnProp = false;
+
+            gravityVelocity += m_gravity * Time.deltaTime;
+
+            if (!rotating)
+            {
+                targetVelocity += ((m_input * m_groundSpeed) * m_inAirMovementSpeed) * Time.deltaTime;
+            }
+        }
 
         if (isGrounded && !rotating)
         {
@@ -207,27 +223,12 @@ public class PlayerController : MonoBehaviour
                 targetVelocity += dashing ? m_input * m_groundSpeed * m_dashMultiplier : m_input * m_groundSpeed;
             }
 
-            if (objHit.rigidbody != null)
-            {
-                targetVelocity += objHit.rigidbody.velocity;
-            }
-
-
-        }
-
-        if (!isGrounded && !rotating)
-        {
-            targetVelocity += ((m_input * m_groundSpeed) * m_inAirMovementSpeed) * Time.deltaTime;
-        }
-
-        if (!isGrounded)
-        {
-            gravityVelocity += m_gravity * Time.deltaTime;
-        }
-
-        if (isGrounded && !rotating)
-        {
             gravityVelocity.Set(0, 0, 0);
+
+            if (hit.rigidbody != null)
+            {
+                targetVelocity += hit.rigidbody.velocity;
+            }
         }
 
         targetVelocity += gravityVelocity * Time.deltaTime;
