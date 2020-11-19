@@ -24,4 +24,9 @@ public static class Utilities
             SceneManager.UnloadSceneAsync(sceneName);
         }
     }
+
+    public static bool IsInLayerMask(this GameObject go, int layerMask)
+    {
+        return layerMask == (layerMask | 1 << go.transform.gameObject.layer);
+    }
 }
