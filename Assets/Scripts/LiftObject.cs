@@ -25,6 +25,10 @@ public class LiftObject : MonoBehaviour
     }
 
     [SerializeField]
+    [Tooltip("A layer the object-finding raycast ignores. Should be the same Layer as the players collider")]
+    public LayerMask ignoreMe;
+
+    [SerializeField]
     [Tooltip("The movement of the object you're holding (Default 10)")]
     [Range(5, 15)]
     public float objMove = 10;
@@ -141,14 +145,16 @@ public class LiftObject : MonoBehaviour
 
             Vector3 rayOrigin = playerCamera.ViewportToWorldPoint(new Vector3(x, y));
             RaycastHit hit;
-
-            if (Physics.Raycast(rayOrigin, playerCamera.transform.forward, out hit, grabDistance))
+            //print("Casting");
+            if (Physics.Raycast(rayOrigin, playerCamera.transform.forward, out hit, grabDistance, ~ignoreMe))
             {
                 prop_rb = hit.collider.GetComponent<Rigidbody>();
                 distance = Vector3.Distance(hit.transform.position, player.transform.position);
+                //print("Colliding");
 
                 if (hit.collider.CompareTag("LevelProp"))
                 {
+                    //print("Grabbing");
                     isHolding = true;
                     carriedObject = prop_rb.gameObject;
                     objGrav = hit.collider.GetComponent<GravityForce>().Force;
@@ -161,6 +167,10 @@ public class LiftObject : MonoBehaviour
                             hit.collider.GetComponent<ExplodingBarrelScript>().IsExplodable = false;
                         }
                     }
+                }
+                else
+                {
+                    print(hit.collider.tag);
                 }
             }
         }
