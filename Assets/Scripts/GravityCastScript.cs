@@ -46,7 +46,7 @@ public class GravityCastScript : MonoBehaviour
         if (!PauseMenu.GameIsPaused)
         {
 
-            if (Input.GetKeyDown(KeyCode.X))
+            if (Input.GetKeyDown(KeyCode.X) || Input.GetMouseButtonDown(0))
             {
 
                 if (Physics.SphereCast(transform.position, capsuleCastRadius, transform.forward, out RaycastHit hit, Mathf.Infinity, ~ignoreMask))
@@ -78,7 +78,7 @@ public class GravityCastScript : MonoBehaviour
                 }
             }
 
-            if (Input.GetKeyDown(KeyCode.Z))
+            if (Input.GetKeyDown(KeyCode.Z) || Input.GetMouseButtonDown(1))
             {
                 if (Physics.SphereCast(transform.position, capsuleCastRadius, transform.forward, out RaycastHit hit, Mathf.Infinity, ~ignoreMask))
                 {
