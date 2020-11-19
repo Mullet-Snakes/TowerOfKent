@@ -1,7 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using System.Linq.Expressions;
-using UnityEditor.Timeline;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -11,7 +10,7 @@ public class RoombaAIForce : ForceScript
     private Rigidbody m_rb = null;
     private NavMeshPath path = null;
     private int posIndex = 0;
-    private Vector3 direction = new Vector3();
+    private Vector3 direction;
 
     public float distanceToWaypoint = 0.2f;
 
@@ -152,6 +151,10 @@ public class RoombaAIForce : ForceScript
             {
                 controller.Target = (waypoints[posIndex] - transform.position).normalized;
             }
+            else
+            {
+                controller.Target = transform.forward;
+            }
 
 
 
@@ -171,6 +174,11 @@ public class RoombaAIForce : ForceScript
 
         else if (controller.m_state == RoombaState.ROTATING)
         {
+            if(waypoints.Count > 0)
+            {
+                waypoints.Clear();
+            }
+
             controller.Target = transform.forward;
         }
 

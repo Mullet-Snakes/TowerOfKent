@@ -10,7 +10,11 @@ public class ForceController : MonoBehaviour
 
     private Vector3 forceToApply = new Vector3();
 
-    private bool frozen = false;
+    public bool freezable = false;
+
+    public bool Freezable { get { return freezable; } }
+
+    public bool frozen = false;
 
     public bool Frozen { get { return frozen; } }
 

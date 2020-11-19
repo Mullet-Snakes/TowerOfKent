@@ -16,7 +16,7 @@ public class PlayerController : MonoBehaviour
 
     private bool isGrounded = false;
 
-    private bool isOnProp = false;
+    public bool isOnProp = false;
 
     [Tooltip("Default: 10")]
     [Range(1, 30)]
@@ -48,13 +48,11 @@ public class PlayerController : MonoBehaviour
 
     public Vector3 SpawnPosition { set { spawnPosition = value; } }
 
-    public Animator m_animator = null;
+    private Animator m_animator = null;
 
-    private float animationTime = 0f;
-
-    [Tooltip("Default: 400")]
-    [Range(1, 1000)]
-    public float animationDuration = 400f;
+    [Tooltip("Default: 0.05")]
+    [Range(0, 1)]
+    public float animationTime = .05f;
 
     private float playerSpeed = 0f;
 
@@ -126,12 +124,13 @@ public class PlayerController : MonoBehaviour
         m_camera = Camera.main.GetComponent<Camera>();
 
         cameraControllerScript = m_camera.GetComponent<CameraController>();
+
+        m_animator = m_camera.transform.GetChild(0).GetComponent<Animator>();
     }
 
     // Start is called before the first frame update
     void Start()
     {
-
         m_gravity = GravityManager.worldGravity;
 
         m_camera.fieldOfView = normalFOV;
@@ -140,12 +139,15 @@ public class PlayerController : MonoBehaviour
     private void Update()
     {
 
-        playerSpeed = Mathf.Lerp(playerSpeed, m_rb.velocity.magnitude, animationTime);
-
-        if (animationTime <= 1)
+        if (isOnProp && m_input == Vector3.zero)
         {
-            animationTime += Time.deltaTime / animationDuration;
+            playerSpeed = 0;
         }
+        else
+        {
+            playerSpeed = Mathf.Lerp(playerSpeed, m_rb.velocity.magnitude, animationTime);
+        }
+        
 
         m_animator.SetFloat("Speed", playerSpeed);
 
@@ -192,13 +194,24 @@ public class PlayerController : MonoBehaviour
     {
         isGrounded = Physics.Raycast(transform.position, -transform.up, out RaycastHit hit, 1.03f, groundMask);
 
-        isOnProp = Physics.Raycast(transform.position, -transform.up, out RaycastHit objHit, 1.03f, objectMask);
-
         targetVelocity = m_rb.velocity;
 
-        if(isOnProp)
+        if(isGrounded)
         {
-            isGrounded = true;
+            isOnProp = hit.collider.gameObject.IsInLayerMask(objectMask);
+        }
+            
+
+        if (!isGrounded)
+        {
+            isOnProp = false;
+
+            gravityVelocity += m_gravity * Time.deltaTime;
+
+            if (!rotating)
+            {
+                targetVelocity += ((m_input * m_groundSpeed) * m_inAirMovementSpeed) * Time.deltaTime;
+            }
         }
 
         if (isGrounded && !rotating)
@@ -210,27 +223,12 @@ public class PlayerController : MonoBehaviour
                 targetVelocity += dashing ? m_input * m_groundSpeed * m_dashMultiplier : m_input * m_groundSpeed;
             }
 
-            if (objHit.rigidbody != null)
-            {
-                targetVelocity += objHit.rigidbody.velocity;
-            }
-
-
-        }
-
-        if (!isGrounded && !rotating)
-        {
-            targetVelocity += ((m_input * m_groundSpeed) * m_inAirMovementSpeed) * Time.deltaTime;
-        }
-
-        if (!isGrounded)
-        {
-            gravityVelocity += m_gravity * Time.deltaTime;
-        }
-
-        if (isGrounded && !rotating)
-        {
             gravityVelocity.Set(0, 0, 0);
+
+            if (hit.rigidbody != null)
+            {
+                targetVelocity += hit.rigidbody.velocity;
+            }
         }
 
         targetVelocity += gravityVelocity * Time.deltaTime;
