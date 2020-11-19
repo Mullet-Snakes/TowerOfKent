@@ -95,7 +95,7 @@ public class RoombaController : MonoBehaviour
 
         if (!rotating)
         {
-            if (dot > 0.8f)
+            if (dot > 0.9f)
             {
                 distToPlayer = (transform.position - player.transform.position).magnitude;
 
