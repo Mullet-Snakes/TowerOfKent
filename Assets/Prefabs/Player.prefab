@@ -87,6 +87,7 @@ MonoBehaviour:
   m_groundSpeed: 10
   m_dashMultiplier: 1.5
   m_inAirMovementSpeed: 0.1
+  spawnPosition: {x: 0, y: 0, z: 0}
   m_jumpSpeed: 4
   m_rotationSpeed: 3
   gravityFactor: -9.8
@@ -183,7 +184,7 @@ CapsuleCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  m_Radius: 1
+  m_Radius: 0.5
   m_Height: 2
   m_Direction: 1
   m_Center: {x: 0, y: 0, z: 0}
@@ -297,13 +298,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 808b59ad61976b3458857b7028fdc7c2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  levelWalls:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
   highlightedWallMaterial: {fileID: 2100000, guid: 9dbf6f55589812b4b83edd76c999d55a,
     type: 2}
   defaultWallMaterial: {fileID: 2100000, guid: c4dd384702a135c4b8498fbd2111787d, type: 2}
