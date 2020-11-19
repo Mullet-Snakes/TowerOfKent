@@ -9,6 +9,7 @@ public class TUTScript : MonoBehaviour
     public GameObject doortut;
     public GameObject doortutCollider;
     public GameObject gravobjtut;
+    public GameObject gravobjtutR;
     public GameObject gravplayertut;
     public GameObject pressuretut;
     public GameObject buttontut;
@@ -21,6 +22,7 @@ public class TUTScript : MonoBehaviour
         keytut.SetActive(false);
         doortut.SetActive(false);
         gravobjtut.SetActive(false);
+        gravobjtutR.SetActive(false);
         gravplayertut.SetActive(false);
         pressuretut.SetActive(false);
         buttontut.SetActive(false);
@@ -44,6 +46,7 @@ public class TUTScript : MonoBehaviour
         else if (other.gameObject.tag == "gravobjtut")
         {
             gravobjtut.SetActive(true);
+            gravobjtutR.SetActive(true);
             textbox.SetActive(true);
             doortut.SetActive(false);
             Destroy(doortutCollider);
@@ -96,6 +99,7 @@ public class TUTScript : MonoBehaviour
         else if (other.gameObject.tag == "gravobjtut")
         {
             gravobjtut.SetActive(false);
+            gravobjtutR.SetActive(false);
             textbox.SetActive(false);
             Destroy(other.gameObject);
         }
