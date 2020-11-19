@@ -48,13 +48,11 @@ public class PlayerController : MonoBehaviour
 
     public Vector3 SpawnPosition { set { spawnPosition = value; } }
 
-    public Animator m_animator = null;
+    private Animator m_animator = null;
 
-    private float animationTime = 0f;
-
-    [Tooltip("Default: 400")]
-    [Range(1, 1000)]
-    public float animationDuration = 400f;
+    [Tooltip("Default: 0.05")]
+    [Range(0, 1)]
+    public float animationTime = .05f;
 
     private float playerSpeed = 0f;
 
@@ -126,27 +124,30 @@ public class PlayerController : MonoBehaviour
         m_camera = Camera.main.GetComponent<Camera>();
 
         cameraControllerScript = m_camera.GetComponent<CameraController>();
+
+        m_animator = m_camera.transform.GetChild(0).GetComponent<Animator>();
     }
 
     // Start is called before the first frame update
     void Start()
     {
-
-        m_gravity = new Vector3(0, -9.8f, 0);
-        //m_gravity = GravityManager.worldGravity;
+        m_gravity = GravityManager.worldGravity;
 
         m_camera.fieldOfView = normalFOV;
     }
 
     private void Update()
-    {
+    {       
 
-        playerSpeed = Mathf.Lerp(playerSpeed, m_rb.velocity.magnitude, animationTime);
-
-        if (animationTime <= 1)
+        if (isOnProp && m_input == Vector3.zero)
         {
-            animationTime += Time.deltaTime / animationDuration;
+            playerSpeed = 0;
         }
+        else
+        {
+            playerSpeed = Mathf.Lerp(playerSpeed, m_rb.velocity.magnitude, animationTime);
+        }
+        
 
         m_animator.SetFloat("Speed", playerSpeed);
 
@@ -196,11 +197,6 @@ public class PlayerController : MonoBehaviour
         isOnProp = Physics.Raycast(transform.position, -transform.up, out RaycastHit objHit, 1.03f, objectMask);
 
         targetVelocity = m_rb.velocity;
-
-        if(isOnProp)
-        {
-            isGrounded = true;
-        }
 
         if (isGrounded && !rotating)
         {

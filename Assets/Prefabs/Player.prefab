@@ -71,8 +71,7 @@ MonoBehaviour:
   m_groundSpeed: 10
   m_dashMultiplier: 1.5
   m_inAirMovementSpeed: 1
-  m_animator: {fileID: 1661828602}
-  animationDuration: 400
+  animationTime: 0.05
   m_jumpSpeed: 4
   m_rotationSpeed: 3
   gravityFactor: -9.8
