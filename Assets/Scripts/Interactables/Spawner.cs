@@ -25,7 +25,7 @@ public class Spawner : MonoBehaviour
 
         while (true)
         {
-            print("checking");
+            //print("checking");
             if (currentObject == null)
             {
                 Spawn(transform.position, transform.rotation);
