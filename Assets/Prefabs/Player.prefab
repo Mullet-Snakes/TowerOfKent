@@ -64,10 +64,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   groundMask:
     serializedVersion: 2
-    m_Bits: 256
+    m_Bits: 1280
   objectMask:
     serializedVersion: 2
     m_Bits: 1024
+  isOnProp: 0
   m_groundSpeed: 10
   m_dashMultiplier: 1.5
   m_inAirMovementSpeed: 1
