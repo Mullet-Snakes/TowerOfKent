@@ -151,6 +151,10 @@ public class RoombaAIForce : ForceScript
             {
                 controller.Target = (waypoints[posIndex] - transform.position).normalized;
             }
+            else
+            {
+                controller.Target = transform.forward;
+            }
 
 
 
@@ -170,6 +174,11 @@ public class RoombaAIForce : ForceScript
 
         else if (controller.m_state == RoombaState.ROTATING)
         {
+            if(waypoints.Count > 0)
+            {
+                waypoints.Clear();
+            }
+
             controller.Target = transform.forward;
         }
 
