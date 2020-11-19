@@ -479,7 +479,7 @@ GameObject:
   - component: {fileID: 58100248}
   - component: {fileID: 58100247}
   - component: {fileID: 58100246}
-  m_Layer: 9
+  m_Layer: 5
   m_Name: Canvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1328,7 +1328,7 @@ GameObject:
   - component: {fileID: 135536657}
   - component: {fileID: 135536656}
   - component: {fileID: 135536660}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: 'misq puzzle '
   m_TagString: GravityWall
   m_Icon: {fileID: 0}
@@ -1436,7 +1436,7 @@ GameObject:
   - component: {fileID: 144144887}
   - component: {fileID: 144144886}
   - component: {fileID: 144144890}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: 'misq puzzle '
   m_TagString: GravityWall
   m_Icon: {fileID: 0}
@@ -4252,6 +4252,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Better_Cube grav enabled
       objectReference: {fileID: 0}
+    - target: {fileID: 1457368090220102458, guid: bce229b22833270478e325ec4aed607c,
+        type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 2477759720633004329, guid: bce229b22833270478e325ec4aed607c,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -5332,6 +5337,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1167180296443324100, guid: 482cd35b96dcd474b9ffbfd6c68fc120,
         type: 3}
+      propertyPath: levelName.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1167180296443324100, guid: 482cd35b96dcd474b9ffbfd6c68fc120,
+        type: 3}
       propertyPath: levelName
       value: Greybox Tut Plates and buttons pt 1
       objectReference: {fileID: 0}
@@ -5339,6 +5349,16 @@ PrefabInstance:
         type: 3}
       propertyPath: trueIfWantingToLoad
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1167180296443324100, guid: 482cd35b96dcd474b9ffbfd6c68fc120,
+        type: 3}
+      propertyPath: levelName.Array.data[0]
+      value: Greybox Tut Plates and buttons pt 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1167180296443324100, guid: 482cd35b96dcd474b9ffbfd6c68fc120,
+        type: 3}
+      propertyPath: levelName.Array.data[1]
+      value: 
       objectReference: {fileID: 0}
     - target: {fileID: 1167180296443324101, guid: 482cd35b96dcd474b9ffbfd6c68fc120,
         type: 3}
@@ -5348,7 +5368,7 @@ PrefabInstance:
     - target: {fileID: 1167180296443324102, guid: 482cd35b96dcd474b9ffbfd6c68fc120,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 33.93
+      value: 33.19
       objectReference: {fileID: 0}
     - target: {fileID: 1167180296443324102, guid: 482cd35b96dcd474b9ffbfd6c68fc120,
         type: 3}
@@ -6102,7 +6122,7 @@ GameObject:
   - component: {fileID: 823084634}
   - component: {fileID: 823084633}
   - component: {fileID: 823084637}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: 'misq puzzle '
   m_TagString: GravityWall
   m_Icon: {fileID: 0}
@@ -6748,7 +6768,7 @@ GameObject:
   - component: {fileID: 903089824}
   - component: {fileID: 903089823}
   - component: {fileID: 903089827}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: 'misq puzzle '
   m_TagString: GravityWall
   m_Icon: {fileID: 0}
@@ -7278,7 +7298,7 @@ GameObject:
   - component: {fileID: 973633677}
   - component: {fileID: 973633676}
   - component: {fileID: 973633680}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: 'misq puzzle '
   m_TagString: GravityWall
   m_Icon: {fileID: 0}
@@ -8490,7 +8510,7 @@ GameObject:
   - component: {fileID: 1159993421}
   - component: {fileID: 1159993420}
   - component: {fileID: 1159993424}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: 'misq puzzle '
   m_TagString: GravityWall
   m_Icon: {fileID: 0}
@@ -9163,6 +9183,99 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e48d58ee24605f34e93cabc4c5eaa142, type: 3}
+--- !u!1 &1218766277
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1218766278}
+  - component: {fileID: 1218766281}
+  - component: {fileID: 1218766280}
+  - component: {fileID: 1218766279}
+  m_Layer: 0
+  m_Name: Cube (11)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1218766278
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1218766277}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 9.96, y: 11.34, z: 2.49}
+  m_LocalScale: {x: 25.512238, y: 2, z: 0.7372104}
+  m_Children: []
+  m_Father: {fileID: 2123052732}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &1218766279
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1218766277}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!23 &1218766280
+MeshRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1218766277}
+  m_Enabled: 0
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+--- !u!33 &1218766281
+MeshFilter:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1218766277}
+  m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!1 &1229186709 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1006353851775298794, guid: 50c359df1ed4be14296560168c6bf190,
@@ -11059,7 +11172,7 @@ GameObject:
   - component: {fileID: 1522181257}
   - component: {fileID: 1522181256}
   - component: {fileID: 1522181260}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: 'misq puzzle '
   m_TagString: GravityWall
   m_Icon: {fileID: 0}
@@ -11279,8 +11392,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1525205724}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 9.81, y: 11.34, z: 0.19}
-  m_LocalScale: {x: 19.226948, y: 2, z: 2.0623}
+  m_LocalPosition: {x: 9.96, y: 11.34, z: -1.68}
+  m_LocalScale: {x: 25.512238, y: 2, z: 0.7372104}
   m_Children: []
   m_Father: {fileID: 2123052732}
   m_RootOrder: 1
@@ -12039,7 +12152,7 @@ PrefabInstance:
     - target: {fileID: 1006353851922968260, guid: 50c359df1ed4be14296560168c6bf190,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1006353851922968264, guid: 50c359df1ed4be14296560168c6bf190,
         type: 3}
@@ -12115,6 +12228,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_TagString
       value: GravityWall
+      objectReference: {fileID: 0}
+    - target: {fileID: 1006353852004542918, guid: 50c359df1ed4be14296560168c6bf190,
+        type: 3}
+      propertyPath: m_Layer
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 1006353852006734150, guid: 50c359df1ed4be14296560168c6bf190,
         type: 3}
@@ -12496,6 +12614,11 @@ PrefabInstance:
       propertyPath: m_Intensity
       value: 7
       objectReference: {fileID: 0}
+    - target: {fileID: 1006353852516214808, guid: 50c359df1ed4be14296560168c6bf190,
+        type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 1006353852525464864, guid: 50c359df1ed4be14296560168c6bf190,
         type: 3}
       propertyPath: m_RootOrder
@@ -12564,7 +12687,7 @@ PrefabInstance:
     - target: {fileID: 1006353852594552337, guid: 50c359df1ed4be14296560168c6bf190,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1006353852594552341, guid: 50c359df1ed4be14296560168c6bf190,
         type: 3}
@@ -15687,7 +15810,7 @@ GameObject:
   - component: {fileID: 1870356164}
   - component: {fileID: 1870356163}
   - component: {fileID: 1870356167}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: 'misq puzzle '
   m_TagString: GravityWall
   m_Icon: {fileID: 0}
