@@ -12,7 +12,11 @@ public class PlayerController : MonoBehaviour
     [Tooltip("Default: Ground")]
     public LayerMask groundMask;
 
+    public LayerMask objectMask;
+
     private bool isGrounded = false;
+
+    private bool isOnProp = false;
 
     [Tooltip("Default: 10")]
     [Range(1, 30)]
@@ -48,9 +52,9 @@ public class PlayerController : MonoBehaviour
 
     private float animationTime = 0f;
 
-    [Tooltip("Default: 200")]
-    [Range(1, 400)]
-    public float animationDuration = 200f;
+    [Tooltip("Default: 400")]
+    [Range(1, 1000)]
+    public float animationDuration = 400f;
 
     private float playerSpeed = 0f;
 
@@ -188,9 +192,14 @@ public class PlayerController : MonoBehaviour
     {
         isGrounded = Physics.Raycast(transform.position, -transform.up, out RaycastHit hit, 1.03f, groundMask);
 
+        isOnProp = Physics.Raycast(transform.position, -transform.up, out RaycastHit objHit, 1.03f, objectMask);
+
         targetVelocity = m_rb.velocity;
 
-        print(m_rb.velocity.magnitude);
+        if(isOnProp)
+        {
+            isGrounded = true;
+        }
 
         if (isGrounded && !rotating)
         {
@@ -201,10 +210,12 @@ public class PlayerController : MonoBehaviour
                 targetVelocity += dashing ? m_input * m_groundSpeed * m_dashMultiplier : m_input * m_groundSpeed;
             }
 
-            if (hit.rigidbody != null)
+            if (objHit.rigidbody != null)
             {
-                targetVelocity += hit.rigidbody.velocity;
+                targetVelocity += objHit.rigidbody.velocity;
             }
+
+
         }
 
         if (!isGrounded && !rotating)
