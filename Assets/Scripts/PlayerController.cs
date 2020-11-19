@@ -48,9 +48,9 @@ public class PlayerController : MonoBehaviour
 
     private float animationTime = 0f;
 
-    [Tooltip("Default: 200")]
-    [Range(1, 400)]
-    public float animationDuration = 200f;
+    [Tooltip("Default: 400")]
+    [Range(1, 1000)]
+    public float animationDuration = 400f;
 
     private float playerSpeed = 0f;
 
