@@ -101,6 +101,11 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7438221928789918460}
+  - component: {fileID: 6057158671735419196}
+  - component: {fileID: 3705492230177901790}
+  - component: {fileID: 7442793751473058645}
+  - component: {fileID: 8938987845924099877}
+  - component: {fileID: 106752362912903096}
   m_Layer: 0
   m_Name: exp barel
   m_TagString: Untagged
@@ -125,6 +130,85 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!136 &6057158671735419196
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5864397788508172527}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 0.2
+  m_Height: 0.61
+  m_Direction: 1
+  m_Center: {x: 0, y: 0.31, z: 0}
+--- !u!114 &3705492230177901790
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5864397788508172527}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e4d3b5675e2fefb459806436ef8bf012, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_forceList:
+  - {fileID: 7442793751473058645}
+  freezable: 1
+  frozen: 0
+--- !u!114 &7442793751473058645
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5864397788508172527}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4903fc12507c3243a65363e487bb01f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isTargeted: 0
+  highlighed: {fileID: 2100000, guid: d3bc2426f570b5d4e9aa9748f15806c5, type: 2}
+  normal: {fileID: 2100000, guid: 676cf4217aa9d8b4ba63ded1d76ba1d9, type: 2}
+  gravityFactor: -9.8
+--- !u!114 &8938987845924099877
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5864397788508172527}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3daa9a981d186634fa56f93a6cc1b71a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  explosionRadius: 10
+  explosiveForce: 50
+  triggerSpeed: 5
+  upExplosionModifier: 5
+  m_particles: {fileID: 0}
+--- !u!54 &106752362912903096
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5864397788508172527}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!1 &6759536129705535508
 GameObject:
   m_ObjectHideFlags: 0
@@ -167,10 +251,6 @@ GameObject:
   - component: {fileID: 8940050985179041924}
   - component: {fileID: 2931206672870917487}
   - component: {fileID: 2468935364157634444}
-  - component: {fileID: 2468935364157634441}
-  - component: {fileID: 2468935364157634445}
-  - component: {fileID: 2468935364157634446}
-  - component: {fileID: 2468935364157634447}
   m_Layer: 0
   m_Name: pCylinder5
   m_TagString: Untagged
@@ -255,64 +335,3 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!64 &2468935364157634441
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7875985862295356773}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Convex: 1
-  m_CookingOptions: 30
-  m_Mesh: {fileID: -1226817584057097758, guid: c1cece4b5a8b22f428f6bf964038329e, type: 3}
---- !u!114 &2468935364157634445
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7875985862295356773}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f4903fc12507c3243a65363e487bb01f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  highlighed: {fileID: 2100000, guid: d3bc2426f570b5d4e9aa9748f15806c5, type: 2}
-  normal: {fileID: 2100000, guid: 676cf4217aa9d8b4ba63ded1d76ba1d9, type: 2}
-  gravityFactor: -9.8
---- !u!114 &2468935364157634446
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7875985862295356773}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e4d3b5675e2fefb459806436ef8bf012, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_forceList:
-  - {fileID: 2468935364157634445}
---- !u!114 &2468935364157634447
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7875985862295356773}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3daa9a981d186634fa56f93a6cc1b71a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  explosionRadius: 10
-  explosiveForce: 50
-  triggerSpeed: 5
-  upExplosionModifier: 5
-  m_particles: {fileID: 1693942617144515328, guid: 0acca00f9a702bb43b271c90aa447376,
-    type: 3}
