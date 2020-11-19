@@ -127,6 +127,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_forceList:
   - {fileID: 6091616169487749222}
+  freezable: 0
+  frozen: 0
 --- !u!114 &6091616169487749222
 MonoBehaviour:
   m_ObjectHideFlags: 0
