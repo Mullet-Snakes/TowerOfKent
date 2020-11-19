@@ -67,7 +67,7 @@ MonoBehaviour:
     m_Bits: 256
   m_groundSpeed: 10
   m_dashMultiplier: 1.5
-  m_inAirMovementSpeed: 0.5
+  m_inAirMovementSpeed: 1
   m_animator: {fileID: 1661828602}
   animationDuration: 200
   m_jumpSpeed: 4
