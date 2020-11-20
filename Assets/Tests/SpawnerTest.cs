@@ -9,20 +9,7 @@ namespace Tests
     public class SpawnerTest
     {
         [Test]
-        public void Test()
-        {
-
-
-
-        }
-
-
-
-
-        // A UnityTest behaves like a coroutine in Play Mode. In Edit Mode you can use
-        // `yield return null;` to skip a frame.
-        [UnityTest]
-        public IEnumerator KeyTestWithEnumeratorPasses()
+        public void TestSpawnnerSpawning()
         {
             //Add new gameobject
             GameObject go = new GameObject();
@@ -34,16 +21,27 @@ namespace Tests
             spawn.itemToSpawn = toDestroy;
             //Check they are equal
             Assert.AreEqual(spawn.itemToSpawn, toDestroy);
+            //Check current object is null
+            Assert.IsNull(spawn.CurrentObject);
             //Spawn a clone of the item
             spawn.Spawn(go.transform.position, go.transform.rotation);
             //Confirm they are different objects
             Assert.AreNotEqual(toDestroy, spawn.CurrentObject);
+            //Confirm the current object is not null;
+            Assert.NotNull(spawn.CurrentObject);
 
-            Object.DestroyImmediate(spawn.CurrentObject);
-            yield return null;
-            Assert.AreEqual(null ,spawn.CurrentObject);
-            yield return null;
+        }
 
+
+
+
+        // A UnityTest behaves like a coroutine in Play Mode. In Edit Mode you can use
+        // `yield return null;` to skip a frame.
+        [UnityTest]
+        public IEnumerator KeyTestWithEnumeratorPasses()
+        {
+           
+            yield return null;
 
         }
     }
