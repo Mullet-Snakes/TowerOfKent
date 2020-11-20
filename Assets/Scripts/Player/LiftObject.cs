@@ -79,11 +79,11 @@ public class LiftObject : MonoBehaviour
 
     private void OnEnable()
     {
-        InteractKeyManager.OnButtonPress += Pickup;
+        InteractKeyManager.OnButtonPress += CheckStatus;
     }
     private void OnDisable()
     {
-        InteractKeyManager.OnButtonPress -= Pickup;
+        InteractKeyManager.OnButtonPress -= CheckStatus;
     }
 
 
@@ -91,13 +91,18 @@ public class LiftObject : MonoBehaviour
     {
         grabPosition = mainCamera.transform.position + mainCamera.transform.forward * holdDistance;
 
+        
+    }
+
+    void CheckStatus(GameObject go)
+    {
         if (isHolding)
         {
-            //CheckDrop();
+            CheckDrop();
         }
         else
         {
-            //Pickup(gameObject);
+            Pickup();
         }
     }
 
@@ -155,7 +160,7 @@ public class LiftObject : MonoBehaviour
         #endregion
     }
 
-    void Pickup(GameObject go)
+    void Pickup()
     {
         int x = Screen.width / 2;
         int y = Screen.height / 2;
@@ -163,7 +168,6 @@ public class LiftObject : MonoBehaviour
         Vector3 rayOrigin = playerCamera.ViewportToWorldPoint(new Vector3(x, y));
         RaycastHit hit;
         //print("Casting");
-
         if (Physics.Raycast(rayOrigin, playerCamera.transform.forward, out hit, grabDistance, ~ignoreMe))
         {
             prop_rb = hit.collider.GetComponent<Rigidbody>();
@@ -186,23 +190,26 @@ public class LiftObject : MonoBehaviour
                     }
                 }
             }
-            //else
-            //{
-            //    print(hit.collider.tag);
-            //}
+            else
+            {
+                print(hit.collider.tag);
+            }
         }
     }
 
     void CheckDrop()
     {
-        if (Input.GetKeyDown(KeyCode.E) || distance > grabDistance)
-        {
-            DropObject();
-        }
-        else if (Input.GetKeyDown(KeyCode.Q))
-        {
-            ThrowObject();
-        }
+
+        DropObject();
+        
+        //if (Input.GetKeyDown(KeyCode.I) || distance > grabDistance)
+        //{
+            
+        //}
+        //else if (Input.GetKeyDown(KeyCode.O))
+        //{
+        //    ThrowObject();
+        //}
     }
 
     public void DropObject()
