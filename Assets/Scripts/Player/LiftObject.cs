@@ -97,8 +97,10 @@ public class LiftObject : MonoBehaviour
             {
                 DropObject();
             }
-
-            CheckThrow();
+            else if(Input.GetKeyDown(KeyCode.Q))
+            {
+                ThrowObject();
+            }
         }
     }
 
@@ -199,14 +201,6 @@ public class LiftObject : MonoBehaviour
             {
                 print(hit.collider.tag);
             }
-        }
-    }
-
-    void CheckThrow()
-    {
-        if (Input.GetKeyDown(KeyCode.Q))
-        {
-            ThrowObject();
         }
     }
 
