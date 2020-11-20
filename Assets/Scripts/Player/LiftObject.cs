@@ -157,13 +157,13 @@ public class LiftObject : MonoBehaviour
 
     void Pickup(GameObject go)
     {
-        print("picking");
         int x = Screen.width / 2;
         int y = Screen.height / 2;
 
         Vector3 rayOrigin = playerCamera.ViewportToWorldPoint(new Vector3(x, y));
         RaycastHit hit;
         //print("Casting");
+
         if (Physics.Raycast(rayOrigin, playerCamera.transform.forward, out hit, grabDistance, ~ignoreMe))
         {
             prop_rb = hit.collider.GetComponent<Rigidbody>();
@@ -186,20 +186,20 @@ public class LiftObject : MonoBehaviour
                     }
                 }
             }
-            else
-            {
-                print(hit.collider.tag);
-            }
+            //else
+            //{
+            //    print(hit.collider.tag);
+            //}
         }
     }
 
     void CheckDrop()
     {
-        if (Input.GetKeyDown(KeyCode.I) || distance > grabDistance)
+        if (Input.GetKeyDown(KeyCode.E) || distance > grabDistance)
         {
             DropObject();
         }
-        else if (Input.GetKeyDown(KeyCode.O))
+        else if (Input.GetKeyDown(KeyCode.Q))
         {
             ThrowObject();
         }
