@@ -48,7 +48,7 @@ public class PlayerController : MonoBehaviour
 
     public Vector3 SpawnPosition { set { spawnPosition = value; } }
 
-    private Animator m_animator = null;
+    public Animator m_animator = null;
 
     [Tooltip("Default: 0.05")]
     [Range(0, 1)]
@@ -125,7 +125,7 @@ public class PlayerController : MonoBehaviour
 
         cameraControllerScript = m_camera.GetComponent<CameraController>();
 
-        m_animator = m_camera.transform.GetChild(0).GetComponent<Animator>();
+        m_animator = m_camera.transform.GetComponentInChildren<Animator>();
     }
 
     // Start is called before the first frame update
@@ -138,7 +138,6 @@ public class PlayerController : MonoBehaviour
 
     private void Update()
     {
-
         if (isOnProp && m_input == Vector3.zero)
         {
             playerSpeed = 0;
@@ -146,7 +145,9 @@ public class PlayerController : MonoBehaviour
         else
         {
             playerSpeed = Mathf.Lerp(playerSpeed, m_rb.velocity.magnitude, animationTime);
-        }     
+        }
+
+        print(playerSpeed);
 
         m_animator.SetFloat("Speed", playerSpeed);
 
