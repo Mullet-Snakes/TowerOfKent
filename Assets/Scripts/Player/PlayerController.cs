@@ -189,14 +189,28 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    private void OnDrawGizmos()
+    {
+        Gizmos.DrawSphere(transform.position + (-transform.up * 0.53f), 0.5f);
+    }
+
     // Update is called once per frame
     void FixedUpdate()
     {
         isGrounded = Physics.Raycast(transform.position, -transform.up, out RaycastHit hit, 1.03f, groundMask);
 
-        bool isG = Physics.CapsuleCast(transform.position, transform.position - transform.up * 1.03f, 0.5f, -transform.up);
+        //bool isG = Physics.CapsuleCast(transform.position, transform.position + (-transform.up * 1.03f), 1f, -transform.up, groundMask);
 
-        print(isG);
+        bool isG = Physics.SphereCast(transform.position + (-transform.up * 0.53f), 0.5f, -transform.up, out RaycastHit hhit, groundMask);
+
+        if(isG)
+        {
+            print(hhit.transform.name + "   " + isG);
+        }            
+        else
+        {
+            print(isG);
+        }
 
         targetVelocity = m_rb.velocity;
 
