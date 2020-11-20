@@ -9,6 +9,14 @@ public class DeathBox : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
+        if(other.CompareTag("Player"))
+        {
+
+
+            other.transform.GetComponentInParent<PlayerController>().OnDeath();
+
+        }
+
         if (other.tag == targetTag.tag)
         {
             if (targetTag.CompareTag("Player"))

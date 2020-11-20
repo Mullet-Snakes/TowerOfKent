@@ -12,6 +12,7 @@ TagManager:
   - keytut
   - gravobjtut
   - buttontut
+  - presstut
   layers:
   - Default
   - TransparentFX
@@ -23,7 +24,7 @@ TagManager:
   - 
   - Ground
   - Player
-  - 
+  - LevelProp
   - 
   - 
   - 

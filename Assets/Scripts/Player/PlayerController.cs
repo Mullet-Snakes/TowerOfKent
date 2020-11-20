@@ -16,7 +16,7 @@ public class PlayerController : MonoBehaviour
 
     private bool isGrounded = false;
 
-    public bool isOnProp = false;
+    private bool isOnProp = false;
 
     [Tooltip("Default: 10")]
     [Range(1, 30)]
