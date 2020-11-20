@@ -91,14 +91,20 @@ public class LiftObject : MonoBehaviour
     {
         grabPosition = mainCamera.transform.position + mainCamera.transform.forward * holdDistance;
 
-        
+        if (Input.GetKeyDown(KeyCode.Q))
+        {
+            if (isHolding)
+            {
+                ThrowObject();
+            }           
+        }
     }
 
     void CheckStatus(GameObject go)
     {
         if (isHolding)
         {
-            CheckDrop();
+            DropObject();
         }
         else
         {
@@ -195,21 +201,6 @@ public class LiftObject : MonoBehaviour
                 print(hit.collider.tag);
             }
         }
-    }
-
-    void CheckDrop()
-    {
-
-        DropObject();
-        
-        //if (Input.GetKeyDown(KeyCode.I) || distance > grabDistance)
-        //{
-            
-        //}
-        //else if (Input.GetKeyDown(KeyCode.O))
-        //{
-        //    ThrowObject();
-        //}
     }
 
     public void DropObject()
