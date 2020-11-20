@@ -91,14 +91,22 @@ public class LiftObject : MonoBehaviour
     {
         grabPosition = mainCamera.transform.position + mainCamera.transform.forward * holdDistance;
 
-        
+        if(isHolding)
+        {
+            if (distance > grabDistance)
+            {
+                DropObject();
+            }
+
+            CheckThrow();
+        }
     }
 
     void CheckStatus(GameObject go)
     {
         if (isHolding)
         {
-            CheckDrop();
+            DropObject();
         }
         else
         {
@@ -124,13 +132,6 @@ public class LiftObject : MonoBehaviour
     void Carry(GameObject obj)
     {
         distance = Vector3.Distance(obj.transform.position, player.transform.position);
-
-        #region Carmine's code
-        //prop_rb = obj.GetComponent<Rigidbody>();
-        //prop_rb.MovePosition(Vector3.Lerp(prop_rb.position, grabPosition, objMove * Time.deltaTime));
-        //prop_rb.rotation = grabby.transform.rotation;
-        #endregion
-
 
         prop_rb = obj.GetComponent<Rigidbody>();
         prop_rb.AddForce((new Vector3(grabPosition.x, grabby.transform.position.y, grabPosition.z) - obj.transform.position) * objMove, ForceMode.VelocityChange);
@@ -167,16 +168,20 @@ public class LiftObject : MonoBehaviour
 
         Vector3 rayOrigin = playerCamera.ViewportToWorldPoint(new Vector3(x, y));
         RaycastHit hit;
+
         //print("Casting");
+
         if (Physics.Raycast(rayOrigin, playerCamera.transform.forward, out hit, grabDistance, ~ignoreMe))
         {
             prop_rb = hit.collider.GetComponent<Rigidbody>();
             distance = Vector3.Distance(hit.transform.position, player.transform.position);
+
             //print("Colliding");
 
             if (hit.collider.CompareTag("LevelProp"))
             {
                 //print("Grabbing");
+
                 isHolding = true;
                 carriedObject = prop_rb.gameObject;
                 objGrav = hit.collider.GetComponent<GravityForce>().Force;
@@ -197,19 +202,12 @@ public class LiftObject : MonoBehaviour
         }
     }
 
-    void CheckDrop()
+    void CheckThrow()
     {
-
-        DropObject();
-        
-        //if (Input.GetKeyDown(KeyCode.I) || distance > grabDistance)
-        //{
-            
-        //}
-        //else if (Input.GetKeyDown(KeyCode.O))
-        //{
-        //    ThrowObject();
-        //}
+        if (Input.GetKeyDown(KeyCode.Q))
+        {
+            ThrowObject();
+        }
     }
 
     public void DropObject()

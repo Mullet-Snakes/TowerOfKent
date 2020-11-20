@@ -127,12 +127,6 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 5164565268157016244}
   m_PrefabAsset: {fileID: 0}
---- !u!4 &270225265 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 6986354698282277811, guid: df33eebb884e8cd48afa52d8ed3c386d,
-    type: 3}
-  m_PrefabInstance: {fileID: 6986354697587537607}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &304107338
 GameObject:
   m_ObjectHideFlags: 0
@@ -565,36 +559,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 961437990}
   m_CullTransparentMesh: 0
---- !u!1 &995854032
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 995854033}
-  m_Layer: 0
-  m_Name: Grabby
-  m_TagString: Untagged
-  m_Icon: {fileID: -5487077368411116049, guid: 0000000000000000d000000000000000, type: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &995854033
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 995854032}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -0.75, z: 2}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 270225265}
-  m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1012980374 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 6091616170766099963, guid: 6cf4fb6a4c26c13449943a6d16932c48,
@@ -1165,35 +1129,6 @@ MonoBehaviour:
   - {fileID: 1665036698}
   freezable: 0
   frozen: 0
---- !u!1 &1750330006 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 6986354697981864038, guid: df33eebb884e8cd48afa52d8ed3c386d,
-    type: 3}
-  m_PrefabInstance: {fileID: 6986354697587537607}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &1750330007
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1750330006}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: faa8f6c020b56b446a4b38ff42413864, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  grabby: {fileID: 995854032}
-  player: {fileID: 1750330006}
-  ignoreMe:
-    serializedVersion: 2
-    m_Bits: 512
-  objMove: 10
-  orbitRange: 4
-  grabDistance: 10
-  holdDistance: 4
-  throwForce: 5
-  isHolding: 0
 --- !u!1 &1834219721
 GameObject:
   m_ObjectHideFlags: 0
@@ -1935,6 +1870,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: ObjectDB
       objectReference: {fileID: 0}
+    - target: {fileID: 4149210238784861645, guid: f4dcdfda34ae2f44e89be4647105c54c,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4934849852089402349, guid: f4dcdfda34ae2f44e89be4647105c54c,
         type: 3}
       propertyPath: deathTarget
@@ -1979,6 +1919,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: PlayerDB
+      objectReference: {fileID: 0}
+    - target: {fileID: 3637736715409270755, guid: 9bbdf1bf5a661f940bb29663306ab1a8,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3637736715409270764, guid: 9bbdf1bf5a661f940bb29663306ab1a8,
         type: 3}
@@ -2436,41 +2381,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
-    - target: {fileID: 6986354697981864038, guid: df33eebb884e8cd48afa52d8ed3c386d,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6986354698282277809, guid: df33eebb884e8cd48afa52d8ed3c386d,
-        type: 3}
-      propertyPath: levelWalls.Array.data[0]
-      value: 
-      objectReference: {fileID: 1159586397}
-    - target: {fileID: 6986354698282277809, guid: df33eebb884e8cd48afa52d8ed3c386d,
-        type: 3}
-      propertyPath: levelWalls.Array.data[1]
-      value: 
-      objectReference: {fileID: 1598650128}
-    - target: {fileID: 6986354698282277809, guid: df33eebb884e8cd48afa52d8ed3c386d,
-        type: 3}
-      propertyPath: levelWalls.Array.data[2]
-      value: 
-      objectReference: {fileID: 1895943631}
-    - target: {fileID: 6986354698282277809, guid: df33eebb884e8cd48afa52d8ed3c386d,
-        type: 3}
-      propertyPath: levelWalls.Array.data[3]
-      value: 
-      objectReference: {fileID: 1644842712}
-    - target: {fileID: 6986354698282277809, guid: df33eebb884e8cd48afa52d8ed3c386d,
-        type: 3}
-      propertyPath: levelWalls.Array.data[4]
-      value: 
-      objectReference: {fileID: 304107338}
-    - target: {fileID: 6986354698282277809, guid: df33eebb884e8cd48afa52d8ed3c386d,
-        type: 3}
-      propertyPath: levelWalls.Array.data[5]
-      value: 
-      objectReference: {fileID: 1983969770}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: df33eebb884e8cd48afa52d8ed3c386d, type: 3}
 --- !u!1001 &7598927377047112464
