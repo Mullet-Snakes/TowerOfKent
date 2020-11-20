@@ -44,7 +44,7 @@ public class PlayerController : MonoBehaviour
 
     private Vector3 targetVelocity = new Vector3();
 
-    private Vector3 spawnPosition = new Vector3();
+    public Vector3 spawnPosition = new Vector3();
 
     public Vector3 SpawnPosition { set { spawnPosition = value; } }
 

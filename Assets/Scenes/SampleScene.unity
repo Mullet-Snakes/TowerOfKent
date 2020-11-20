@@ -121,12 +121,6 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
---- !u!1 &115848742 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 5164565268180377234, guid: 2e49f51f1cf2b084db51e6719ac8a0ab,
-    type: 3}
-  m_PrefabInstance: {fileID: 5164565268157016244}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &270225265 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6986354698282277811, guid: df33eebb884e8cd48afa52d8ed3c386d,
@@ -617,12 +611,6 @@ NavMeshObstacle:
   m_CarveOnlyStationary: 1
   m_Center: {x: 0, y: 0, z: 0}
   m_TimeToStationary: 0.5
---- !u!1 &1064726002 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1730365750530575441, guid: 543021cc7a49cad4fb6cc61fa920ebd6,
-    type: 3}
-  m_PrefabInstance: {fileID: 1730365749670537560}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1159586397
 GameObject:
   m_ObjectHideFlags: 0
@@ -2488,7 +2476,17 @@ PrefabInstance:
     - target: {fileID: 7598927375961186415, guid: 49659bde2d3847a448ec1ffc450ee259,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7598927375961186448, guid: 49659bde2d3847a448ec1ffc450ee259,
+        type: 3}
+      propertyPath: keyName
+      value: blue
+      objectReference: {fileID: 0}
+    - target: {fileID: 7598927375961186448, guid: 49659bde2d3847a448ec1ffc450ee259,
+        type: 3}
+      propertyPath: distanceToInteract
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 7598927375961186452, guid: 49659bde2d3847a448ec1ffc450ee259,
         type: 3}
@@ -2687,13 +2685,13 @@ PrefabInstance:
     - target: {fileID: 8197095605655056995, guid: 6649991dde669cf489f139e098fa261e,
         type: 3}
       propertyPath: conditionList.Array.size
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8197095605655056995, guid: 6649991dde669cf489f139e098fa261e,
         type: 3}
       propertyPath: condition
       value: 
-      objectReference: {fileID: 8197095604689584117}
+      objectReference: {fileID: 0}
     - target: {fileID: 8197095605655056995, guid: 6649991dde669cf489f139e098fa261e,
         type: 3}
       propertyPath: conditionList.Array.data[0]
@@ -2703,7 +2701,7 @@ PrefabInstance:
         type: 3}
       propertyPath: conditionList.Array.data[1]
       value: 
-      objectReference: {fileID: 8197095604689584118}
+      objectReference: {fileID: 0}
     - target: {fileID: 8197095605655057020, guid: 6649991dde669cf489f139e098fa261e,
         type: 3}
       propertyPath: m_Name
@@ -2712,7 +2710,7 @@ PrefabInstance:
     - target: {fileID: 8197095605655057020, guid: 6649991dde669cf489f139e098fa261e,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6649991dde669cf489f139e098fa261e, type: 3}
@@ -2731,25 +2729,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 8197095604689584116}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4ffe45f157256dc4abc83b917b6a9257, type: 3}
+  m_Script: {fileID: 11500000, guid: d5fb0e745b0ff354a9db4241af218097, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  buttonList:
-  - {fileID: 115848742}
---- !u!114 &8197095604689584118
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8197095604689584116}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 931da544dd40cfd40bd590d995b5f213, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  pressurePlateList:
-  - {fileID: 1064726002}
+  keyName: blue
 --- !u!1001 &9033047619668293614
 PrefabInstance:
   m_ObjectHideFlags: 0

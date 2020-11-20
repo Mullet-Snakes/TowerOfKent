@@ -4,41 +4,39 @@ using UnityEngine;
 
 public class DeathBox : MonoBehaviour
 {
-    public GameObject targetTag;
-    public GameObject player;
+    private GameObject player;
+
+    private void Awake()
+    {
+        player = GameObject.FindWithTag("Player");
+    }
 
     private void OnTriggerEnter(Collider other)
     {
         if(other.CompareTag("Player"))
         {
+            player.GetComponent<PlayerController>().OnDeath();
+            LiftObject lift = player.GetComponent<LiftObject>();
 
-
-            other.transform.GetComponentInParent<PlayerController>().OnDeath();
-
+            if(lift != null)
+            {
+                if(lift.IsHolding)
+                {
+                    lift.DropObject();
+                }
+            }
         }
 
-        if (other.tag == targetTag.tag)
+        if(other.CompareTag("LevelProp"))
         {
-            if (targetTag.CompareTag("Player"))
-            {
-                print("Player Killed");
-                targetTag.GetComponent<PlayerController>().OnDeath();
+            LiftObject lift = player.GetComponent<LiftObject>();
 
-                if (targetTag.GetComponent<LiftObject>().IsHolding == true)
-                {
-                    targetTag.GetComponent<LiftObject>().DropObject();
-                }
-            }
-            else if (targetTag.CompareTag("LevelProp"))
+            if(lift.IsHolding)
             {
-                if (player.GetComponent<LiftObject>().IsHolding == true)
-                {
-                    player.GetComponent<LiftObject>().DropObject();
-                }
-
-                print("Object Killed");
-                Destroy(other.gameObject);
+                lift.DropObject();
             }
+
+            Destroy(other.gameObject);
         }
     }
 }
