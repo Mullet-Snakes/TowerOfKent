@@ -70,11 +70,22 @@ public class LiftObject : MonoBehaviour
 
     private void Awake()
     {
+        
         mainCamera = GameObject.FindWithTag("MainCamera");
         playerCamera = Camera.main;
         player_rb = player.GetComponent<Rigidbody>();
         //spin = new Vector3(0, 100, 0);
     }
+
+    private void OnEnable()
+    {
+        InteractKeyManager.OnButtonPress += Pickup;
+    }
+    private void OnDisable()
+    {
+        InteractKeyManager.OnButtonPress -= Pickup;
+    }
+
 
     private void Update()
     {
@@ -86,7 +97,7 @@ public class LiftObject : MonoBehaviour
         }
         else
         {
-            Pickup();
+            Pickup(gameObject);
         }
     }
 
@@ -144,42 +155,40 @@ public class LiftObject : MonoBehaviour
         #endregion
     }
 
-    void Pickup()
+    void Pickup(GameObject go)
     {
-        if (Input.GetKeyDown(KeyCode.I))
+        print("picking");
+        int x = Screen.width / 2;
+        int y = Screen.height / 2;
+
+        Vector3 rayOrigin = playerCamera.ViewportToWorldPoint(new Vector3(x, y));
+        RaycastHit hit;
+        //print("Casting");
+        if (Physics.Raycast(rayOrigin, playerCamera.transform.forward, out hit, grabDistance, ~ignoreMe))
         {
-            int x = Screen.width / 2;
-            int y = Screen.height / 2;
+            prop_rb = hit.collider.GetComponent<Rigidbody>();
+            distance = Vector3.Distance(hit.transform.position, player.transform.position);
+            //print("Colliding");
 
-            Vector3 rayOrigin = playerCamera.ViewportToWorldPoint(new Vector3(x, y));
-            RaycastHit hit;
-            //print("Casting");
-            if (Physics.Raycast(rayOrigin, playerCamera.transform.forward, out hit, grabDistance, ~ignoreMe))
+            if (hit.collider.CompareTag("LevelProp"))
             {
-                prop_rb = hit.collider.GetComponent<Rigidbody>();
-                distance = Vector3.Distance(hit.transform.position, player.transform.position);
-                //print("Colliding");
+                //print("Grabbing");
+                isHolding = true;
+                carriedObject = prop_rb.gameObject;
+                objGrav = hit.collider.GetComponent<GravityForce>().Force;
+                hit.collider.GetComponent<GravityForce>().Force = noGrav;
 
-                if (hit.collider.CompareTag("LevelProp"))
+                if (carriedObject.GetComponent<ExplodingBarrelScript>())
                 {
-                    //print("Grabbing");
-                    isHolding = true;
-                    carriedObject = prop_rb.gameObject;
-                    objGrav = hit.collider.GetComponent<GravityForce>().Force;
-                    hit.collider.GetComponent<GravityForce>().Force = noGrav;
-
-                    if (carriedObject.GetComponent<ExplodingBarrelScript>())
+                    if (hit.collider.GetComponent<ExplodingBarrelScript>().IsExplodable == true)
                     {
-                        if (hit.collider.GetComponent<ExplodingBarrelScript>().IsExplodable == true)
-                        {
-                            hit.collider.GetComponent<ExplodingBarrelScript>().IsExplodable = false;
-                        }
+                        hit.collider.GetComponent<ExplodingBarrelScript>().IsExplodable = false;
                     }
                 }
-                else
-                {
-                    print(hit.collider.tag);
-                }
+            }
+            else
+            {
+                print(hit.collider.tag);
             }
         }
     }
