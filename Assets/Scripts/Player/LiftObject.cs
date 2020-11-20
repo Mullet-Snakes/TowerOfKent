@@ -196,10 +196,6 @@ public class LiftObject : MonoBehaviour
                     }
                 }
             }
-            else
-            {
-                print(hit.collider.tag);
-            }
         }
     }
 
