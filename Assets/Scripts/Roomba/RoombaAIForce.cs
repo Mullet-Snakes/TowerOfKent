@@ -122,12 +122,16 @@ public class RoombaAIForce : ForceScript
 
     void SetWaypoints(Vector3 target, float sizeOfCast)
     {
-        if (NavMesh.SamplePosition(target, out NavMeshHit hit, sizeOfCast, NavMesh.AllAreas))
+        if(controller.IsGrounded && !controller.Rotating)
         {
-            NavMesh.CalculatePath(transform.position, hit.position, NavMesh.AllAreas, path);
+            if (NavMesh.SamplePosition(target, out NavMeshHit hit, sizeOfCast, NavMesh.AllAreas))
+            {
+                NavMesh.CalculatePath(transform.position, hit.position, NavMesh.AllAreas, path);
 
-            AddToList();
+                AddToList();
+            }
         }
+        
     }
 
     Vector3 GetRandomPoint()

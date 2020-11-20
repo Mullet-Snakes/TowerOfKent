@@ -91,10 +91,12 @@ public class RoombaController : MonoBehaviour
     void Update()
     {
 
-        float dot = Vector3.Dot(transform.up, player.transform.up);
+        
 
         if (!rotating)
         {
+            float dot = Vector3.Dot(transform.up, player.transform.up);
+
             if (dot > 0.9f)
             {
                 distToPlayer = (transform.position - player.transform.position).magnitude;
