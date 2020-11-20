@@ -12,9 +12,9 @@ GameObject:
   - component: {fileID: 8559831098138488702}
   - component: {fileID: 8559831098138488696}
   - component: {fileID: 8559831098138488703}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: grav mugg
-  m_TagString: Untagged
+  m_TagString: LevelProp
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -65,6 +65,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_forceList:
   - {fileID: 8559831098138488703}
+  freezable: 0
+  frozen: 0
 --- !u!114 &8559831098138488703
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -93,7 +95,7 @@ GameObject:
   - component: {fileID: 8032358427382529153}
   - component: {fileID: 7227664247115823492}
   - component: {fileID: 8559831098338371485}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Mug 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -140,7 +142,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 5561349426305759274, guid: e48d58ee24605f34e93cabc4c5eaa142, type: 3}
+  - {fileID: 2100000, guid: 34cdf1d0744f02e4f86c1aeaa4e75bde, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -187,7 +189,7 @@ GameObject:
   - component: {fileID: 4805481808983723500}
   - component: {fileID: 2792609601127258707}
   - component: {fileID: 8559831098115360383}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Handle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -234,7 +236,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 5561349426305759274, guid: e48d58ee24605f34e93cabc4c5eaa142, type: 3}
+  - {fileID: 2100000, guid: 34cdf1d0744f02e4f86c1aeaa4e75bde, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

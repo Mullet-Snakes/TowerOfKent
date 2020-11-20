@@ -126,8 +126,8 @@ MonoBehaviour:
   ignoreMe:
     serializedVersion: 2
     m_Bits: 512
-  objMove: 10
-  orbitRange: 4
+  objMove: 5
+  orbitRange: 5
   grabDistance: 10
   holdDistance: 4
   throwForce: 5
