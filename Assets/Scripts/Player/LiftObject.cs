@@ -93,11 +93,11 @@ public class LiftObject : MonoBehaviour
 
         if (isHolding)
         {
-            CheckDrop();
+            //CheckDrop();
         }
         else
         {
-            Pickup(gameObject);
+            //Pickup(gameObject);
         }
     }
 
