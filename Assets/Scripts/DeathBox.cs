@@ -4,24 +4,32 @@ using UnityEngine;
 
 public class DeathBox : MonoBehaviour
 {
-    public GameObject deathTarget;
+    public GameObject targetTag;
+    public GameObject player;
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.tag == deathTarget.tag)
+        if (other.tag == targetTag.tag)
         {
-            if (deathTarget.CompareTag("Player"))
+            if (targetTag.CompareTag("Player"))
             {
-                deathTarget.GetComponent<PlayerController>().OnDeath();
+                print("Player Killed");
+                targetTag.GetComponent<PlayerController>().OnDeath();
 
-                if (deathTarget.GetComponent<LiftObject>().IsHolding == true)
+                if (targetTag.GetComponent<LiftObject>().IsHolding == true)
                 {
-                    deathTarget.GetComponent<LiftObject>().DropObject();
+                    targetTag.GetComponent<LiftObject>().DropObject();
                 }
             }
-            else if(deathTarget.CompareTag("LevelProp"))
+            else if (targetTag.CompareTag("LevelProp"))
             {
+                if (player.GetComponent<LiftObject>().IsHolding == true)
+                {
+                    player.GetComponent<LiftObject>().DropObject();
+                }
 
+                print("Object Killed");
+                Destroy(other.gameObject);
             }
         }
     }
