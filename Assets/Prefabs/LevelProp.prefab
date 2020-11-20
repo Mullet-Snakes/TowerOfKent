@@ -13,10 +13,12 @@ GameObject:
   - component: {fileID: 6091616170766099909}
   - component: {fileID: 6091616170766099908}
   - component: {fileID: 6091616170766099904}
-  - component: {fileID: 6091616170766099905}
-  m_Layer: 8
+  - component: {fileID: 6091616169487749223}
+  - component: {fileID: 6091616169487749222}
+  - component: {fileID: 1012980375}
+  m_Layer: 10
   m_Name: LevelProp
-  m_TagString: Untagged
+  m_TagString: LevelProp
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -103,7 +105,7 @@ Rigidbody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6091616170766099963}
   serializedVersion: 2
-  m_Mass: 100
+  m_Mass: 1
   m_Drag: 0
   m_AngularDrag: 0
   m_UseGravity: 0
@@ -111,7 +113,7 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 112
   m_CollisionDetection: 2
---- !u!114 &6091616170766099905
+--- !u!114 &6091616169487749223
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -120,9 +122,42 @@ MonoBehaviour:
   m_GameObject: {fileID: 6091616170766099963}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bd4150203bfc3a445a3dfed2a84478af, type: 3}
+  m_Script: {fileID: 11500000, guid: e4d3b5675e2fefb459806436ef8bf012, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_forceList:
+  - {fileID: 6091616169487749222}
+  freezable: 0
+  frozen: 0
+--- !u!114 &6091616169487749222
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6091616170766099963}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4903fc12507c3243a65363e487bb01f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   isTargeted: 0
   highlighed: {fileID: 2100000, guid: d58bdd8803e3a7f41bd18237f5473a9b, type: 2}
   normal: {fileID: 2100000, guid: 640b96e506330ce43912b9250440a812, type: 2}
+  gravityFactor: -9.8
+--- !u!208 &1012980375
+NavMeshObstacle:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6091616170766099963}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Shape: 1
+  m_Extents: {x: 0.5, y: 0.5, z: 0.5}
+  m_MoveThreshold: 0.1
+  m_Carve: 1
+  m_CarveOnlyStationary: 1
+  m_Center: {x: 0, y: 0, z: 0}
+  m_TimeToStationary: 0.5
