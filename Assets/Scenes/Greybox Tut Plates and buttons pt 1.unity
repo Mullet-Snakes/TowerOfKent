@@ -5305,7 +5305,7 @@ PrefabInstance:
         type: 3}
       propertyPath: itemToSpawn
       value: 
-      objectReference: {fileID: 5864397788508172527, guid: 15b954912413935438427b44c385a5cc,
+      objectReference: {fileID: 4658005263885925549, guid: 08b5f2788e31d2b4baf945a2619d4d9b,
         type: 3}
     - target: {fileID: 5914754477544493461, guid: ee5dc547614cd8546b9be5df5585f570,
         type: 3}
@@ -5315,7 +5315,7 @@ PrefabInstance:
     - target: {fileID: 5914754477544493461, guid: ee5dc547614cd8546b9be5df5585f570,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -13.929699
+      value: -14.298
       objectReference: {fileID: 0}
     - target: {fileID: 5914754477544493461, guid: ee5dc547614cd8546b9be5df5585f570,
         type: 3}
@@ -12879,7 +12879,7 @@ PrefabInstance:
     - target: {fileID: 8197095605655056994, guid: 6649991dde669cf489f139e098fa261e,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -19.225
+      value: -17.843
       objectReference: {fileID: 0}
     - target: {fileID: 8197095605655056994, guid: 6649991dde669cf489f139e098fa261e,
         type: 3}

@@ -64,7 +64,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 640b96e506330ce43912b9250440a812, type: 2}
+  - {fileID: 2100000, guid: 676cf4217aa9d8b4ba63ded1d76ba1d9, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -147,6 +147,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_forceList:
   - {fileID: -2131683230410953589}
+  freezable: 0
+  frozen: 0
 --- !u!114 &-2131683230410953589
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -159,6 +161,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f4903fc12507c3243a65363e487bb01f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isTargeted: 0
   highlighed: {fileID: 2100000, guid: d3bc2426f570b5d4e9aa9748f15806c5, type: 2}
   normal: {fileID: 2100000, guid: 676cf4217aa9d8b4ba63ded1d76ba1d9, type: 2}
   gravityFactor: -9.8
