@@ -93,11 +93,11 @@ public class LiftObject : MonoBehaviour
 
         if (isHolding)
         {
-            CheckDrop();
+            //CheckDrop();
         }
         else
         {
-            Pickup(gameObject);
+            //Pickup(gameObject);
         }
     }
 
@@ -157,7 +157,6 @@ public class LiftObject : MonoBehaviour
 
     void Pickup(GameObject go)
     {
-        print("picking");
         int x = Screen.width / 2;
         int y = Screen.height / 2;
 
