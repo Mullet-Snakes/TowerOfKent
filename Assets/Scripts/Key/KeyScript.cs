@@ -4,7 +4,12 @@ using UnityEngine;
 
 public class KeyScript : InteractableObjectScript
 {
-    public string keyName = "bluekey";
+    public string keyName;
+
+    public KeyScript(string name)
+    {
+        keyName = name;
+    }
 
     private void Awake()
     {

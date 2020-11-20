@@ -7,6 +7,8 @@ public class Spawner : MonoBehaviour
     public GameObject itemToSpawn = null;
     private GameObject currentObject = null;
 
+    public GameObject CurrentObject { get { return currentObject;} }
+
     // Start is called before the first frame update
     void Start()
     {
