@@ -16,7 +16,7 @@ public class PlayerController : MonoBehaviour
 
     private bool isGrounded = false;
 
-    public bool isOnProp = false;
+    private bool isOnProp = false;
 
     [Tooltip("Default: 10")]
     [Range(1, 30)]
@@ -146,8 +146,7 @@ public class PlayerController : MonoBehaviour
         else
         {
             playerSpeed = Mathf.Lerp(playerSpeed, m_rb.velocity.magnitude, animationTime);
-        }
-        
+        }     
 
         m_animator.SetFloat("Speed", playerSpeed);
 
@@ -189,16 +188,10 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    private void OnDrawGizmos()
-    {
-        Gizmos.DrawSphere(transform.position - (transform.up * 0.53f), 0.5f);
-    }
-
     // Update is called once per frame
     void FixedUpdate()
     {
         //isGrounded = Physics.Raycast(transform.position, -transform.up, out RaycastHit hit, 1.03f, groundMask);
-
 
         isGrounded = Physics.SphereCast(transform.position, 0.5f, -transform.up, out RaycastHit hit, 0.53f, groundMask);
 
