@@ -79,11 +79,11 @@ public class LiftObject : MonoBehaviour
 
     private void OnEnable()
     {
-        InteractKeyManager.OnButtonPress += Pickup;
+        InteractKeyManager.OnButtonPress += CheckStatus;
     }
     private void OnDisable()
     {
-        InteractKeyManager.OnButtonPress -= Pickup;
+        InteractKeyManager.OnButtonPress -= CheckStatus;
     }
 
 
@@ -91,13 +91,18 @@ public class LiftObject : MonoBehaviour
     {
         grabPosition = mainCamera.transform.position + mainCamera.transform.forward * holdDistance;
 
+        
+    }
+
+    void CheckStatus(GameObject go)
+    {
         if (isHolding)
         {
-            //CheckDrop();
+            CheckDrop();
         }
         else
         {
-            //Pickup(gameObject);
+            Pickup();
         }
     }
 
@@ -155,7 +160,7 @@ public class LiftObject : MonoBehaviour
         #endregion
     }
 
-    void Pickup(GameObject go)
+    void Pickup()
     {
         int x = Screen.width / 2;
         int y = Screen.height / 2;
@@ -194,14 +199,17 @@ public class LiftObject : MonoBehaviour
 
     void CheckDrop()
     {
-        if (Input.GetKeyDown(KeyCode.I) || distance > grabDistance)
-        {
-            DropObject();
-        }
-        else if (Input.GetKeyDown(KeyCode.O))
-        {
-            ThrowObject();
-        }
+
+        DropObject();
+        
+        //if (Input.GetKeyDown(KeyCode.I) || distance > grabDistance)
+        //{
+            
+        //}
+        //else if (Input.GetKeyDown(KeyCode.O))
+        //{
+        //    ThrowObject();
+        //}
     }
 
     public void DropObject()
