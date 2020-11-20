@@ -91,10 +91,12 @@ public class RoombaController : MonoBehaviour
     void Update()
     {
 
-        float dot = Vector3.Dot(transform.up, player.transform.up);
+        
 
         if (!rotating)
         {
+            float dot = Vector3.Dot(transform.up, player.transform.up);
+
             if (dot > 0.9f)
             {
                 distToPlayer = (transform.position - player.transform.position).magnitude;
@@ -161,9 +163,12 @@ public class RoombaController : MonoBehaviour
                 delay = 0f;
             }
 
-            targetRot = Quaternion.LookRotation(target, -g);
-            body.rotation = targetRot;
+            Vector3 direction = Vector3.RotateTowards(body.forward, target, m_speed * Time.deltaTime, 0.0f);
+
+            body.rotation = Quaternion.LookRotation(direction, -g);
+
         }
+
 
     }
 }
