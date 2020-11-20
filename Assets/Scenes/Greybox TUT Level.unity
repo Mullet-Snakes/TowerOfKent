@@ -3927,13 +3927,13 @@ MonoBehaviour:
   wasdtut: {fileID: 1154485837}
   keytut: {fileID: 1635027582}
   doortut: {fileID: 1984428123}
-  doortutCollider: {fileID: 1524349744}
-  gravobjtut: {fileID: 322286807}
+  doortutCollider: {fileID: 374621719}
+  gravobjtut: {fileID: 1524349744}
   gravobjtutR: {fileID: 0}
   gravplayertut: {fileID: 322286807}
   pressuretut: {fileID: 1049248697}
   buttontut: {fileID: 1664126065}
-  textbox: {fileID: 0}
+  textbox: {fileID: 19987809}
 --- !u!1 &554116167 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 7492665695460595385, guid: f0d832adf3a1f9841849cab769d93235,
