@@ -163,9 +163,12 @@ public class RoombaController : MonoBehaviour
                 delay = 0f;
             }
 
-            targetRot = Quaternion.LookRotation(target, -g);
-            body.rotation = targetRot;
+            Vector3 direction = Vector3.RotateTowards(body.forward, target, m_speed * Time.deltaTime, 0.0f);
+
+            body.rotation = Quaternion.LookRotation(direction, -g);
+
         }
+
 
     }
 }
