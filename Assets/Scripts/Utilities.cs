@@ -19,7 +19,7 @@ public static class Utilities
     {
         Scene temp = SceneManager.GetSceneByName(sceneName);
 
-        if(temp != null)
+        if(temp != null && temp.isLoaded)
         {
             SceneManager.UnloadSceneAsync(sceneName);
         }
