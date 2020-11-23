@@ -7,6 +7,12 @@ using UnityEngine.UI;
 
 public class PlayerController : MonoBehaviour
 {
+
+    private static PlayerController _instance;
+
+    public static PlayerController Instance { get { return _instance; } }
+
+
     private Rigidbody m_rb = null;
 
     [Tooltip("Default: Ground")]
@@ -115,6 +121,15 @@ public class PlayerController : MonoBehaviour
 
     private void Awake()
     {
+        if (_instance != null && _instance != this)
+        {
+            Destroy(gameObject);
+        }
+        else
+        {
+            _instance = this;
+        }
+
         DontDestroyOnLoad(gameObject);
 
         Physics.gravity = Vector3.zero;
@@ -146,8 +161,6 @@ public class PlayerController : MonoBehaviour
         {
             playerSpeed = Mathf.Lerp(playerSpeed, m_rb.velocity.magnitude, animationTime);
         }
-
-        print(playerSpeed);
 
         m_animator.SetFloat("Speed", playerSpeed);
 
