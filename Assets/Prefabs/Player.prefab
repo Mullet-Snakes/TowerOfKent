@@ -363,7 +363,7 @@ MonoBehaviour:
   ignoreMask:
     serializedVersion: 2
     m_Bits: 512
-  cooldownTime: 0.5
+  cooldownTime: 0.25
 --- !u!95 &1661828602
 Animator:
   serializedVersion: 3
