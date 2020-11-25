@@ -26,6 +26,13 @@ public class GravityCastScript : MonoBehaviour
 
     public LayerMask ignoreMask;
 
+    private Animator m_animator = null;
+
+    private void Awake()
+    {
+        m_animator = GetComponentInChildren<Animator>();
+    }
+
 
     public void AddWall(GameObject wall)
     {
@@ -49,6 +56,7 @@ public class GravityCastScript : MonoBehaviour
 
             if (Input.GetKeyDown(KeyCode.X) || Input.GetMouseButtonDown(0))
             {
+                m_animator.SetTrigger("Shooting");
 
                 if (Physics.SphereCast(transform.position, capsuleCastRadius, transform.forward, out RaycastHit hit, Mathf.Infinity, ~ignoreMask))
                 {

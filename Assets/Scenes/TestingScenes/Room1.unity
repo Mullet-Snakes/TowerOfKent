@@ -2122,5 +2122,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Doomba
       objectReference: {fileID: 0}
+    - target: {fileID: 6629819400671520117, guid: f6bf02a2bbbf40a4098b7fc5a68bbbec,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f6bf02a2bbbf40a4098b7fc5a68bbbec, type: 3}
