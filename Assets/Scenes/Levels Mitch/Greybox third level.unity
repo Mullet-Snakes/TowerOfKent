@@ -85650,6 +85650,26 @@ PrefabInstance:
       propertyPath: isTargeted
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2600390786569934252, guid: ca0c0831b6e59ef478c7b678bf9f2c8f,
+        type: 3}
+      propertyPath: m_AngularDrag
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2600390786569934252, guid: ca0c0831b6e59ef478c7b678bf9f2c8f,
+        type: 3}
+      propertyPath: m_UseGravity
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2600390786569934252, guid: ca0c0831b6e59ef478c7b678bf9f2c8f,
+        type: 3}
+      propertyPath: m_CollisionDetection
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2600390786569934252, guid: ca0c0831b6e59ef478c7b678bf9f2c8f,
+        type: 3}
+      propertyPath: m_Mass
+      value: 50
+      objectReference: {fileID: 0}
     - target: {fileID: 5639115866575089756, guid: ca0c0831b6e59ef478c7b678bf9f2c8f,
         type: 3}
       propertyPath: m_LocalPosition.x
