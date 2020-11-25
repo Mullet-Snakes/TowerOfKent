@@ -20,6 +20,7 @@ public class GravityColliderController : MonoBehaviour
             print("hello");
             GravityManager.AddToGravityList(m_collider.transform.position, m_collider.size, m_collider.transform.rotation, layer);
         }
+
     }
 
     private void OnTriggerExit(Collider other)
@@ -28,15 +29,8 @@ public class GravityColliderController : MonoBehaviour
         GravityManager.ClearCurrentList();
     }
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
     // Update is called once per frame
     void Update()
     {
-        
     }
 }
