@@ -29,7 +29,10 @@ public class GravityCastScript : MonoBehaviour
     private Animator m_animator = null;
 
     private float cooldown = 0f;
-    public bool canShoot = true;
+    private bool canShoot = true;
+
+    [SerializeField]
+    private float cooldownTime = 0.8f;
 
     private void Awake()
     {
@@ -52,13 +55,12 @@ public class GravityCastScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
         if(!canShoot)
         {
             cooldown += Time.deltaTime;
         }
 
-        if(cooldown >= 0.8f)
+        if(cooldown >= cooldownTime)
         {
             canShoot = true;
             cooldown = 0;
