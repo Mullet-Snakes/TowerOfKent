@@ -7,6 +7,7 @@ public class GravityColliderController : MonoBehaviour
 
     private BoxCollider m_collider = null;
     public LayerMask layer;
+    private bool active = false;
 
     private void Awake()
     {
@@ -15,18 +16,26 @@ public class GravityColliderController : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.CompareTag("Player"))
+        if(!active)
         {
-            print("hello");
-            GravityManager.AddToGravityList(m_collider.transform.position, m_collider.size, m_collider.transform.rotation, layer);
+            if (other.gameObject.CompareTag("Player"))
+            {
+                active = true;
+                print("hello");
+                GravityManager.AddToGravityList(m_collider.transform.position, m_collider.size, m_collider.transform.rotation, layer);
+            }
         }
-
     }
 
     private void OnTriggerExit(Collider other)
     {
-        print("goodbye");
-        GravityManager.ClearCurrentList();
+        if(active)
+        {
+            print("goodbye");
+            GravityManager.ClearCurrentList();
+            active = false;
+        }
+       
     }
 
     // Update is called once per frame
