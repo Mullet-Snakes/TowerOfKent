@@ -7,36 +7,47 @@ public class GravityColliderController : MonoBehaviour
 
     private BoxCollider m_collider = null;
     public LayerMask layer;
+    public bool active = false;
+    Vector3 centre;
 
     private void Awake()
     {
         m_collider = GetComponent<BoxCollider>();
     }
 
+    private void OnDrawGizmos()
+    {
+        Gizmos.DrawSphere(centre, 5);
+    }
+
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.CompareTag("Player"))
+        if(!active)
         {
-            print("hello");
-            GravityManager.AddToGravityList(m_collider.transform.position, m_collider.size, m_collider.transform.rotation, layer);
+            print("checking");
+            if (other.gameObject.CompareTag("Player"))
+            {
+                active = true;
+                print("hello");
+                GravityManager.AddToGravityList(transform.position, transform.localScale, Quaternion.identity, layer);
+            }
         }
     }
 
     private void OnTriggerExit(Collider other)
     {
-        print("goodbye");
-        GravityManager.ClearCurrentList();
-    }
-
-    // Start is called before the first frame update
-    void Start()
-    {
-        
+        if(active)
+        {
+            print("goodbye");
+            GravityManager.ClearCurrentList();
+            active = false;
+        }
+       
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+        centre = transform.position;
     }
 }

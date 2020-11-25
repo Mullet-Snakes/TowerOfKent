@@ -50,6 +50,8 @@ public class RoombaController : MonoBehaviour
 
     private float delay = 0f;
 
+    public Vector3 gra;
+
     private void OnEnable()
     {
         GravityManager.GravityChange += TurnOffAgent;
@@ -90,7 +92,6 @@ public class RoombaController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
         
 
         if (!rotating)
@@ -129,6 +130,7 @@ public class RoombaController : MonoBehaviour
         float m_rotationSpeed = 4f;
         float dotProduct = Vector3.Dot(Vector3.Normalize(g), -transform.up);
 
+        gra = g;
 
         if (dotProduct < 0.995f)
         {

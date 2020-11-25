@@ -36,6 +36,7 @@ public static class GravityManager
     public static void ChangeGrav(Vector3 worldGrav, bool changingTargeted)
     {
         worldGravity = worldGrav;
+
         if(changingTargeted)
         {
             NewGrav(worldGrav, true);
