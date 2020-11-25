@@ -28,6 +28,9 @@ public class GravityCastScript : MonoBehaviour
 
     private Animator m_animator = null;
 
+    private float cooldown = 0f;
+    public bool canShoot = true;
+
     private void Awake()
     {
         m_animator = GetComponentInChildren<Animator>();
@@ -49,113 +52,132 @@ public class GravityCastScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+
+        if(!canShoot)
+        {
+            cooldown += Time.deltaTime;
+        }
+
+        if(cooldown >= 0.8f)
+        {
+            canShoot = true;
+            cooldown = 0;
+        }
+
         Debug.DrawLine(transform.position, transform.forward * 50, Color.red);
 
         if (!PauseMenu.GameIsPaused)
         {
-
-            if (Input.GetKeyDown(KeyCode.X) || Input.GetMouseButtonDown(0))
+            if(canShoot == true)
             {
-                m_animator.SetTrigger("Shooting");
-
-                if (Physics.SphereCast(transform.position, capsuleCastRadius, transform.forward, out RaycastHit hit, Mathf.Infinity, ~ignoreMask))
+                if (Input.GetKeyDown(KeyCode.X) || Input.GetMouseButtonDown(0))
                 {
-                    if(hit.transform.GetComponent<Renderer>() != null)
+                    m_animator.SetTrigger("Shooting");
+                    canShoot = false;
+
+                    if (Physics.SphereCast(transform.position, capsuleCastRadius, transform.forward, out RaycastHit hit, Mathf.Infinity, ~ignoreMask))
                     {
-                        //hit.transform.GetComponent<Renderer>().material = highlightedWallMaterial;
-                    }
-                    
-                    /*
-                    foreach (GameObject go in levelWalls)
-                    {
-                        if (go != hit.transform.gameObject)
+                        if (hit.transform.GetComponent<Renderer>() != null)
                         {
-                            if (go.GetComponent<Renderer>() != null)
-                            {
-                                go.GetComponent<Renderer>().material = go.GetComponent<DebugWallScript>().m_material;
-                                go.GetComponent<Renderer>().material.shader = go.GetComponent<DebugWallScript>().m_shader;
-                            }
-                           
+                            //hit.transform.GetComponent<Renderer>().material = highlightedWallMaterial;
                         }
-                    }
-                    */
 
-                    if (hit.transform.CompareTag("GravityWall"))
-                    {
-                        playerControllerScript.Gravity = hit.normal;
-                    }
-                }
-            }
-
-            if (Input.GetKeyDown(KeyCode.Z) || Input.GetMouseButtonDown(1))
-            {
-
-                m_animator.SetTrigger("Shooting");
-
-                if (Physics.SphereCast(transform.position, capsuleCastRadius, transform.forward, out RaycastHit hit, Mathf.Infinity, ~ignoreMask))
-                {
-                    if (hit.transform.CompareTag("GravityWall"))
-                    {
-                        GravityManager.ChangeGrav(hit.normal, false);
-                    }
-                }
-            }
-
-            if (Input.GetKeyDown(KeyCode.R))
-            {
-
-                m_animator.SetTrigger("Shooting");
-
-                if (Physics.SphereCast(transform.position, capsuleCastRadius, transform.forward, out RaycastHit hit, Mathf.Infinity, ~ignoreMask))
-                {
-                    if (hit.transform.GetComponent<GravityForce>() != null)
-                    {
-                        if (targeted != null)
+                        /*
+                        foreach (GameObject go in levelWalls)
                         {
-                            targeted.IsTargeted = false;
-
-                            if (targeted.gameObject == hit.transform.gameObject)
+                            if (go != hit.transform.gameObject)
                             {
-                                targeted = null;
-                                return;
+                                if (go.GetComponent<Renderer>() != null)
+                                {
+                                    go.GetComponent<Renderer>().material = go.GetComponent<DebugWallScript>().m_material;
+                                    go.GetComponent<Renderer>().material.shader = go.GetComponent<DebugWallScript>().m_shader;
+                                }
+
                             }
                         }
+                        */
 
-                        targeted = hit.transform.GetComponent<GravityForce>();
-                        targeted.IsTargeted = true;
-                    }
-                    if (hit.transform.CompareTag("GravityWall"))
-                    {
-                        if (targeted != null)
+                        if (hit.transform.CompareTag("GravityWall"))
                         {
-                            GravityManager.ChangeGrav(hit.normal, true);
+                            playerControllerScript.Gravity = hit.normal;
                         }
                     }
                 }
-            }
 
-            if (Input.GetKeyDown(KeyCode.F))
-            {
-
-                m_animator.SetTrigger("Shooting");
-
-                if (Physics.SphereCast(transform.position, capsuleCastRadius, transform.forward, out RaycastHit hit, Mathf.Infinity, ~ignoreMask))
+                if (Input.GetKeyDown(KeyCode.Z) || Input.GetMouseButtonDown(1))
                 {
-                    ForceController temp = hit.transform.GetComponent<ForceController>();
 
-                    if (temp != null)
+                    m_animator.SetTrigger("Shooting");
+                    canShoot = false;
+
+                    if (Physics.SphereCast(transform.position, capsuleCastRadius, transform.forward, out RaycastHit hit, Mathf.Infinity, ~ignoreMask))
                     {
-                        if(temp.Freezable && !temp.Frozen)
+                        if (hit.transform.CompareTag("GravityWall"))
                         {
-                            temp.FreezeConstraints(true);
+                            GravityManager.ChangeGrav(hit.normal, false);
                         }
-                        else
+                    }
+                }
+
+                if (Input.GetKeyDown(KeyCode.R))
+                {
+
+                    m_animator.SetTrigger("Shooting");
+                    canShoot = false;
+
+                    if (Physics.SphereCast(transform.position, capsuleCastRadius, transform.forward, out RaycastHit hit, Mathf.Infinity, ~ignoreMask))
+                    {
+                        if (hit.transform.GetComponent<GravityForce>() != null)
                         {
-                            temp.FreezeConstraints(false);
-                        }                     
+                            if (targeted != null)
+                            {
+                                targeted.IsTargeted = false;
+
+                                if (targeted.gameObject == hit.transform.gameObject)
+                                {
+                                    targeted = null;
+                                    return;
+                                }
+                            }
+
+                            targeted = hit.transform.GetComponent<GravityForce>();
+                            targeted.IsTargeted = true;
+                        }
+                        if (hit.transform.CompareTag("GravityWall"))
+                        {
+                            if (targeted != null)
+                            {
+                                GravityManager.ChangeGrav(hit.normal, true);
+                            }
+                        }
+                    }
+                }
+
+                if (Input.GetKeyDown(KeyCode.F))
+                {
+
+                    m_animator.SetTrigger("Shooting");
+                    canShoot = false;
+
+                    if (Physics.SphereCast(transform.position, capsuleCastRadius, transform.forward, out RaycastHit hit, Mathf.Infinity, ~ignoreMask))
+                    {
+                        ForceController temp = hit.transform.GetComponent<ForceController>();
+
+                        if (temp != null)
+                        {
+                            if (temp.Freezable && !temp.Frozen)
+                            {
+                                temp.FreezeConstraints(true);
+                            }
+                            else
+                            {
+                                temp.FreezeConstraints(false);
+                            }
+                        }
                     }
                 }
             }
+            
         }
     }
 }
