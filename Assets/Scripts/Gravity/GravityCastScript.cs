@@ -89,6 +89,9 @@ public class GravityCastScript : MonoBehaviour
 
             if (Input.GetKeyDown(KeyCode.Z) || Input.GetMouseButtonDown(1))
             {
+
+                m_animator.SetTrigger("Shooting");
+
                 if (Physics.SphereCast(transform.position, capsuleCastRadius, transform.forward, out RaycastHit hit, Mathf.Infinity, ~ignoreMask))
                 {
                     if (hit.transform.CompareTag("GravityWall"))
@@ -100,6 +103,9 @@ public class GravityCastScript : MonoBehaviour
 
             if (Input.GetKeyDown(KeyCode.R))
             {
+
+                m_animator.SetTrigger("Shooting");
+
                 if (Physics.SphereCast(transform.position, capsuleCastRadius, transform.forward, out RaycastHit hit, Mathf.Infinity, ~ignoreMask))
                 {
                     if (hit.transform.GetComponent<GravityForce>() != null)
@@ -130,6 +136,8 @@ public class GravityCastScript : MonoBehaviour
 
             if (Input.GetKeyDown(KeyCode.F))
             {
+
+                m_animator.SetTrigger("Shooting");
 
                 if (Physics.SphereCast(transform.position, capsuleCastRadius, transform.forward, out RaycastHit hit, Mathf.Infinity, ~ignoreMask))
                 {
