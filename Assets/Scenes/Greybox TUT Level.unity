@@ -11946,12 +11946,20 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1750330007, guid: df33eebb884e8cd48afa52d8ed3c386d, type: 3}
       propertyPath: holdDistance
-      value: 2
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 1750330007, guid: df33eebb884e8cd48afa52d8ed3c386d, type: 3}
       propertyPath: grabby
       value: 
       objectReference: {fileID: 588339123}
+    - target: {fileID: 1750330007, guid: df33eebb884e8cd48afa52d8ed3c386d, type: 3}
+      propertyPath: objMove
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 1750330007, guid: df33eebb884e8cd48afa52d8ed3c386d, type: 3}
+      propertyPath: isHolding
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6986354697981864036, guid: df33eebb884e8cd48afa52d8ed3c386d,
         type: 3}
       propertyPath: m_LocalPosition.x
