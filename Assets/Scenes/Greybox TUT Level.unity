@@ -12197,7 +12197,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 34e2e9af376fc484ca733e7e40cca3cd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tilingAmount: {x: 6, y: 6}
+  tilingRatio: 0
 --- !u!65 &1516672193
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -12776,17 +12776,17 @@ PrefabInstance:
     - target: {fileID: 6986354697981864036, guid: df33eebb884e8cd48afa52d8ed3c386d,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 29.41
+      value: 20.5
       objectReference: {fileID: 0}
     - target: {fileID: 6986354697981864036, guid: df33eebb884e8cd48afa52d8ed3c386d,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -17.13
+      value: -17.36
       objectReference: {fileID: 0}
     - target: {fileID: 6986354697981864036, guid: df33eebb884e8cd48afa52d8ed3c386d,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 28.46
+      value: -50.512
       objectReference: {fileID: 0}
     - target: {fileID: 6986354697981864036, guid: df33eebb884e8cd48afa52d8ed3c386d,
         type: 3}
