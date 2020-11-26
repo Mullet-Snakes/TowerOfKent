@@ -5,7 +5,7 @@ using Gravity;
 public static class GravityManager
 {
     public delegate void ChangeGravity(Vector3 worldGrav, bool changingTargeted);
-    //public static event ChangeGravity GravityChange;
+    public static event ChangeGravity GravityChange;
     public static Vector3 worldGravity = new Vector3(0, -9.8f, 0);
     private static List<GravityForce> currentGravityList = new List<GravityForce>();
 
@@ -46,6 +46,6 @@ public static class GravityManager
             NewGrav(worldGrav, false);
         }
         
-        //GravityChange?.Invoke(worldGrav, changingTargeted);
+        GravityChange?.Invoke(worldGrav, changingTargeted);
     }
 }
