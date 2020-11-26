@@ -117,11 +117,6 @@ public class RoombaController : MonoBehaviour
     {
         isGrounded = Physics.Raycast(body.transform.position, -transform.up, 1f, floor);
 
-        if(isGrounded)
-        {
-            print("g");
-        }
-
         Vector3 right;
         Vector3 forward;
         Vector3 g = transform.GetComponent<GravityForce>().GetForce().normalized;

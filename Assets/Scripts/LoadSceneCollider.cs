@@ -16,7 +16,7 @@ public class LoadSceneCollider : MonoBehaviour
             {
                 if (!completed)
                 {
-                    print("load");
+                    //print("load");
 
                     foreach(string levelName in levelName)
                     {
