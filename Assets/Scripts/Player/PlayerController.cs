@@ -166,7 +166,7 @@ public class PlayerController : MonoBehaviour
 
         if(Input.GetKeyDown(KeyCode.C))
         {
-            OnDeath();
+            OnDeath(Vector3.zero);
         }
 
         if (allowLookScript)
@@ -290,8 +290,10 @@ public class PlayerController : MonoBehaviour
         cameraMoving = false;
     }
 
-    public void OnDeath()
+    public void OnDeath(Vector3 respawnPos)
     {
-        transform.position = spawnPosition;
+        m_rb.velocity = Vector3.zero;
+        transform.position = respawnPos;
+        //transform.position = spawnPosition;
     }
 }
