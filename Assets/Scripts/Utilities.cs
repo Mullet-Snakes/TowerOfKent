@@ -6,11 +6,19 @@ using UnityEngine.SceneManagement;
 
 public static class Utilities
 {
-    public static void LoadScene(string sceneName)
+    public static void LoadScene(string sceneName, bool additivly)
     {
         if (Application.CanStreamedLevelBeLoaded(sceneName))
         { 
-            SceneManager.LoadSceneAsync(sceneName, LoadSceneMode.Additive);
+            if(additivly)
+            {
+                SceneManager.LoadSceneAsync(sceneName, LoadSceneMode.Additive);
+            }
+            else
+            {
+                SceneManager.LoadSceneAsync(sceneName);
+            }
+            
         }
     
     }

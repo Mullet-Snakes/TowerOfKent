@@ -9,13 +9,20 @@ public class MainMenu : MonoBehaviour
     public void New()
     {
         Debug.Log("Starting New Game");
-        SceneManager.LoadScene("Greybox TUT Level");
+        //SceneManager.LoadScene("Greybox TUT Level");
+        Utilities.LoadScene("Greybox TUT Level", false);
     }
 
     //Loads Save Game
     public void LoadGame()
     {
+        string levelData = PlayerPrefs.GetString("Progress");
         Debug.Log("Loading Save Game");
+        Debug.Log(levelData);
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
+        Utilities.LoadScene(levelData, false);
+        Utilities.UnloadScene("MainMenu");
     }
 
     //Exits Game

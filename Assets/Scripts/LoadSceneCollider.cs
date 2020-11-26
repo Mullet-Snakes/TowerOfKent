@@ -20,7 +20,7 @@ public class LoadSceneCollider : MonoBehaviour
 
                     foreach(string levelName in levelName)
                     {
-                        Utilities.LoadScene(levelName);
+                        Utilities.LoadScene(levelName, true);
                     }
                     
                 }

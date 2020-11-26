@@ -48,12 +48,12 @@ namespace Gravity
 
         private void OnEnable()
         {
-            GravityManager.GravityChange += SetCurrentGravity;
+            //GravityManager.GravityChange += SetCurrentGravity;
         }
 
         private void OnDisable()
         {
-            GravityManager.GravityChange -= SetCurrentGravity;
+            //GravityManager.GravityChange -= SetCurrentGravity;
         }
 
 
