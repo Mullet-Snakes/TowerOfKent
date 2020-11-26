@@ -15,7 +15,13 @@ public class MainMenu : MonoBehaviour
     //Loads Save Game
     public void LoadGame()
     {
+        string levelData = PlayerPrefs.GetString("Progress");
         Debug.Log("Loading Save Game");
+        Debug.Log(levelData);
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
+        Utilities.LoadScene(levelData);
+        Utilities.UnloadScene("MainMenu");
     }
 
     //Exits Game

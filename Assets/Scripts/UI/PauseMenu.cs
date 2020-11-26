@@ -81,12 +81,16 @@ public class PauseMenu : MonoBehaviour
         PauseMenuUI.SetActive(false);
         Time.timeScale = 1f;
         GameIsPaused = false;
-        //SceneManager.UnloadSceneAsync("Greybox TUT Level");
-        SceneManager.LoadScene("MainMenu");
+        string savedLevel = PlayerPrefs.GetString("Progress");
+        Utilities.LoadScene("MainMenu");
+        Utilities.UnloadScene(savedLevel);
+
     }
 
     public void Save()
     {
-
+        Debug.Log("Saving Game.");
+        Utilities.SaveGame("Progress");
+        Debug.Log("Game Saved.");
     }
 }
