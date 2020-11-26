@@ -27,6 +27,14 @@ public static class KeyChainScript
         }
     }
 
+    static public void RemoveKey(string keyName)
+    {
+        if (keyName != null)
+        {
+            keyChain[keyName] = false;
+        }
+    }
+
     static public bool HasKey(string keyName)
     {
         bool hasKey = keyChain[keyName] ? true : false;

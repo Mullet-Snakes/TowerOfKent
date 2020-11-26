@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 1204812530104503355}
   - component: {fileID: 4813201366827816697}
   - component: {fileID: 1973711484781448677}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Drawers1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -90,7 +90,7 @@ GameObject:
   - component: {fileID: 1872988368983152674}
   - component: {fileID: 4864959829827571225}
   - component: {fileID: 247712365630510531}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Leg_Thing
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -170,7 +170,7 @@ GameObject:
   - component: {fileID: 1438693084968050955}
   - component: {fileID: 7439160759817545667}
   - component: {fileID: 1587625552476512540}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Table_Part
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -263,7 +263,7 @@ GameObject:
   - component: {fileID: 3107067588885730349}
   - component: {fileID: 5755669714534746611}
   - component: {fileID: 7392815058113735107}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Leg_Thing1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -340,7 +340,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2585290323927491350}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Drawers
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -372,7 +372,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6013103515645502621}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Desk
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -406,7 +406,7 @@ GameObject:
   - component: {fileID: 3496816048614512071}
   - component: {fileID: 1026719081016565883}
   - component: {fileID: 8521464038171368392}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Drawers 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -483,7 +483,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4838002836185580242}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Desk 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -519,7 +519,7 @@ GameObject:
   - component: {fileID: 527361622833271891}
   - component: {fileID: 6884754190697915441}
   - component: {fileID: 1414764188586103600}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Backboard
   m_TagString: Untagged
   m_Icon: {fileID: 0}
