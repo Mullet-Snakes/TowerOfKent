@@ -46,6 +46,6 @@ public static class GravityManager
             NewGrav(worldGrav, false);
         }
         
-        GravityChange?.Invoke(worldGrav, changingTargeted);
+        //GravityChange?.Invoke(worldGrav, changingTargeted);
     }
 }
