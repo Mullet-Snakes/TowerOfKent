@@ -16,9 +16,9 @@ GameObject:
   - component: {fileID: 5900177053971983796}
   - component: {fileID: 5900177053971983792}
   - component: {fileID: 5900177053971983784}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Roomba
-  m_TagString: Untagged
+  m_TagString: LevelProp
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -105,6 +105,8 @@ MonoBehaviour:
   m_forceList:
   - {fileID: 5900177053971983796}
   - {fileID: 5900177053971983792}
+  freezable: 0
+  frozen: 0
 --- !u!114 &5900177053971983796
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -117,6 +119,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f4903fc12507c3243a65363e487bb01f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isTargeted: 0
   highlighed: {fileID: 2100000, guid: d58bdd8803e3a7f41bd18237f5473a9b, type: 2}
   normal: {fileID: 2100000, guid: b3929ccc59ee6724d851c4aeed109d88, type: 2}
   gravityFactor: -9.8
@@ -154,6 +157,7 @@ MonoBehaviour:
     m_Bits: 256
   m_state: 0
   distanceToAttack: 20
+  gra: {x: 0, y: 0, z: 0}
 --- !u!1 &5900177054913200385
 GameObject:
   m_ObjectHideFlags: 0
@@ -183,7 +187,7 @@ Transform:
   m_LocalPosition: {x: 0, y: 1, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 1484805841814082173}
+  - {fileID: 2165081631741391158}
   m_Father: {fileID: 5900177053971983798}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -234,83 +238,83 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!1001 &5900177054818204007
+--- !u!1001 &1153165483400843773
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
     m_TransformParent: {fileID: 5900177054913200398}
     m_Modifications:
-    - target: {fileID: -4216859302048453862, guid: 2cd87e37b4f472e4084199ae6ed2804f,
+    - target: {fileID: 1011963703168491723, guid: 66bbdcd4089d9ad4995c74a6184101a1,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: -4216859302048453862, guid: 2cd87e37b4f472e4084199ae6ed2804f,
+    - target: {fileID: 1011963703168491723, guid: 66bbdcd4089d9ad4995c74a6184101a1,
         type: 3}
       propertyPath: m_LocalPosition.y
       value: -0.87
       objectReference: {fileID: 0}
-    - target: {fileID: -4216859302048453862, guid: 2cd87e37b4f472e4084199ae6ed2804f,
+    - target: {fileID: 1011963703168491723, guid: 66bbdcd4089d9ad4995c74a6184101a1,
         type: 3}
       propertyPath: m_LocalPosition.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: -4216859302048453862, guid: 2cd87e37b4f472e4084199ae6ed2804f,
+    - target: {fileID: 1011963703168491723, guid: 66bbdcd4089d9ad4995c74a6184101a1,
         type: 3}
       propertyPath: m_LocalRotation.x
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: -4216859302048453862, guid: 2cd87e37b4f472e4084199ae6ed2804f,
+    - target: {fileID: 1011963703168491723, guid: 66bbdcd4089d9ad4995c74a6184101a1,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: -4216859302048453862, guid: 2cd87e37b4f472e4084199ae6ed2804f,
+    - target: {fileID: 1011963703168491723, guid: 66bbdcd4089d9ad4995c74a6184101a1,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: -4216859302048453862, guid: 2cd87e37b4f472e4084199ae6ed2804f,
+    - target: {fileID: 1011963703168491723, guid: 66bbdcd4089d9ad4995c74a6184101a1,
         type: 3}
       propertyPath: m_LocalRotation.w
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: -4216859302048453862, guid: 2cd87e37b4f472e4084199ae6ed2804f,
+    - target: {fileID: 1011963703168491723, guid: 66bbdcd4089d9ad4995c74a6184101a1,
         type: 3}
       propertyPath: m_RootOrder
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: -4216859302048453862, guid: 2cd87e37b4f472e4084199ae6ed2804f,
+    - target: {fileID: 1011963703168491723, guid: 66bbdcd4089d9ad4995c74a6184101a1,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: -4216859302048453862, guid: 2cd87e37b4f472e4084199ae6ed2804f,
+    - target: {fileID: 1011963703168491723, guid: 66bbdcd4089d9ad4995c74a6184101a1,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: -4216859302048453862, guid: 2cd87e37b4f472e4084199ae6ed2804f,
+    - target: {fileID: 1011963703168491723, guid: 66bbdcd4089d9ad4995c74a6184101a1,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: -4216859302048453862, guid: 2cd87e37b4f472e4084199ae6ed2804f,
+    - target: {fileID: 1011963703168491723, guid: 66bbdcd4089d9ad4995c74a6184101a1,
         type: 3}
       propertyPath: m_LocalScale.y
       value: 2
       objectReference: {fileID: 0}
-    - target: {fileID: -927199367670048503, guid: 2cd87e37b4f472e4084199ae6ed2804f,
+    - target: {fileID: 4057864728945660632, guid: 66bbdcd4089d9ad4995c74a6184101a1,
         type: 3}
       propertyPath: m_Name
-      value: roomba test (1)
+      value: The_Roomba_Moving_Animation Variant
       objectReference: {fileID: 0}
     m_RemovedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 2cd87e37b4f472e4084199ae6ed2804f, type: 3}
---- !u!4 &1484805841814082173 stripped
+  m_SourcePrefab: {fileID: 100100000, guid: 66bbdcd4089d9ad4995c74a6184101a1, type: 3}
+--- !u!4 &2165081631741391158 stripped
 Transform:
-  m_CorrespondingSourceObject: {fileID: -4216859302048453862, guid: 2cd87e37b4f472e4084199ae6ed2804f,
+  m_CorrespondingSourceObject: {fileID: 1011963703168491723, guid: 66bbdcd4089d9ad4995c74a6184101a1,
     type: 3}
-  m_PrefabInstance: {fileID: 5900177054818204007}
+  m_PrefabInstance: {fileID: 1153165483400843773}
   m_PrefabAsset: {fileID: 0}

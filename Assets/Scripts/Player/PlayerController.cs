@@ -104,6 +104,8 @@ public class PlayerController : MonoBehaviour
 
     private bool cameraMoving = false;
 
+    public GameObject door = null;
+
     public Vector3 Gravity
     {
         get
@@ -153,6 +155,7 @@ public class PlayerController : MonoBehaviour
 
     private void Update()
     {
+
         if (isOnProp && m_input == Vector3.zero)
         {
             playerSpeed = 0;
@@ -163,11 +166,6 @@ public class PlayerController : MonoBehaviour
         }
 
         m_animator.SetFloat("Speed", playerSpeed);
-
-        if(Input.GetKeyDown(KeyCode.C))
-        {
-            OnDeath();
-        }
 
         if (allowLookScript)
         {
@@ -290,8 +288,10 @@ public class PlayerController : MonoBehaviour
         cameraMoving = false;
     }
 
-    public void OnDeath()
+    public void OnDeath(Vector3 respawnPos)
     {
-        transform.position = spawnPosition;
+        m_rb.velocity = Vector3.zero;
+        transform.position = respawnPos;
+        //transform.position = spawnPosition;
     }
 }

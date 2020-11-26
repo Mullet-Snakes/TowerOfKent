@@ -29,4 +29,9 @@ public static class Utilities
     {
         return layerMask == (layerMask | 1 << go.transform.gameObject.layer);
     }
+
+    public static void SaveGame(string sceneName)
+    {
+        PlayerPrefs.SetString("Progress", sceneName);
+    }
 }
