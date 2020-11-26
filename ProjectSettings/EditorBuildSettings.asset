@@ -33,6 +33,12 @@ EditorBuildSettings:
     path: Assets/Scenes/Level Seth grey/transit 2.unity
     guid: 6c4569066cb4ab6429a2c1f418b02039
   - enabled: 1
+    path: Assets/Scenes/Levels Mitch/Greybox level 4 Mitch.unity
+    guid: 9799d9ae4b8c7c64298d7165721e28da
+  - enabled: 1
+    path: Assets/Scenes/Levels Mitch/Greybox third level.unity
+    guid: 1eb802c764961244a80242648216d9b8
+  - enabled: 1
     path: Assets/Scenes/TestingScenes/Hall.unity
     guid: 65e6b2c8e9f363c4795ac0bc08255e9a
   - enabled: 1
