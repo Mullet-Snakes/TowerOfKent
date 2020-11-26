@@ -19,7 +19,7 @@ public class RoombaController : MonoBehaviour
 
     public float m_speed;
 
-    private bool isGrounded = false;
+    public bool isGrounded = false;
 
     public bool IsGrounded { get { return isGrounded; } }
 
@@ -48,7 +48,7 @@ public class RoombaController : MonoBehaviour
     private Transform body = null;
 
 
-    private float delay = 0f;
+    public float delay = 0f;
 
     public Vector3 gra;
 
@@ -81,12 +81,6 @@ public class RoombaController : MonoBehaviour
         m_agent.enabled = false;
         m_rb.AddForce(transform.up * 2, ForceMode.Impulse);
     }
-
-    private void OnDrawGizmos()
-    {
-        //Gizmos.DrawLine(transform.position + transform.up * player.transform.GetComponentInChildren<CapsuleCollider>().height / 2, player.transform.position);
-    }
-
 
 
     // Update is called once per frame
@@ -121,7 +115,7 @@ public class RoombaController : MonoBehaviour
 
     private void FixedUpdate()
     {
-        isGrounded = Physics.Raycast(transform.position, -transform.up, out RaycastHit hit, 0.51f);
+        isGrounded = Physics.Raycast(body.transform.position, -transform.up, 1f, floor);
 
         Vector3 right;
         Vector3 forward;

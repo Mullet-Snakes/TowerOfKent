@@ -9,23 +9,30 @@ public class GravityColliderController : MonoBehaviour
     public LayerMask layer;
     public bool active = false;
     Vector3 centre;
+    public float timer = 0f;
 
     private void Awake()
     {
         m_collider = GetComponent<BoxCollider>();
     }
 
-    private void OnTriggerEnter(Collider other)
+    private void OnTriggerStay(Collider other)
     {
-        if(!active)
+        if(timer >= 1)
         {
-            if (other.gameObject.CompareTag("Player"))
+            if (!active)
             {
-                active = true;
-                print("hello");
-                GravityManager.AddToGravityList(transform.position, transform.localScale, Quaternion.identity, layer);
+                if (other.gameObject.CompareTag("Player"))
+                {
+                    active = true;
+                    print("hello");
+                    GravityManager.ClearCurrentList();
+                    GravityManager.AddToGravityList(transform.position, transform.localScale, Quaternion.identity, layer);
+                    timer = 0;
+                }
             }
         }
+        
     }
 
     private void OnTriggerExit(Collider other)
@@ -43,5 +50,10 @@ public class GravityColliderController : MonoBehaviour
     void Update()
     {
         centre = transform.position;
+        if(timer < 1)
+        {
+            timer += Time.deltaTime;
+
+        }
     }
 }
