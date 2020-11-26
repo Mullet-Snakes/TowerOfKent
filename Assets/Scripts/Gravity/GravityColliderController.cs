@@ -15,16 +15,10 @@ public class GravityColliderController : MonoBehaviour
         m_collider = GetComponent<BoxCollider>();
     }
 
-    private void OnDrawGizmos()
-    {
-        Gizmos.DrawSphere(centre, 5);
-    }
-
     private void OnTriggerEnter(Collider other)
     {
         if(!active)
         {
-            print("checking");
             if (other.gameObject.CompareTag("Player"))
             {
                 active = true;
