@@ -20,7 +20,7 @@ public class MainMenu : MonoBehaviour
         Debug.Log(levelData);
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
-        Utilities.LoadScene(levelData);
+        Utilities.LoadScene(levelData, false);
         Utilities.UnloadScene("MainMenu");
     }
 

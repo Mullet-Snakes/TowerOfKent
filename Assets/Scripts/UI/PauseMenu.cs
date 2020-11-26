@@ -82,7 +82,7 @@ public class PauseMenu : MonoBehaviour
         Time.timeScale = 1f;
         GameIsPaused = false;
         string savedLevel = PlayerPrefs.GetString("Progress");
-        Utilities.LoadScene("MainMenu");
+        Utilities.LoadScene("MainMenu", false);
         Utilities.UnloadScene(savedLevel);
 
     }

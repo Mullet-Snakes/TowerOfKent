@@ -11760,6 +11760,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 7106440303743334378, guid: 156886da37229b44c9bf646c27a64c2f,
+        type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7106440303743334379, guid: 156886da37229b44c9bf646c27a64c2f,
         type: 3}
       propertyPath: m_Name
@@ -11839,6 +11844,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalScale.z
       value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 7823010423968148869, guid: 156886da37229b44c9bf646c27a64c2f,
+        type: 3}
+      propertyPath: sceneToLoad
+      value: Greybox TUT Level
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 156886da37229b44c9bf646c27a64c2f, type: 3}
@@ -12762,7 +12772,7 @@ PrefabInstance:
     - target: {fileID: 1715566096091502774, guid: e58ae6a885421b645ac214b06bffbef4,
         type: 3}
       propertyPath: m_RootOrder
-      value: 24
+      value: 25
       objectReference: {fileID: 0}
     - target: {fileID: 1715566096091502774, guid: e58ae6a885421b645ac214b06bffbef4,
         type: 3}
