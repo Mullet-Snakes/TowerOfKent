@@ -54,12 +54,12 @@ public class RoombaController : MonoBehaviour
 
     private void OnEnable()
     {
-        //GravityManager.GravityChange += TurnOffAgent;
+        GravityManager.GravityChange += TurnOffAgent;
     }
 
     private void OnDisable()
     {
-        //GravityManager.GravityChange -= TurnOffAgent;
+        GravityManager.GravityChange -= TurnOffAgent;
     }
 
 
