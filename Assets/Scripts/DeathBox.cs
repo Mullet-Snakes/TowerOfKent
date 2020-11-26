@@ -6,6 +6,8 @@ public class DeathBox : MonoBehaviour
 {
     private GameObject player;
 
+    [SerializeField] private GameObject spawnObject = null;
+
     private void Awake()
     {
         player = GameObject.FindWithTag("Player");
@@ -15,7 +17,8 @@ public class DeathBox : MonoBehaviour
     {
         if(other.CompareTag("Player"))
         {
-            player.GetComponent<PlayerController>().OnDeath();
+            player.GetComponent<PlayerController>().OnDeath(spawnObject.transform.position);
+
             LiftObject lift = player.GetComponent<LiftObject>();
 
             if(lift != null)
