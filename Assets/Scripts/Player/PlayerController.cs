@@ -4,6 +4,7 @@ using System.Timers;
 using System.Xml.Schema;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class PlayerController : MonoBehaviour
 {
@@ -121,8 +122,22 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    private void OnEnable()
+    {
+        SceneManager.sceneLoaded += OnSceneLoaded;
+    }
+
+    void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    {
+        if (scene.buildIndex == 1)
+        {
+            Destroy(gameObject);
+        }
+    }
+
     private void Awake()
     {
+
         if (_instance != null && _instance != this)
         {
             Destroy(gameObject);
@@ -130,9 +145,10 @@ public class PlayerController : MonoBehaviour
         else
         {
             _instance = this;
+            DontDestroyOnLoad(gameObject);
         }
 
-        DontDestroyOnLoad(gameObject);
+        
 
         Physics.gravity = Vector3.zero;
 
