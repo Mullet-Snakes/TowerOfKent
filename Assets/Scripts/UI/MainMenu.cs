@@ -9,7 +9,8 @@ public class MainMenu : MonoBehaviour
     public void New()
     {
         Debug.Log("Starting New Game");
-        SceneManager.LoadScene("Greybox TUT Level");
+        //SceneManager.LoadScene("Greybox TUT Level");
+        Utilities.LoadScene("Greybox TUT Level", false);
     }
 
     //Loads Save Game

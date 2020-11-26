@@ -131,7 +131,7 @@ public class PlayerController : MonoBehaviour
     {
         if (scene.buildIndex == 1)
         {
-            //Destroy(gameObject);
+            Destroy(gameObject);
         }
     }
 
