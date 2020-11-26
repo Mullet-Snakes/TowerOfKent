@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 8197095603853313210}
   - component: {fileID: 8197095603853313211}
   - component: {fileID: 8197095603853313208}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Right
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -123,7 +123,7 @@ GameObject:
   - component: {fileID: 8197095604029690743}
   - component: {fileID: 8197095604029690736}
   - component: {fileID: 8197095604029690741}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Left
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -230,7 +230,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8197095605655056994}
   - component: {fileID: 8197095605655056995}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: DoorObject
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -265,8 +265,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 55437c8ae8afdff499e808770e088096, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  condition: {fileID: 0}
-  canOpen: 0
+  distanceToInteract: 2
+  conditionList: []
   left: {fileID: 8197095604029690737}
   right: {fileID: 8197095603853313204}
   timeToMove: 2

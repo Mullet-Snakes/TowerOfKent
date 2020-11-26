@@ -16,9 +16,9 @@ GameObject:
   - component: {fileID: 4658005263885925546}
   - component: {fileID: -2295227644246454734}
   - component: {fileID: -2131683230410953589}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: ExplodingBarrel 1
-  m_TagString: Untagged
+  m_TagString: LevelProp
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -177,6 +177,16 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: 676cf4217aa9d8b4ba63ded1d76ba1d9, type: 2}
+    - target: {fileID: -8368784326033652824, guid: c1cece4b5a8b22f428f6bf964038329e,
+        type: 3}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: -5102530947620581811, guid: c1cece4b5a8b22f428f6bf964038329e,
+        type: 3}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: c1cece4b5a8b22f428f6bf964038329e,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -251,6 +261,26 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: barrel
+      objectReference: {fileID: 0}
+    - target: {fileID: -927199367670048503, guid: c1cece4b5a8b22f428f6bf964038329e,
+        type: 3}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: -32130022435814926, guid: c1cece4b5a8b22f428f6bf964038329e,
+        type: 3}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 5696618982783577219, guid: c1cece4b5a8b22f428f6bf964038329e,
+        type: 3}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 7555709344509756922, guid: c1cece4b5a8b22f428f6bf964038329e,
+        type: 3}
+      propertyPath: m_Layer
+      value: 10
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c1cece4b5a8b22f428f6bf964038329e, type: 3}
