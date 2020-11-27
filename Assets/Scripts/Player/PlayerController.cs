@@ -148,8 +148,7 @@ public class PlayerController : MonoBehaviour
             _instance = this;
             
         }
-        //DontDestroyOnLoad(gameObject);
-        DontDestroyOnLoad(transform.root.gameObject);
+        DontDestroyOnLoad(transform.gameObject);
 
         Physics.gravity = Vector3.zero;
 
