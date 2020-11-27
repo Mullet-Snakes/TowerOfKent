@@ -131,6 +131,7 @@ public class PlayerController : MonoBehaviour
     {
         if (scene.buildIndex == 1)
         {
+            print("to destroy");
             Destroy(gameObject);
         }
     }
@@ -147,8 +148,8 @@ public class PlayerController : MonoBehaviour
             _instance = this;
             
         }
-        DontDestroyOnLoad(gameObject);
-
+        //DontDestroyOnLoad(gameObject);
+        DontDestroyOnLoad(transform.root.gameObject);
 
         Physics.gravity = Vector3.zero;
 
