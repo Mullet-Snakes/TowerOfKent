@@ -39,6 +39,21 @@ public class AdvanceToMain : MonoBehaviour
         StartCoroutine(ExitMain());
     }
 
+    public void FinishGame()
+    {
+        StartCoroutine(GameEnd());
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.tag == "Player")
+        {
+            Cursor.lockState = CursorLockMode.None;
+            Cursor.visible = true;
+            FinishGame();
+        }
+    }
+
     IEnumerator LoadMenu(int levelIndex)
     {
         //Play Animation
@@ -68,5 +83,12 @@ public class AdvanceToMain : MonoBehaviour
         transition.SetTrigger("Start");
         yield return new WaitForSeconds(transitionTime);
         SceneManager.LoadScene("MainMenu");
+    }
+
+    IEnumerator GameEnd()
+    {
+        transition.SetTrigger("Start");
+        yield return new WaitForSeconds(transitionTime);
+        SceneManager.LoadScene("GameEnd");
     }
 }

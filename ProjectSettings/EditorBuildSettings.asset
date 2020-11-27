@@ -50,4 +50,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/TestingScenes/Room2.unity
     guid: a0b51e18cd9071a48a112b622458da3b
+  - enabled: 1
+    path: Assets/Scenes/GameEnd.unity
+    guid: ebd7386910f9c7c46bb816edd78e381e
   m_configObjects: {}
