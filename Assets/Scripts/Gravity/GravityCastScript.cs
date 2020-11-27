@@ -186,6 +186,8 @@ public class GravityCastScript : MonoBehaviour
 
 #endif
 
+#if UNITY_STANDALONE
+
         if (!PauseMenu.GameIsPaused)
         {
             if(canShoot == true)
@@ -299,5 +301,6 @@ public class GravityCastScript : MonoBehaviour
             }
             
         }
+#endif
     }
 }
